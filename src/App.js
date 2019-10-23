@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Link, Switch, BrowserRouter } from "react-router-dom";
+import { Menu } from "semantic-ui-react";
+
+import AboutUs from "./components/AboutUs";
+const home = () => {
+  return <h1>HOME</h1>;
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Menu inverted fluid widths={2}>
+        <Menu.Item name="Home" as={Link} to="/"></Menu.Item>
+        <Menu.Item name="About us" as={Link} to="/about-us"></Menu.Item>
+      </Menu>
+      <Switch>
+        <Route exact path="/" component={home} />
+        <Route path="/about-us/" component={AboutUs}></Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
