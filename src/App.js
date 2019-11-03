@@ -11,12 +11,13 @@ function App() {
   return (
     <BrowserRouter>
       <Menu inverted fluid widths={2}>
-        <Menu.Item name="Home" as={Link} to="/"></Menu.Item>
-        <Menu.Item name="About us" as={Link} to="/about-us"></Menu.Item>
+        <Menu.Item name="Home" as={Link} to="Linkomanija/"></Menu.Item>
+        <Menu.Item name="About us" as={Link} to="Linkomanija/about-us"></Menu.Item>
       </Menu>
       <Switch>
-        <Route exact path="/" component={home} />
-        <Route path="/about-us/" component={AboutUs}></Route>
+        
+        <Route path="Linkomanija/about-us/" component={AboutUs}></Route>
+        <Route path="Linkomanija/" component={home} />
       </Switch>
     </BrowserRouter>
   );
