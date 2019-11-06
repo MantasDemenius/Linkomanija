@@ -1,26 +1,37 @@
 import React from "react";
-import { Route, Link, Switch, BrowserRouter } from "react-router-dom";
-import { Menu } from "semantic-ui-react";
+import { Layout } from 'antd';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import 'antd/dist/antd.css'
+import Navigation from "./components/Navigation/Navigation"
+import './App.css'
+import Home from "./components/Home"
 
-import AboutUs from "./components/AboutUs";
+const { Content, Footer } = Layout;
 
-const home = () => {
-  return <h1>HOME</h1>;
-};
+function Movie() {
+  return (<i>Movie</i>)
+}
 
-function App() {
+function TimeTable() {
+  return (<i>Timetable</i>)
+}
+
+const App = () => {
   return (
-    <BrowserRouter>
-      <Menu inverted fluid widths={2}>
-        <Menu.Item name="Home" as={Link} to="/Linkomanija/"></Menu.Item>
-        <Menu.Item name="About us" as={Link} to="/Linkomanija/about-us"></Menu.Item>
-      </Menu>
-      <Switch>
-        <Route path="/Linkomanija/about-us/" component={AboutUs}></Route>
-        <Route exact path="/Linkomanija/" component={home} />
-      </Switch>
-    </BrowserRouter>
-  );
+    <Router>
+      <Layout className="layout">
+        <Navigation />
+        <Content>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/movies" component={Movie} />
+            <Route path="/timetable" component={TimeTable} />
+          </Switch>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+      </Layout>
+    </Router>
+  )
 }
 
 export default App;
