@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout } from 'antd';
+import { Layout, Typography } from 'antd';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import 'antd/dist/antd.css';
 import Navigation from "./components/Navigation/Navigation";
@@ -13,6 +13,7 @@ import TimeTablePage from "./components/TimeTable/TimeTablePage";
 import ProfilePage from "./components/Profile/ProfilePage";
 
 const { Content, Footer } = Layout;
+const { Text } = Typography;
 
 const App = () => {
   return (
@@ -30,7 +31,9 @@ const App = () => {
             <Route path="/movies/joker" component={MovieDetailsPage} />
           </Switch>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Linkomanija ©2019, Kaunas</Footer>
+        <Footer style={{ textAlign: 'center' }}>
+          <Text strong>Linkomanija ©2019, Kaunas</Text>
+        </Footer>
       </Layout>
     </Router>
   )

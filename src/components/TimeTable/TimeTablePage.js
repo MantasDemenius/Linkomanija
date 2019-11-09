@@ -67,7 +67,7 @@ const TimeTablePage = () => {
 
     return (
         <Card>
-            <Select defaultValue="0" style={{ width: 200 }} onChange={handleChange}>
+            <Select defaultValue="0" style={{ width: 150 }} onChange={handleChange}>
                 {options}
             </Select>
             <Divider style={{ marginBottom: 0 }} />
