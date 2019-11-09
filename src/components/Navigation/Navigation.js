@@ -37,6 +37,10 @@ const Navigation = ({ location }) => {
                     <Link to="/signup" />
                     <span>Registruotis</span>
                 </Menu.Item>
+                <Menu.Item key="/profile">
+                    <Link to="/profile" />
+                    <span>Mano Profilis</span>
+                </Menu.Item>
             </Menu>
         </Header>
     )

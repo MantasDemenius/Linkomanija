@@ -10,6 +10,7 @@ import LoginPage from "./components/Login/LoginPage";
 import SignupPage from "./components/Signup/SignupPage";
 import MovieDetailsPage from "./components/Catalog/MovieDetailsPage";
 import TimeTablePage from "./components/TimeTable/TimeTablePage";
+import ProfilePage from "./components/Profile/ProfilePage";
 
 const { Content, Footer } = Layout;
 
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/timetable" component={TimeTablePage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignupPage} />
+            <Route path="/profile" component={ProfilePage} />
             <Route path="/movies/joker" component={MovieDetailsPage} />
           </Switch>
         </Content>
