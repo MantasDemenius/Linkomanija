@@ -1,11 +1,18 @@
+body {
+  overflow-y:scroll;
+}
+
 .ant-layout-header {
-  padding: 0 15vw;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.logo {
-  background: rgba(255, 255, 255, 0.2);
-  float: left;
+
+body {
+  background: #f0f2f5;
 }
+
 .ant-carousel .slick-slide {
   text-align: center;
   height: auto;
@@ -15,4 +22,10 @@
 
 .ant-carousel .slick-slide h3 {
   color: #fff;
+}
+
+.ant-layout-content {
+  width: 55vw;
+  margin-left: auto;
+  margin-right: auto;
 }

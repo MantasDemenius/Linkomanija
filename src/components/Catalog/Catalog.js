@@ -3,8 +3,9 @@ import 'antd/dist/antd.css'
 import '../../App.css'
 import Filter from "./Filter"
 import Sorter from "./Sorter"
-import Movie from "./Movie"
+import MovieCard from "./MovieCard"
 import { Row, Col } from 'antd';
+import StackGrid from "react-stack-grid";
 
 const Catalog = () => {
     return (
@@ -15,7 +16,26 @@ const Catalog = () => {
                 </Col>
                 <Col span={18}>
                     <Sorter />
-                    <Movie />
+                    <StackGrid columnWidth={'33.33%'}>
+                        <MovieCard
+                            poster="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                            title="Džokeris"
+                            description="2019"
+                            to="/movies/joker"
+                        />
+                        <MovieCard
+                            poster="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                            title="Džokeris"
+                            description="2019"
+                            to="/movies/joker"
+                        />
+                        <MovieCard
+                            poster="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                            title="Džokeris"
+                            description="2019"
+                            to="/movies/joker"
+                        />
+                    </StackGrid>
                 </Col>
             </Row>
         </>
