@@ -5,12 +5,9 @@ import 'antd/dist/antd.css'
 import Navigation from "./components/Navigation/Navigation"
 import './App.css'
 import Home from "./components/Home"
+import Catalog from "./components/Catalog/Catalog"
 
 const { Content, Footer } = Layout;
-
-function Movie() {
-  return (<i>Movie</i>)
-}
 
 function TimeTable() {
   return (<i>Timetable</i>)
@@ -24,7 +21,7 @@ const App = () => {
         <Content>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/movies" component={Movie} />
+            <Route path="/movies" component={Catalog} />
             <Route path="/timetable" component={TimeTable} />
           </Switch>
         </Content>

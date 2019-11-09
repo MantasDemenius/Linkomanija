@@ -1,0 +1,11 @@
+.ant-card {
+    margin: 15px;
+}
+
+.ant-card-body > label {
+    display: block;
+}
+
+.ant-checkbox-wrapper {
+    margin-left: 8px;
+}
