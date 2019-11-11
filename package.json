@@ -2,9 +2,11 @@
   "name": "darbas",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://tidish.github.io/Linkomanija",
   "dependencies": {
     "antd": "^3.25.0",
     "date-fns": "^2.7.0",
+    "gh-pages": "^2.1.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
@@ -14,6 +16,8 @@
     "semantic-ui-react": "0.86.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
