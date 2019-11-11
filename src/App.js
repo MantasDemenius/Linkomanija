@@ -1,17 +1,19 @@
-import React from "react";
+import React from 'react';
 import { Layout, Typography } from 'antd';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'antd/dist/antd.css';
-import Navigation from "./components/Navigation/Navigation";
+import Navigation from './components/Navigation/Navigation';
 import './App.css';
-import Home from "./components/Home";
-import Catalog from "./components/Catalog/Catalog"
-import LoginPage from "./components/Login/LoginPage";
-import SignupPage from "./components/Signup/SignupPage";
-import MovieDetailsPage from "./components/Catalog/MovieDetailsPage";
-import TimeTablePage from "./components/TimeTable/TimeTablePage";
-import ProfilePage from "./components/Profile/ProfilePage";
-
+import Home from './components/Home';
+import Catalog from './components/Catalog/Catalog';
+import LoginPage from './components/Login/LoginPage';
+import SignupPage from './components/Signup/SignupPage';
+import MovieDetailsPage from './components/Catalog/MovieDetailsPage';
+import TimeTablePage from './components/TimeTable/TimeTablePage';
+import ProfilePage from './components/Profile/ProfilePage';
+import PlacesPage from './components/Places/PlacesPage';
+import ReservationForm from './components/TimeTable/ReservationForm';
+import TicketBuyForm from './components/TimeTable/TicketBuyForm';
 const { Content, Footer } = Layout;
 const { Text } = Typography;
 
@@ -24,11 +26,14 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/movies" component={Catalog} />
-            <Route path="/timetable" component={TimeTablePage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignupPage} />
             <Route path="/profile" component={ProfilePage} />
             <Route path="/movies/joker" component={MovieDetailsPage} />
+            <Route path="/places" component={PlacesPage} />
+            <Route path="/timetable/:movie/:token/buy" component={TicketBuyForm}/>
+            <Route path="/timetable/:movie/:token" component={ReservationForm}/>
+            <Route path="/timetable" component={TimeTablePage} />
           </Switch>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
@@ -36,7 +41,7 @@ const App = () => {
         </Footer>
       </Layout>
     </Router>
-  )
-}
+  );
+};
 
 export default App;

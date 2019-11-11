@@ -29,6 +29,10 @@ const Navigation = ({ location }) => {
                     <Link to="/movies" />
                     <span>Filmai</span>
                 </Menu.Item>
+                <Menu.Item key="/places">
+                    <Link to="/places" />
+                    <span>Patalpos</span>
+                </Menu.Item>
                 <Menu.Item key="/login">
                     <Link to="/login" />
                     <span>Prisijungti</span>
