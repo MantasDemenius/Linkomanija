@@ -16,7 +16,7 @@ const Catalog = () => {
                 </Col>
                 <Col span={18}>
                     <Sorter />
-                    <StackGrid columnWidth={'33.33%'}>
+                    <StackGrid columnWidth={'50%'}>
                         <MovieCard
                             poster="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
                             title="Džokeris"
