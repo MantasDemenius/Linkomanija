@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Linkomanija/static/css/main.72ef0961.chunk.css",
+    "main.js": "/Linkomanija/static/js/main.2cebedef.chunk.js",
+    "main.js.map": "/Linkomanija/static/js/main.2cebedef.chunk.js.map",
+    "runtime-main.js": "/Linkomanija/static/js/runtime-main.d44b93b8.js",
+    "runtime-main.js.map": "/Linkomanija/static/js/runtime-main.d44b93b8.js.map",
+    "static/css/2.a294a862.chunk.css": "/Linkomanija/static/css/2.a294a862.chunk.css",
+    "static/js/2.cd4b9169.chunk.js": "/Linkomanija/static/js/2.cd4b9169.chunk.js",
+    "static/js/2.cd4b9169.chunk.js.map": "/Linkomanija/static/js/2.cd4b9169.chunk.js.map",
+    "index.html": "/Linkomanija/index.html",
+    "precache-manifest.d32a3b82d3949b76f45aabec0f7cf5b6.js": "/Linkomanija/precache-manifest.d32a3b82d3949b76f45aabec0f7cf5b6.js",
+    "service-worker.js": "/Linkomanija/service-worker.js",
+    "static/css/2.a294a862.chunk.css.map": "/Linkomanija/static/css/2.a294a862.chunk.css.map",
+    "static/css/main.72ef0961.chunk.css.map": "/Linkomanija/static/css/main.72ef0961.chunk.css.map",
+    "static/media/semantic.min.css": "/Linkomanija/static/media/outline-icons.ef60a4f6.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d44b93b8.js",
+    "static/css/2.a294a862.chunk.css",
+    "static/js/2.cd4b9169.chunk.js",
+    "static/css/main.72ef0961.chunk.css",
+    "static/js/main.2cebedef.chunk.js"
+  ]
+}
