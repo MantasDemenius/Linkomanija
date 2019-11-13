@@ -14,6 +14,11 @@ import ProfilePage from './components/Profile/ProfilePage';
 import PlacesPage from './components/Places/PlacesPage';
 import ReservationForm from './components/TimeTable/ReservationForm';
 import TicketBuyForm from './components/TimeTable/TicketBuyForm';
+import EditForm from './components/TimeTable/EditForm';
+import AddMovie from './components/Catalog/AddMovie';
+import PlacesAdd from './components/Places/PlacesAdd';
+import PlacesEdit from './components/Places/PlacesEdit';
+import PlacesDelete from './components/Places/PlacesDelete';
 const { Content, Footer } = Layout;
 const { Text } = Typography;
 
@@ -24,16 +29,21 @@ const App = () => {
         <Navigation />
         <Content>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={TimeTablePage} />
             <Route exact path="/movies" component={Catalog} />
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignupPage} />
             <Route path="/profile" component={ProfilePage} />
             <Route path="/movies/joker" component={MovieDetailsPage} />
+            <Route path="/movies/add" component={AddMovie} />
+            <Route path="/places/add" component={PlacesAdd} />
+            <Route path="/places/edit" component={PlacesEdit} />
+            <Route path="/places/delete" component={PlacesDelete} />
             <Route path="/places" component={PlacesPage} />
             <Route path="/timetable/:movie/:token/buy" component={TicketBuyForm}/>
+            <Route path="/timetable/:movie/:token/edit" component={EditForm}/>
             <Route path="/timetable/:movie/:token" component={ReservationForm}/>
-            <Route path="/timetable" component={TimeTablePage} />
+            {/* <Route path="/timetable" component={TimeTablePage} /> */}
           </Switch>
         </Content>
         <Footer style={{ textAlign: 'center' }}>

@@ -6,14 +6,14 @@ import { Typography } from 'antd';
 import {useHistory} from 'react-router-dom';
 
 const { Text } = Typography;
-const Sorter = () => {
+const PlacesDelete = () => {
     let history = useHistory();
     return (
         <Card>
-            <Text strong>Čia bus rikiavimo raktai</Text>
+            <Text strong>Čia bus vietos trinimo forma</Text>
             {/* <Button onClick={() =>history.push('/movies/add')}>Pridėti</Button> */}
         </Card>
     )
 }
 
-export default Sorter;
+export default PlacesDelete;

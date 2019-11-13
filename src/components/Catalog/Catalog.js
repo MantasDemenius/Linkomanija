@@ -4,10 +4,12 @@ import '../../App.css'
 import Filter from "./Filter"
 import Sorter from "./Sorter"
 import MovieCard from "./MovieCard"
-import { Row, Col } from 'antd';
+import { Row, Col, Card, Button } from 'antd';
 import StackGrid from "react-stack-grid";
+import {useHistory} from 'react-router-dom';
 
 const Catalog = () => {
+    let history = useHistory();
     return (
         <>
             <Row>
@@ -35,6 +37,9 @@ const Catalog = () => {
                             description="2019"
                             to="/movies/joker"
                         />
+                        <Card>
+                        <Button onClick={() =>history.push('/movies/add')}>Pridėti</Button>
+                        </Card>
                     </StackGrid>
                 </Col>
             </Row>

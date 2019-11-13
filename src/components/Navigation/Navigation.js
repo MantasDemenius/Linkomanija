@@ -21,10 +21,10 @@ const Navigation = ({ location }) => {
                 defaultSelectedKeys={[location.pathname]}
                 style={{ lineHeight: '64px' }}
             >
-                <Menu.Item key="/timetable">
+                {/* <Menu.Item key="/timetable">
                     <Link to="/timetable" />
                     <span>Repertuaras</span>
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item key="/movies">
                     <Link to="/movies" />
                     <span>Filmai</span>

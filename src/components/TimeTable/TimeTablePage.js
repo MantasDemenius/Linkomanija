@@ -46,15 +46,16 @@ const TimeTablePage = () => {
       title: 'Action',
       key: 'action',
       align: 'right',
-      render: (item) => (
+      render: (item) => (<>
         <Button
           type="primary"
           onClick={() => history.push(`/timetable/${item.title}/${item.token}`)}
-          size="large"
-          block
+          size="medium"
+          
         >
           Bilietai
         </Button>
+        <Button type="secondary" onClick={() => history.push(`/timetable/${item.title}/${item.token}/edit`)} size="medium">Redaguoti</Button></>
       ),
     },
   ];
