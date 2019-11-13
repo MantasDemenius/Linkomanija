@@ -19,6 +19,11 @@ import AddMovie from './components/Catalog/AddMovie';
 import PlacesAdd from './components/Places/PlacesAdd';
 import PlacesEdit from './components/Places/PlacesEdit';
 import PlacesDelete from './components/Places/PlacesDelete';
+import users from './components/users/users';
+import employees from './components/darbuotojai/darbuotojai';
+import EmployeesAdd from './components/darbuotojai/EmployeesAdd';
+import EmployeesEdit from './components/darbuotojai/EmployeesEdit';
+import TicketReserveForm from './components/TimeTable/TicketReserveForm';
 const { Content, Footer } = Layout;
 const { Text } = Typography;
 
@@ -40,7 +45,12 @@ const App = () => {
             <Route path="/places/edit" component={PlacesEdit} />
             <Route path="/places/delete" component={PlacesDelete} />
             <Route path="/places" component={PlacesPage} />
+            <Route path="/employees/add" component={EmployeesAdd}/>
+            <Route path="/employees/edit" component={EmployeesEdit}/>
+            <Route path="/employees" component={employees} />
+            <Route path="/users" component={users} />
             <Route path="/timetable/:movie/:token/buy" component={TicketBuyForm}/>
+            <Route path="/timetable/:movie/:token/reserve" component={TicketReserveForm}/>
             <Route path="/timetable/:movie/:token/edit" component={EditForm}/>
             <Route path="/timetable/:movie/:token" component={ReservationForm}/>
             {/* <Route path="/timetable" component={TimeTablePage} /> */}

@@ -12,11 +12,11 @@ const ReservationForm = () => {
   return (
     <>
     {console.log(movie)}
-      <Card>
-        <Text strong>Čia bus bilieto rezervacijos forma</Text>
+      <Card style={{textAlign: 'center'}}>
+        <Button type="primary"  onClick={() =>  history.push(`/timetable/${movie}/${token}/reserve`)}>Rezervuoti</Button>
         </Card>
-        <Card>
-      <Button type="primary" block onClick={() =>  history.push(`/timetable/${movie}/${token}/buy`)} >Pirkti</Button>
+        <Card style={{textAlign: 'center'}}>
+      <Button type="primary"  onClick={() =>  history.push(`/timetable/${movie}/${token}/buy`)} >Pirkti</Button>
       </Card>
     </>
   );
