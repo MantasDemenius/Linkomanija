@@ -1,20 +1,25 @@
 import React from "react";
-import 'antd/dist/antd.css'
 import '../../App.css'
-import { Card, Button } from 'antd';
-import { Typography } from 'antd';
-import {useHistory} from 'react-router-dom';
+
+import {useHistory, Link, Route} from 'react-router-dom';
+import { Card, Button, Typography } from 'antd';
 
 const { Text } = Typography;
-const Users = () => {
+
+
+
+const UserPage = () => {
     let history = useHistory();
     return (
+        <>
         <Card>
+        <Button onClick={() =>history.push('/naudotojai/darbuotojas/pridėti')}>Prideti darbuotoją</Button>
             <Text strong>Čia bus naudotojų sarašas</Text>
             <br/>
             <Button onClick={() => alert("ištrinta")}>Ištrinti</Button>
         </Card>
+        </>
     )
 }
 
-export default Users;
+export default UserPage;
