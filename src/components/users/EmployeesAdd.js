@@ -1,15 +1,15 @@
 import React from "react";
-import 'antd/dist/antd.css'
+import './node_modules/antd/dist/antd.css'
 import '../../App.css'
 import { Card } from 'antd';
 import { Typography } from 'antd';
 
 const { Text } = Typography;
-const EmployeesEdit = () => {
+const EmployeesAdd = () => {
     return (
         <>
             <Card>
-                <Text strong>Čia bus grafiko redagavimas</Text>
+                <Text strong>Čia bus darbuotojų pridėjimas</Text>
             </Card>
             
             
@@ -17,4 +17,4 @@ const EmployeesEdit = () => {
     )
 }
 
-export default EmployeesEdit;
+export default EmployeesAdd;
