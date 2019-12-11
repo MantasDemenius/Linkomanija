@@ -15,9 +15,14 @@ public class UserController {
     this.userEmployeeService = userEmployeeService;
   }
 
-  @PostMapping(consumes = "application/json", produces = "application/json")
+  @PostMapping(value = "/employees", consumes = "application/json", produces = "application/json")
   public UserEmployee addEmployee(@RequestBody UserEmployee userEmployee) {
     UserEmployee newEmployee = userEmployeeService.save(userEmployee);
     return newEmployee;
+  }
+
+  @GetMapping(value = "/employees/{id}")
+  public UserEmployee getEmployee(@PathVariable(value = "id") Long id) {
+    return userEmployeeService.getEmployee(id);
   }
 }

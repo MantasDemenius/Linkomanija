@@ -11,7 +11,8 @@ import java.util.Date;
 public class UserEmployee {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
+
   private String username;
   private String password;
   private String email;
@@ -19,5 +20,8 @@ public class UserEmployee {
   private String surname;
   private Date born_date;
   private String phone_number;
-  private long movie_theatre_id;
+
+  @JoinColumn(name = "movie_theatre_id")
+  @ManyToOne(fetch = FetchType.EAGER)
+  private MovieTheatre movie_theatre;
 }
