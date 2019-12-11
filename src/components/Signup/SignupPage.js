@@ -1,16 +1,18 @@
-import React from "react";
-import 'antd/dist/antd.css'
-import '../../App.css'
-import { Card } from 'antd';
+import React from 'react';
+import 'antd/dist/antd.css';
+import '../../App.css';
+import { Form, Card } from 'antd';
+
+import RegistrationForm from '../Registration/RegistrationForm';
 import { Typography } from 'antd';
 
-const { Text } = Typography;
+const WrappedRegistrationForm = Form.create({ name: 'register' })(RegistrationForm);
 const SignupPage = () => {
-    return (
-        <Card>
-            <Text strong>Čia bus registracijos forma</Text>
-        </Card>
-    )
-}
+  return (
+    <Card title="Registracija">
+      <WrappedRegistrationForm userType="client" />
+    </Card>
+  );
+};
 
 export default SignupPage;
