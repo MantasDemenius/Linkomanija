@@ -20,6 +20,6 @@ public class UserEmployeeService {
   }
 
   public UserEmployee getEmployee(Long id) {
-    return userEmployeeRepository.findById(id).orElse(null);
+    return userEmployeeRepository.findById(id).orElse(new UserEmployee());
   }
 }

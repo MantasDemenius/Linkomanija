@@ -17,7 +17,7 @@ const PlacesPage = () => {
         <Text strong>Žemėlaptio langas</Text>
       </Card>
       <Card>
-        <Button onClick={() => history.push('/places/add')}>Pridėti</Button>
+        <Button onClick={() => history.push('/patalpa/prideti')}>Pridėti</Button>
         <Button onClick={() => history.push('/places/delete')}>Ištrinti</Button>
         <Button onClick={() => history.push('/places/edit')}>Redaguoti</Button>
       </Card>

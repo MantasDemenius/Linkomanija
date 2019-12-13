@@ -2,6 +2,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+gradlew flywayMigrate -i -Pflyway.url=jdbc:postgresql://localhost:5432/postgres -Pflyway.user=postgre
+s -Pflyway.password= -Pflyway.schemas=prod
+
+
 In the project directory, you can run:
 
 ### `yarn start`

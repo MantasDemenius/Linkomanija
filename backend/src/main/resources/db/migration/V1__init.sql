@@ -1,24 +1,3 @@
--- noinspection SqlNoDataSourceInspectionForFile
-
-DROP TABLE IF EXISTS rezervation;
-DROP TABLE IF EXISTS "session";
-DROP TABLE IF EXISTS timetable;
-DROP TABLE IF EXISTS movie_hall;
-DROP TABLE IF EXISTS "role";
-DROP TABLE IF EXISTS "comment";
-DROP TABLE IF exists movie_genre_link;
-DROP TABLE IF EXISTS user_employee;
-DROP TABLE IF EXISTS email_message;
-DROP TABLE IF EXISTS movie_theatre;
-DROP TABLE IF EXISTS movie;
-DROP TABLE IF EXISTS city;
-DROP TABLE IF EXISTS "language";
-DROP TABLE IF EXISTS genre;
-DROP TABLE IF EXISTS user_client;
-DROP TABLE IF EXISTS movie_person;
-DROP TABLE IF EXISTS user_admin;
-DROP TABLE IF EXISTS role_movie_movie_person_link;
-DROP TABLE IF EXISTS "role";
 
 CREATE TABLE prod.user_admin
 (
@@ -54,8 +33,19 @@ CREATE TABLE prod.user_client
 CREATE TABLE prod.genre
 (
 	id bigserial NOT null primary key,
-	pavadinimas varchar (255) NOT NULL
+	pavadinimas varchar (255) NOT null unique
 );
+
+--nesu tikras ar reikia situ ar is imdb ateis
+INSERT INTO prod.genre
+(pavadinimas)
+VALUES('Drama');
+INSERT INTO prod.genre
+(pavadinimas)
+VALUES('Veiksmo');
+INSERT INTO prod.genre
+(pavadinimas)
+VALUES('Trileris');
 
 CREATE TABLE prod.language
 (
@@ -94,7 +84,7 @@ CREATE TABLE prod.movie
 	description text NOT NULL,
 	movie_length integer NOT NULL,
 	creation_country varchar (255) NULL,
-	age_censor varchar (255) NOT NULL,
+	age_censor varchar (255) NULL,
 	imdb_code int NOT NULL,
 	rating float NOT NULL,
 	language_id BIGINT REFERENCES "language" (id)
@@ -103,15 +93,25 @@ CREATE TABLE prod.movie
 CREATE TABLE prod.movie_theatre
 (
 	id bigserial NOT null primary key,
+	name varchar(255) not null,
 	address varchar (255) NOT NULL,
 	phone_number varchar (255) NOT NULL,
-	creation_date date NOT NULL,
+	creation_date date NOT null default CURRENT_DATE,
 	city_id bigint references "city" (id)
 );
 
 INSERT INTO prod.movie_theatre
-(address, phone_number, creation_date, city_id)
-VALUES('Zirminu 1', '8632213451', current_date, 1);
+(name, address, phone_number, city_id)
+VALUES('Kauno akropolis "Linkomanija"', 'Kauno akropolis', '8632213451', 2);
+INSERT INTO prod.movie_theatre
+(name, address, phone_number, city_id)
+VALUES('Vilniaus Akropolis "Linkomanija"', 'Vilniaus akropolis', '864554677', 1);
+INSERT INTO prod.movie_theatre
+(name, address, phone_number, city_id)
+VALUES('Šiaulių Akropolis "Linkomanija"', 'Šiaulių akropolis', '864554623', 3);
+INSERT INTO prod.movie_theatre
+(name, address, phone_number, city_id)
+VALUES('Klaipėdos Akropolis "Linkomanija"', 'Klaipėdos akropolis', '864554632', 4);
 
 
 CREATE TABLE prod.email_message
@@ -119,7 +119,7 @@ CREATE TABLE prod.email_message
 	id bigserial NOT null primary key,
 	state boolean NOT NULL,
 	description text NOT NULL,
-	time_sent timestamp NOT NULL,
+	time_sent timestamp NOT null default current_timestamp,
 	user_client_id bigint references user_client (id)
 );
 
@@ -131,8 +131,8 @@ CREATE TABLE prod.user_employee
 	email varchar (255) NOT NULL,
 	name varchar (255) NOT NULL,
 	surname varchar (255) NOT NULL,
-	born_date date NOT NULL,
-	phone_number varchar (255) NOT NULL,
+	born_date date,
+	phone_number varchar (255),
 	movie_theatre_id bigint references movie_theatre (id)
 );
 
@@ -149,7 +149,7 @@ CREATE TABLE prod.comment
 (
 	id bigserial NOT null primary key,
 	description text NOT NULL,
-	creation_date timestamp NOT NULL,
+	creation_date timestamp default current_timestamp,
 	user_client_id bigint not null,
 	movie_id bigint NOT NULL,
 	CONSTRAINT fkc_user_client FOREIGN KEY(user_client_id) REFERENCES user_client (id),
@@ -176,6 +176,37 @@ CREATE TABLE prod.movie_hall
 	movie_theatre_id bigint NOT NULL,
 	CONSTRAINT fkc_movie_theatre FOREIGN KEY(movie_theatre_id) REFERENCES movie_theatre (id)
 );
+
+INSERT INTO prod.movie_hall
+("name", column_count, row_count, movie_theatre_id)
+VALUES('Scape 1 salė', 8, 20, 1);
+INSERT INTO prod.movie_hall
+("name", column_count, row_count, movie_theatre_id)
+VALUES('Scape 2 salė', 8, 20, 1);
+INSERT INTO prod.movie_hall
+("name", column_count, row_count, movie_theatre_id)
+VALUES('3 salė', 6, 15, 1);
+INSERT INTO prod.movie_hall
+("name", column_count, row_count, movie_theatre_id)
+VALUES('1 salė', 8, 20, 2);
+INSERT INTO prod.movie_hall
+("name", column_count, row_count, movie_theatre_id)
+VALUES('2 salė', 8, 20, 2);
+INSERT INTO prod.movie_hall
+("name", column_count, row_count, movie_theatre_id)
+VALUES('3 salė', 6, 15, 2);
+INSERT INTO prod.movie_hall
+("name", column_count, row_count, movie_theatre_id)
+VALUES('1 salė', 8, 20, 3);
+INSERT INTO prod.movie_hall
+("name", column_count, row_count, movie_theatre_id)
+VALUES('Scape 1 salė', 8, 20, 3);
+INSERT INTO prod.movie_hall
+("name", column_count, row_count, movie_theatre_id)
+VALUES('Scape 1 salė', 8, 20, 4);
+INSERT INTO prod.movie_hall
+("name", column_count, row_count, movie_theatre_id)
+VALUES('1 salė', 6, 15, 4);
 
 CREATE TABLE prod.timetable
 (
@@ -214,7 +245,7 @@ CREATE TABLE prod.rezervation
 	price float NOT NULL,
 	movie_start date NOT NULL,
 	movie_end date NOT NULL,
-	ticket_state_ boolean NOT NULL,
+	ticket_state boolean NOT NULL,
 	user_client_id bigint NOT NULL,
 	session_id integer NOT NULL,
 	CONSTRAINT fkc_user_client FOREIGN KEY(user_client_id) REFERENCES user_client (id),

@@ -12,14 +12,14 @@ import SignupPage from './components/Signup/SignupPage';
 import MovieDetailsPage from './components/Catalog/MovieDetailsPage';
 import TimeTablePage from './components/TimeTable/TimeTablePage';
 import ProfilePage from './components/Profile/ProfilePage';
-import PlacesPage from './components/Places/PlacesPage';
+import PlacePage from './components/Place/PlacePage';
 import ReservationForm from './components/TimeTable/ReservationForm';
 import TicketBuyForm from './components/TimeTable/TicketBuyForm';
 import EditForm from './components/TimeTable/EditForm';
 import AddMovie from './components/Catalog/AddMovie';
-import PlacesAdd from './components/Places/PlacesAdd';
-import PlacesEdit from './components/Places/PlacesEdit';
-import PlacesDelete from './components/Places/PlacesDelete';
+import PlaceAdd from './components/Place/PlaceAdd';
+import PlacesEdit from './components/Place/PlacesEdit';
+import PlacesDelete from './components/Place/PlacesDelete';
 import UserPage from './components/User/UserPage';
 import employees from './components/User/darbuotojai';
 import EmployeesAdd from './components/User/EmployeesAdd';
@@ -43,10 +43,10 @@ const App = () => {
             <Route path="/profile" component={ProfilePage} />
             <Route path="/movies/joker" component={MovieDetailsPage} />
             <Route path="/movies/add" component={AddMovie} />
-            <Route path="/places/add" component={PlacesAdd} />
+            <Route path="/patalpa/prideti" component={PlaceAdd} />
             <Route path="/places/edit" component={PlacesEdit} />
             <Route path="/places/delete" component={PlacesDelete} />
-            <Route path="/places" component={PlacesPage} />
+            <Route path="/patalpa" component={PlacePage} />
             <Route path="/naudotojai/darbuotojas/pridėti" component={EmployeesAdd}/>
             <Route path="/employees/edit" component={EmployeesEdit}/>
             <Route path="/employees" component={employees} />

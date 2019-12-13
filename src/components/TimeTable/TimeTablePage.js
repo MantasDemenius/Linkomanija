@@ -50,12 +50,12 @@ const TimeTablePage = () => {
         <Button
           type="primary"
           onClick={() => history.push(`/timetable/${item.title}/${item.token}`)}
-          size="medium"
+          size="small"
           
         >
           Bilietai
         </Button>
-        <Button type="secondary" onClick={() => history.push(`/timetable/${item.title}/${item.token}/edit`)} size="medium">Redaguoti</Button></>
+        <Button type="secondary" onClick={() => history.push(`/timetable/${item.title}/${item.token}/edit`)} size="small">Redaguoti</Button></>
       ),
     },
   ];

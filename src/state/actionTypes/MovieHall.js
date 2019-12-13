@@ -1,0 +1,3 @@
+export const ADD_MOVIEHALL = 'movieHall/ADD_MOVIEHALL';
+export const ADD_MOVIEHALL_SUCCESS = 'movieHall/ADD_MOVIEHALL_SUCCESS';
+export const ADD_MOVIEHALL_FAILED = 'movieHall/ADD_MOVIEHALL_FAILED';
