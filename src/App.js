@@ -7,8 +7,8 @@ import Navigation from './components/Navigation/Navigation';
 import './App.css';
 import Home from './components/Home';
 import Catalog from './components/Catalog/Catalog';
-import LoginPage from './components/Login/LoginPage';
-import SignupPage from './components/Signup/SignupPage';
+import LoginPage from './components/SignUp/LoginPage';
+import SignupPage from './components/SignUp/SignupPage';
 import MovieDetailsPage from './components/Catalog/MovieDetailsPage';
 import TimeTablePage from './components/TimeTable/TimeTablePage';
 import ProfilePage from './components/Profile/ProfilePage';
@@ -38,8 +38,8 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={TimeTablePage} />
             <Route exact path="/movies" component={Catalog} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/signup" component={SignupPage} />
+            <Route path="/prisijungti" component={LoginPage} />
+            <Route path="/registracija" component={SignupPage} />
             <Route path="/profile" component={ProfilePage} />
             <Route path="/movies/joker" component={MovieDetailsPage} />
             <Route path="/movies/add" component={AddMovie} />
