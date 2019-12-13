@@ -37,12 +37,12 @@ const Navigation = ({ location }) => {
                     <Link to="/naudotojai" />
                     <span>Naudotojai</span>
                 </Menu.Item>
-                <Menu.Item key="/login">
-                    <Link to="/login" />
+                <Menu.Item key="/prisijungti">
+                    <Link to="/prisijungti" />
                     <span>Prisijungti</span>
                 </Menu.Item>
-                <Menu.Item key="/signup">
-                    <Link to="/signup" />
+                <Menu.Item key="/registracija">
+                    <Link to="/registracija" />
                     <span>Registruotis</span>
                 </Menu.Item>
                 <Menu.Item key="/profile">
