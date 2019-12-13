@@ -12,7 +12,7 @@ export default function employeeReducer(state = initialState, action) {
     case ADD_EMPLOYEE_SUCCESS: {
       console.log('success');
       let data = { ...state.employee };
-      return { ...state, employee: data};
+      return { ...state, employee: data, createStatus: true};
     }
     case ADD_EMPLOYEE_FAILED: {
       console.log('fail');

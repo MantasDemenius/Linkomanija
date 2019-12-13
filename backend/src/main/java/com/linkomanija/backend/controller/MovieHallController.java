@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/patalpa")
+@RequestMapping("/api/hall")
 public class MovieHallController {
 
   @GetMapping()
@@ -19,7 +19,7 @@ public class MovieHallController {
     return new MovieHall();
   }
 
-  @PostMapping(value = "/prideti")
+  @PostMapping(value = "/add")
   public MovieHall PlaceAdd(@RequestBody MovieHall movieHall) {
     return movieHall;
   }
