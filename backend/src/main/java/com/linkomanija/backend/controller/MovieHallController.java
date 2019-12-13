@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/hall")
+@RequestMapping("/api/movieHall")
 public class MovieHallController {
 
   @GetMapping()

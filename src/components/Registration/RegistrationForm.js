@@ -3,6 +3,7 @@ import '../../App.css';
 import { Form, Input, Tooltip, Icon, Select, Button, DatePicker } from 'antd';
 import { useDispatch } from 'react-redux';
 import { addEmployee } from '../../state/actions/Employee';
+import { addClient } from '../../state/actions/client';
 
 const { Option } = Select;
 
@@ -21,7 +22,11 @@ function RegistrationForm(props) {
           values.bornDate = values.bornDate.format('YYYY-MM-DD');
         }
         console.log('Received values of form: ', values);
+        if(userType === 'employee'){
         dispatch(addEmployee(values));
+        }else if(userType === 'client'){
+          dispatch(addClient(values));
+        }
       }
     });
   };
@@ -32,7 +37,7 @@ function RegistrationForm(props) {
   };
 
   const compareToFirstPassword = (rule, value, callback) => {
-    if (value && value !== form.getFieldValue('passwordUser')) {
+    if (value && value !== form.getFieldValue('password')) {
       callback('Two passwords that you enter is inconsistent!');
     } else {
       callback();

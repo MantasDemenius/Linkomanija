@@ -7,10 +7,11 @@ import {
 } from '../actionTypes/Employee';
 
 import { RESPONSE_STATUS, getRequest, postRequest, putRequest } from '../../common/ApiRequests';
+import {ADD_EMPLOYEE_ROUTE} from '../../common/Routes';
 
 function* addEmployee(action) {
   console.log("saga", action.formData);
-  const { status, data } = yield postRequest(`users/employees`, action.formData);
+  const { status, data } = yield postRequest(ADD_EMPLOYEE_ROUTE, action.formData);
   console.log(data);
   switch (status) {
     case RESPONSE_STATUS.OK:

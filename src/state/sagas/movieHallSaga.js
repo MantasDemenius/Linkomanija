@@ -7,10 +7,11 @@ import {
 } from '../actionTypes/MovieHall';
 
 import { RESPONSE_STATUS, getRequest, postRequest, putRequest } from '../../common/ApiRequests';
+import {ADD_MOVIEHALL_ROUTE} from '../../common/Routes';
 
 function* addMovieHall(action) {
   console.log("saga", action.formData);
-  const { status, data } = yield postRequest(`hall/add`, action.formData);
+  const { status, data } = yield postRequest(ADD_MOVIEHALL_ROUTE, action.formData);
   console.log(data);
   switch (status) {
     case RESPONSE_STATUS.OK:
