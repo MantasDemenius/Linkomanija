@@ -16,7 +16,7 @@ export default function movieHallReducer(state = initialState, action) {
     case ADD_MOVIEHALL_SUCCESS: {
       console.log('success');
       let data = { ...state.movieHall };
-      return { ...state, movieHall: data};
+      return { ...state, movieHall: data, createStatus: true};
     }
     case ADD_MOVIEHALL_FAILED: {
       console.log('fail');

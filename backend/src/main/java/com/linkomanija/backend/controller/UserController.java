@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
   private UserEmployeeService userEmployeeService;
 

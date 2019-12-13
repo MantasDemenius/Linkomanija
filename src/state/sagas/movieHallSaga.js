@@ -10,7 +10,7 @@ import { RESPONSE_STATUS, getRequest, postRequest, putRequest } from '../../comm
 
 function* addMovieHall(action) {
   console.log("saga", action.formData);
-  const { status, data } = yield postRequest(`patalpa/add`, action.formData);
+  const { status, data } = yield postRequest(`hall/add`, action.formData);
   console.log(data);
   switch (status) {
     case RESPONSE_STATUS.OK:
