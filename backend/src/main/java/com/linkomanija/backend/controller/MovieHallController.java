@@ -19,7 +19,7 @@ public class MovieHallController {
     return new MovieHall();
   }
 
-  @PostMapping(value = "/add")
+  @PostMapping(value = "/prideti")
   public MovieHall PlaceAdd(@RequestBody MovieHall movieHall) {
     return movieHall;
   }
