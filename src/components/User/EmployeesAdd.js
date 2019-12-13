@@ -24,7 +24,6 @@ const EmployeesAdd = () => {
     <Card title="Darbuotojo registracija">
       {getSubmitMessage()}
       <WrappedRegistrationForm userType="employee" />
-      
     </Card>
   );
 };
