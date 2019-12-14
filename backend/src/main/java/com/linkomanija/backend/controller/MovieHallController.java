@@ -3,12 +3,8 @@ package com.linkomanija.backend.controller;
 import com.linkomanija.backend.domain.MovieHall;
 import com.linkomanija.backend.domain.UserEmployee;
 import com.linkomanija.backend.service.MovieHallService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.linkomanija.backend.service.UserEmployeeService;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
@@ -16,12 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class MovieHallController {
   private MovieHallService movieHallService;
 
-  @GetMapping()
-  public MovieHall getMovieHall() {
-    return new MovieHall();
+  public MovieHallController(MovieHallService movieHallService) {
+    this.movieHallService = movieHallService;
   }
 
-  @PostMapping(value = "/add")
+  @GetMapping(value = "/{id}")
+  public MovieHall getMovieHall(@PathVariable(value = "id") Long id) {
+    return movieHallService.getHall(id);
+  }
+
+  @PostMapping()
   public MovieHall addHall(@RequestBody MovieHall movieHall) {
     return movieHallService.save(movieHall);
   }

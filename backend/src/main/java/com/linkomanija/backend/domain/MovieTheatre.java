@@ -12,7 +12,6 @@ public class MovieTheatre {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name="movie_theatre_id")
   private Long id;
   private String address;
   private String phone_number;

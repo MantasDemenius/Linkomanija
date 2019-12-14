@@ -20,12 +20,5 @@ public class UserEmployee {
   private String surname;
   private Date born_date;
   private String phone_number;
-
-  @JoinColumn(name = "movie_theatre_id")
-  @ManyToOne(fetch = FetchType.EAGER)
-  private MovieTheatre movie_theatre;
-
-  public MovieTheatre getMovie_theatre() {
-    return movie_theatre;
-  }
+  private Long movie_theatre_id;
 }

@@ -2,12 +2,11 @@ package com.linkomanija.backend.controller;
 
 import com.linkomanija.backend.domain.UserEmployee;
 import com.linkomanija.backend.service.UserEmployeeService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
 public class UserController {
   private UserEmployeeService userEmployeeService;
 

@@ -14,16 +14,9 @@ public class MovieHall {
   private Long id;
 
   private String name;
-
-  @Column(name = "column_count")
-  private int columnCount;
-
-  @Column(name = "row_count")
-  private int rowCount;
-
-  @JoinColumn(name = "movie_theatre_id")
-  @ManyToOne(fetch = FetchType.EAGER)
-  private MovieTheatre movie_theatre;
+  private int column_count;
+  private int row_count;
+  private Long movie_theatre_id;
 
   public Long getId() {
     return id;
@@ -33,23 +26,15 @@ public class MovieHall {
     return name;
   }
 
-  public int getColumnCount() {
-    return columnCount;
+  public int getColumn_count() {
+    return column_count;
   }
 
-  public int getRowCount() {
-    return rowCount;
+  public int getRow_count() {
+    return row_count;
   }
 
-  public void setColumnCount(int columnCount) {
-    this.columnCount = columnCount;
-  }
-
-  public void setRowCount(int rowCount) {
-    this.rowCount = rowCount;
-  }
-
-  public void setMovie_theatre(MovieTheatre movie_theatre) {
-    this.movie_theatre = movie_theatre;
+  public Long getMovie_theatre_id() {
+    return movie_theatre_id;
   }
 }

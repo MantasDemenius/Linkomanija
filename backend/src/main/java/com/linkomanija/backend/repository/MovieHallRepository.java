@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface MovieHallRepository extends JpaRepository<MovieHall, Long> {
 
   @Modifying
-  @Query("update MovieHall m set m.name = ?2 where m.id = ?1")
-  int edit(Long id, String name, int columnCount, int rowCount);
+  @Query("update MovieHall m set m.name = ?2, m.column_count = ?3, m.row_count = ?4 where m.id = ?1")
+  int edit(Long id, String name, int column_count, int row_count);
 }
