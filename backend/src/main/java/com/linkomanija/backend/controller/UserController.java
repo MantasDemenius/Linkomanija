@@ -17,8 +17,7 @@ public class UserController {
 
   @PostMapping(value = "/employee/add", consumes = "application/json", produces = "application/json")
   public UserEmployee addEmployee(@RequestBody UserEmployee userEmployee) {
-    UserEmployee newEmployee = userEmployeeService.save(userEmployee);
-    return newEmployee;
+    return userEmployeeService.save(userEmployee);
   }
 
   @GetMapping(value = "/employee/{id}")

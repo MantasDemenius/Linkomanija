@@ -24,4 +24,8 @@ public class UserEmployee {
   @JoinColumn(name = "movie_theatre_id")
   @ManyToOne(fetch = FetchType.EAGER)
   private MovieTheatre movie_theatre;
+
+  public MovieTheatre getMovie_theatre() {
+    return movie_theatre;
+  }
 }
