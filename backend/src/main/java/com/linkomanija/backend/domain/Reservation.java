@@ -45,6 +45,10 @@ public class Reservation {
 
   public Reservation() {}
 
+  public Long getId() {
+    return id;
+  }
+
   public void changeSeat(int seat_row, int seat_collumn) {
     this.seat_row = seat_row;
     this.seat_collumn = seat_collumn;

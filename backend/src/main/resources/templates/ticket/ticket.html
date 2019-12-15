@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" content="PDF template">
+  <title id="pdftemplate">PDF template</title>
+  <link rel="stylesheet" type="text/css" media="all" href="templates/styles.css"/>
+</head>
+
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Bilietas</h1>
+    <h4>Nr. [[${reservation.getId()}]]</h4>
+  </div>
+  <div class="customer">
+    <p>Pirkėjas:</p>
+    <p>[[${reservation.getUserClient().getName()}]]</p>
+    <p>[[${reservation.getUserClient().getEmail()}]]</p>
+  </div>
+  <div class="seller">
+    <p>Pardavėjas:</p>
+    <p>UAB Linkomanija</p>
+    <p>linkomanija@gmail.com</p>
+    <p>Parko g. 15, Kaunas</p>
+  </div>
+  <div class="footer">
+    <p>Suma: [[${reservation.getPrice()}]] EUR.</p>
+  </div>
+</div>
+</body>
+</html>

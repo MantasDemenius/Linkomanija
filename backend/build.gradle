@@ -19,17 +19,26 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    //implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.flywaydb:flyway-core'
-    compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'org.postgresql:postgresql'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-    //testImplementation 'org.springframework.security:spring-security-test'
+  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.flywaydb:flyway-core'
+  compileOnly 'org.projectlombok:lombok'
+  runtimeOnly 'org.postgresql:postgresql'
+  annotationProcessor 'org.projectlombok:lombok'
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+      exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
+
+  compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.4'
+  compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.11.RELEASE'
+  compile group: 'com.github.jknack', name: 'handlebars', version: '4.0.6'
+  compile group: 'net.sf.jtidy', name: 'jtidy', version: 'r938'
+  compile group: 'org.xhtmlrenderer', name: 'flying-saucer-core', version: '9.1.6'
+  compile group: 'org.xhtmlrenderer', name: 'flying-saucer-pdf-itext5', version: '9.1.6'
+  compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+
+  compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.2.0.RELEASE'
+  compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.1.6.RELEASE'
 }
 
 test {
