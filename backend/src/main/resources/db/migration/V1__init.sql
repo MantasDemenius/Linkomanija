@@ -225,7 +225,7 @@ CREATE TABLE prod.session
 	session_date date NOT NULL,
 	session_start varchar (255) NOT NULL,
 	session_end varchar (255) NOT NULL,
-	empty_spaces int NOT NULL,
+	empty_spaces int NULL,
 	price float NOT NULL,
 	length integer NOT NULL,
 	language_id bigint NOT NULL,

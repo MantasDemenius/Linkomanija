@@ -1,25 +1,41 @@
 package com.linkomanija.backend.service;
 
+import com.linkomanija.backend.domain.MovieTheatre;
 import com.linkomanija.backend.domain.UserEmployee;
+import com.linkomanija.backend.dto.UserEmployeeDTO;
+import com.linkomanija.backend.repository.MovieTheatreRepository;
 import com.linkomanija.backend.repository.UserEmployeeRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Service
 public class UserEmployeeService {
-  private UserEmployeeRepository userEmployeeRepository;
+
+  UserEmployeeRepository userEmployeeRepository;
+  MovieTheatreRepository movieTheatreRepository;
 
   @Autowired
-  public UserEmployeeService(UserEmployeeRepository userEmployeeRepository) {
+  public UserEmployeeService(UserEmployeeRepository userEmployeeRepository, MovieTheatreRepository movieTheatreRepository) {
     this.userEmployeeRepository = userEmployeeRepository;
+    this.movieTheatreRepository = movieTheatreRepository;
   }
 
-  public UserEmployee save(UserEmployee userEmployee) {
+  public UserEmployee addEmployee(UserEmployeeDTO userEmployeeDTO) {
+    MovieTheatre byId = movieTheatreRepository.findById(userEmployeeDTO.getTheater_id()).orElse(new MovieTheatre());
+    UserEmployee userEmployee = new UserEmployee(userEmployeeDTO);
+    userEmployee.setMovieTheatre(byId);
     return userEmployeeRepository.save(userEmployee);
   }
 
-  public UserEmployee getEmployee(Long id) {
+  public List<UserEmployee> getAllEmployees() {
+    return userEmployeeRepository.findAll();
+  }
+
+  public UserEmployee getEmployeeById(Long id) {
     return userEmployeeRepository.findById(id).orElse(new UserEmployee());
   }
 }

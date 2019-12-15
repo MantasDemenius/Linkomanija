@@ -1,14 +1,8 @@
 package com.linkomanija.backend.domain;
 
-import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import com.linkomanija.backend.dto.MovieHallDTO;
 import lombok.Data;
 
 @Data
@@ -21,10 +15,31 @@ public class MovieHall {
   private Long id;
 
   private String name;
-  private String columnCount;
-  private String rowCount;
+  private int column_count;
+  private int row_count;
 
-//  @JoinColumn(name = "movie_theatre_id")
-//  @ManyToOne(fetch = FetchType.EAGER)
-//  private MovieTheatre movie_theatre;
+  @JoinColumn(name = "movie_theatre_id")
+  @ManyToOne(fetch = FetchType.EAGER)
+  private MovieTheatre movieTheatre;
+
+  public MovieHall(MovieHallDTO movieHallDTO) {
+    this.id = movieHallDTO.getId();
+    this.name = movieHallDTO.getName();
+    this.column_count = movieHallDTO.getColumn_count();
+    this.row_count = movieHallDTO.getRow_count();
+  }
+
+  public MovieHall() {}
+
+  public void setMovieTheatre(MovieTheatre movieTheatre) {
+    this.movieTheatre = movieTheatre;
+  }
+
+  public void updateValues(MovieHallDTO movieHallDTO, MovieTheatre movieTheatreById) {
+    this.id = movieHallDTO.getId();
+    this.name = movieHallDTO.getName();
+    this.column_count = movieHallDTO.getColumn_count();
+    this.row_count = movieHallDTO.getRow_count();
+    this.movieTheatre = movieTheatreById;
+  }
 }

@@ -1,28 +1,32 @@
 package com.linkomanija.backend.controller;
 
 import com.linkomanija.backend.domain.UserEmployee;
+import com.linkomanija.backend.dto.UserEmployeeDTO;
 import com.linkomanija.backend.service.UserEmployeeService;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
 public class UserController {
-  private UserEmployeeService userEmployeeService;
+  @Autowired
+  UserEmployeeService userEmployeeService;
 
-  public UserController(UserEmployeeService userEmployeeService) {
-    this.userEmployeeService = userEmployeeService;
+  @PostMapping(value = "employee", consumes = "application/json", produces = "application/json")
+  public UserEmployee addEmployee(@RequestBody UserEmployeeDTO userEmployeeDTO) {
+    return userEmployeeService.addEmployee(userEmployeeDTO);
   }
 
-  @PostMapping(value = "/employee/add", consumes = "application/json", produces = "application/json")
-  public UserEmployee addEmployee(@RequestBody UserEmployee userEmployee) {
-    UserEmployee newEmployee = userEmployeeService.save(userEmployee);
-    return newEmployee;
-  }
-
-  @GetMapping(value = "/employee/{id}")
+  @GetMapping(value = "employee/{id}", produces = "application/json")
   public UserEmployee getEmployee(@PathVariable(value = "id") Long id) {
-    return userEmployeeService.getEmployee(id);
+    return userEmployeeService.getEmployeeById(id);
+  }
+
+  @GetMapping(value = "employee", produces = "application/json")
+  public List<UserEmployee> getAllEmployees() {
+    return userEmployeeService.getAllEmployees();
   }
 }
