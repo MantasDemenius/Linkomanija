@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "city")
-public class City {
+@Table(name = "language")
+public class Language {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
