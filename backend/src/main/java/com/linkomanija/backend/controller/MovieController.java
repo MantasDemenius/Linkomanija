@@ -23,7 +23,7 @@ public class MovieController {
     return movieService.addMovie(movieDTO);
   }
 
-  @PostMapping(value = "edit", produces = "application/json")
+  @PostMapping(value = "edit", consumes = "application/json", produces = "application/json")
   public Movie editMovie(@RequestBody MovieDTO movieDTO) {
     return movieService.editMovie(movieDTO);
   }

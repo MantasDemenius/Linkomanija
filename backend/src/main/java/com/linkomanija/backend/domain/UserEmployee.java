@@ -39,4 +39,8 @@ public class UserEmployee {
   }
 
   public UserEmployee() {}
+
+  public boolean isPasswordCorrect(String password) {
+    return this.password.equals(password);
+  }
 }

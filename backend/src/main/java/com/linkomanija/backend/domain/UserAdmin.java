@@ -20,4 +20,8 @@ public class UserAdmin {
   private String surname;
   private Date born_date;
   private String phone_number;
+
+  public boolean isPasswordCorrect(String password) {
+    return this.password.equals(password);
+  }
 }
