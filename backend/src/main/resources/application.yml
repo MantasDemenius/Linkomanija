@@ -2,5 +2,10 @@ google-maps:
   api-key: AIzaSyALz_UN-dd7KuVIx12mPwg8Oeeqn2mM2T8
 omdb:
   api-key: 9edbd840 #1k requests per day
+mail:
+  host: smtp.gmail.com
+  username: linkomanija.isp@gmail.com
+  password: modulisisp
+  port: 587
 
 

@@ -34,6 +34,10 @@ public class UserClient {
 
   public UserClient() {}
 
+  public String getEmail() {
+    return email;
+  }
+
   public boolean isPasswordCorrect(String password) {
     return this.password.equals(password);
   }
