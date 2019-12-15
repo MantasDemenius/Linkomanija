@@ -58,7 +58,6 @@ public class PdfGenerator {
 
   private void setHtmlLayout(final ITextRenderer renderer, final String html)
     throws IOException, DocumentException {
-    renderer.getFontResolver().addFont("templates/fonts/Arial.ttf", IDENTITY_H, EMBEDDED);
     renderer.getFontResolver().addFont("templates/fonts/Times New Roman.ttf", IDENTITY_H, EMBEDDED);
 
     final String baseUr1 =

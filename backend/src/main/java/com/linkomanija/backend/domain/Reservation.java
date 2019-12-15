@@ -49,6 +49,10 @@ public class Reservation {
     return id;
   }
 
+  public UserClient getUserClient() {
+    return userClient;
+  }
+
   public void changeSeat(int seat_row, int seat_collumn) {
     this.seat_row = seat_row;
     this.seat_collumn = seat_collumn;
