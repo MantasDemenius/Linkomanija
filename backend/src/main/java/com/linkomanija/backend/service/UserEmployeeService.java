@@ -26,8 +26,7 @@ public class UserEmployeeService {
 
   public UserEmployee addEmployee(UserEmployeeDTO userEmployeeDTO) {
     MovieTheatre byId = movieTheatreRepository.findById(userEmployeeDTO.getTheater_id()).orElse(new MovieTheatre());
-    UserEmployee userEmployee = new UserEmployee(userEmployeeDTO);
-    userEmployee.setMovieTheatre(byId);
+    UserEmployee userEmployee = new UserEmployee(userEmployeeDTO, byId);
     return userEmployeeRepository.save(userEmployee);
   }
 
@@ -37,5 +36,11 @@ public class UserEmployeeService {
 
   public UserEmployee getEmployeeById(Long id) {
     return userEmployeeRepository.findById(id).orElse(new UserEmployee());
+  }
+
+  public UserEmployee deleteEmployeeById(Long id) {
+    UserEmployee userEmployee = userEmployeeRepository.findById(id).orElse(new UserEmployee());
+    userEmployeeRepository.delete(userEmployee);
+    return userEmployee;
   }
 }

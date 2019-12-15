@@ -31,10 +31,7 @@ public class SessionService {
     Language languageById = languageRepository.findById(sessionDTO.getLanguage_id()).orElse(new Language());
     Movie movieById = movieRepository.findById(sessionDTO.getMovie_id()).orElse(new Movie());
     MovieHall movieHallById = movieHallRepository.findById(sessionDTO.getMovie_hall_id()).orElse(new MovieHall());
-    Session session = new Session(sessionDTO);
-    session.setLanguage(languageById);
-    session.setMovie(movieById);
-    session.setMovieHall(movieHallById);
+    Session session = new Session(sessionDTO, languageById, movieById, movieHallById);
     return sessionRepository.save(session);
   }
 

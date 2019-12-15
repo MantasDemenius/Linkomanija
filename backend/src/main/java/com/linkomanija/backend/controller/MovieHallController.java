@@ -21,17 +21,17 @@ public class MovieHallController {
     return movieHallService.addMovieHall(movieHallDTO);
   }
 
-  @PostMapping(value = "/edit", produces = "application/json")
+  @PostMapping(value = "edit", produces = "application/json")
   public MovieHall editMovieHall(@RequestBody MovieHallDTO movieHallDTO) {
     return movieHallService.editMovieHall(movieHallDTO);
   }
 
-  @DeleteMapping(value = "/{id}", produces = "application/json")
+  @DeleteMapping(value = "{id}", produces = "application/json")
   public MovieHall deleteMovieHall(@PathVariable(name = "id") Long id) {
     return movieHallService.deleteMovieHall(id);
   }
 
-  @GetMapping(value = "/{id}", produces = "application/json")
+  @GetMapping(value = "{id}", produces = "application/json")
   public MovieHall getMovieHall(@PathVariable(name = "id") Long id) {
     return movieHallService.getMovieHallById(id);
   }

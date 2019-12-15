@@ -35,7 +35,7 @@ public class Session {
   @JoinColumn(name = "movie_hall_id")
   private MovieHall movieHall;
 
-  public Session(SessionDTO sessionDTO) {
+  public Session(SessionDTO sessionDTO, Language language, Movie movie, MovieHall movieHall ) {
     this.id = sessionDTO.getId();
     this.session_date = sessionDTO.getSession_date();
     this.session_start = sessionDTO.getSession_start();
@@ -43,21 +43,12 @@ public class Session {
     this.empty_spaces = sessionDTO.getEmpty_spaces();
     this.price = sessionDTO.getPrice();
     this.length = sessionDTO.getLength();
+    this.language = language;
+    this.movie = movie;
+    this.movieHall = movieHall;
   }
 
   public Session() {}
-
-  public void setLanguage(Language language) {
-    this.language = language;
-  }
-
-  public void setMovie(Movie movie) {
-    this.movie = movie;
-  }
-
-  public void setMovieHall(MovieHall movieHall) {
-    this.movieHall = movieHall;
-  }
 
   public void updateValues(SessionDTO sessionDTO, Language language, Movie movie, MovieHall movieHall) {
     this.id = sessionDTO.getId();
