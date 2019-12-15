@@ -16,7 +16,7 @@ public class ReservationController {
   @Autowired
   private ReservationService reservationService;
 
-  @PostMapping(produces = "application/json")
+  @PostMapping(consumes = "application/json", produces = "application/json")
   public Reservation addReservation(@RequestBody ReservationDTO reservationDTO) {
     return reservationService.addReservation(reservationDTO);
   }
