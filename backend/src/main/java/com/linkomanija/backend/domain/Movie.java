@@ -22,13 +22,15 @@ public class Movie {
   private String creation_country;
   private String age_censor;
   private String imdb_code;
-  private double rating;
+  private double imdb_rating;
+  private double user_rating;
+  private Date imdb_last_updated;
 
   @JoinColumn(name = "language_id")
   @ManyToOne(fetch = FetchType.EAGER)
   private Language language;
 
-  public Movie(MovieDTO movieDTO) {
+  public Movie(MovieDTO movieDTO, Language language) {
     this.title = movieDTO.getTitle();
     this.poster_url = movieDTO.getPoster_url();
     this.release_date = movieDTO.getRelease_date();
@@ -37,14 +39,10 @@ public class Movie {
     this.creation_country = movieDTO.getCreation_country();
     this.age_censor = movieDTO.getAge_censor();
     this.imdb_code = movieDTO.getImdb_code();
-    this.rating = movieDTO.getRating();
+    this.language = language;
   }
 
   public Movie() {}
-
-  public void setLanguage(Language language) {
-    this.language = language;
-  }
 
   public void updateValues(MovieDTO movieDTO, Language language) {
     this.title = movieDTO.getTitle();
@@ -55,7 +53,15 @@ public class Movie {
     this.creation_country = movieDTO.getCreation_country();
     this.age_censor = movieDTO.getAge_censor();
     this.imdb_code = movieDTO.getImdb_code();
-    this.rating = movieDTO.getRating();
     this.language = language;
+  }
+
+  public void updateUserRating(double user_rating) {
+    this.user_rating = user_rating;
+  }
+
+  public void setImdbRating(double imdb_rating) {
+    this.imdb_rating = imdb_rating;
+    this.imdb_last_updated = new Date(System.currentTimeMillis());
   }
 }

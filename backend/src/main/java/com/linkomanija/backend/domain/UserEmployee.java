@@ -1,18 +1,10 @@
 package com.linkomanija.backend.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.linkomanija.backend.dto.UserEmployeeDTO;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @Data
 @Entity
@@ -34,7 +26,7 @@ public class UserEmployee {
   @JoinColumn(name = "movie_theatre_id")
   private MovieTheatre movieTheatre;
 
-  public UserEmployee(UserEmployeeDTO userEmployeeDTO) {
+  public UserEmployee(UserEmployeeDTO userEmployeeDTO, MovieTheatre movieTheatre) {
     this.id = userEmployeeDTO.getId();
     this.username = userEmployeeDTO.getUsername();
     this.password = userEmployeeDTO.getPassword();
@@ -43,11 +35,8 @@ public class UserEmployee {
     this.surname = userEmployeeDTO.getSurname();
     this.born_date = userEmployeeDTO.getBorn_date();
     this.phone_number = userEmployeeDTO.getPhone_number();
+    this.movieTheatre = movieTheatre;
   }
 
   public UserEmployee() {}
-
-  public void setMovieTheatre(MovieTheatre movieTheatre) {
-    this.movieTheatre = movieTheatre;
-  }
 }

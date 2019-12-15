@@ -12,7 +12,6 @@ public class MovieDTO {
   private String creation_country;
   private String age_censor;
   private String imdb_code;
-  private double rating;
   private Long language_id;
 
   public Long getId() {
@@ -49,10 +48,6 @@ public class MovieDTO {
 
   public String getImdb_code() {
     return imdb_code;
-  }
-
-  public double getRating() {
-    return rating;
   }
 
   public Long getLanguage_id() {

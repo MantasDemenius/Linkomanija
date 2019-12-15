@@ -1,5 +1,7 @@
 package com.linkomanija.backend.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class SessionDTO {
@@ -22,10 +24,12 @@ public class SessionDTO {
     return session_date;
   }
 
+  @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
   public String getSession_start() {
     return session_start;
   }
 
+  @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
   public String getSession_end() {
     return session_end;
   }

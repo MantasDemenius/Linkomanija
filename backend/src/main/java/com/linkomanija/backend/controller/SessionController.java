@@ -21,17 +21,17 @@ public class SessionController {
     return sessionService.addSession(sessionDTO);
   }
 
-  @PostMapping(value = "/edit", produces = "application/json")
+  @PostMapping(value = "edit", produces = "application/json")
   public Session editSession(@RequestBody SessionDTO sessionDTO) {
     return sessionService.editSession(sessionDTO);
   }
 
-  @DeleteMapping(value = "/{id}", produces = "application/json")
+  @DeleteMapping(value = "{id}", produces = "application/json")
   public Session deleteSession(@PathVariable(name = "id") Long id) {
     return sessionService.deleteSession(id);
   }
 
-  @GetMapping(value = "/{id}", produces = "application/json")
+  @GetMapping(value = "{id}", produces = "application/json")
   public Session getSession(@PathVariable(name = "id") Long id) {
     return sessionService.getSessionById(id);
   }
