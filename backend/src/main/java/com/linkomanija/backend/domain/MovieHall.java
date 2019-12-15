@@ -2,6 +2,7 @@ package com.linkomanija.backend.domain;
 
 import javax.persistence.*;
 
+import com.linkomanija.backend.dto.MovieHallDTO;
 import lombok.Data;
 
 @Data
@@ -16,25 +17,29 @@ public class MovieHall {
   private String name;
   private int column_count;
   private int row_count;
-  private Long movie_theatre_id;
 
-  public Long getId() {
-    return id;
+  @JoinColumn(name = "movie_theatre_id")
+  @ManyToOne(fetch = FetchType.EAGER)
+  private MovieTheatre movieTheatre;
+
+  public MovieHall(MovieHallDTO movieHallDTO) {
+    this.id = movieHallDTO.getId();
+    this.name = movieHallDTO.getName();
+    this.column_count = movieHallDTO.getColumn_count();
+    this.row_count = movieHallDTO.getRow_count();
   }
 
-  public String getName() {
-    return name;
+  public MovieHall() {}
+
+  public void setMovieTheatre(MovieTheatre movieTheatre) {
+    this.movieTheatre = movieTheatre;
   }
 
-  public int getColumn_count() {
-    return column_count;
-  }
-
-  public int getRow_count() {
-    return row_count;
-  }
-
-  public Long getMovie_theatre_id() {
-    return movie_theatre_id;
+  public void updateValues(MovieHallDTO movieHallDTO, MovieTheatre movieTheatreById) {
+    this.id = movieHallDTO.getId();
+    this.name = movieHallDTO.getName();
+    this.column_count = movieHallDTO.getColumn_count();
+    this.row_count = movieHallDTO.getRow_count();
+    this.movieTheatre = movieTheatreById;
   }
 }

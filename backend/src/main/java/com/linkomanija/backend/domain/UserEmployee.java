@@ -32,7 +32,6 @@ public class UserEmployee {
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "movie_theatre_id")
-  @OnDelete(action = OnDeleteAction.CASCADE)
   private MovieTheatre movieTheatre;
 
   public UserEmployee(UserEmployeeDTO userEmployeeDTO) {

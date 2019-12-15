@@ -46,16 +46,16 @@ public class Movie {
     this.language = language;
   }
 
-  public void updateValues(MovieDTO updatedMovie, Language language) {
-    this.title = updatedMovie.getTitle();
-    this.poster_url = updatedMovie.getPoster_url();
-    this.release_date = updatedMovie.getRelease_date();
-    this.description = updatedMovie.getDescription();
-    this.movie_length = updatedMovie.getMovie_length();
-    this.creation_country = updatedMovie.getCreation_country();
-    this.age_censor = updatedMovie.getAge_censor();
-    this.imdb_code = updatedMovie.getImdb_code();
-    this.rating = updatedMovie.getRating();
+  public void updateValues(MovieDTO movieDTO, Language language) {
+    this.title = movieDTO.getTitle();
+    this.poster_url = movieDTO.getPoster_url();
+    this.release_date = movieDTO.getRelease_date();
+    this.description = movieDTO.getDescription();
+    this.movie_length = movieDTO.getMovie_length();
+    this.creation_country = movieDTO.getCreation_country();
+    this.age_censor = movieDTO.getAge_censor();
+    this.imdb_code = movieDTO.getImdb_code();
+    this.rating = movieDTO.getRating();
     this.language = language;
   }
 }

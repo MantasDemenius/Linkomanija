@@ -12,12 +12,23 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/session")
 public class SessionController {
+
   @Autowired
   SessionService sessionService;
 
   @PostMapping(consumes = "application/json", produces = "application/json")
   public Session addSession(@RequestBody SessionDTO sessionDTO) {
     return sessionService.addSession(sessionDTO);
+  }
+
+  @PostMapping(value = "/edit", produces = "application/json")
+  public Session editSession(@RequestBody SessionDTO sessionDTO) {
+    return sessionService.editSession(sessionDTO);
+  }
+
+  @DeleteMapping(value = "/{id}", produces = "application/json")
+  public Session deleteSession(@PathVariable(name = "id") Long id) {
+    return sessionService.deleteSession(id);
   }
 
   @GetMapping(value = "/{id}", produces = "application/json")

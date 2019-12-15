@@ -45,4 +45,19 @@ public class SessionService {
   public Session getSessionById(Long id) {
     return sessionRepository.findById(id).orElse(new Session());
   }
+
+  public Session editSession(SessionDTO sessionDTO) {
+    Session session = sessionRepository.findById(sessionDTO.getId()).orElse(new Session());
+    Language languageById = languageRepository.findById(sessionDTO.getLanguage_id()).orElse(new Language());
+    Movie movieById = movieRepository.findById(sessionDTO.getMovie_id()).orElse(new Movie());
+    MovieHall movieHallById = movieHallRepository.findById(sessionDTO.getMovie_hall_id()).orElse(new MovieHall());
+    session.updateValues(sessionDTO, languageById, movieById, movieHallById);
+    return sessionRepository.save(session);
+  }
+
+  public Session deleteSession(Long id) {
+    Session session = sessionRepository.findById(id).orElse(new Session());
+    sessionRepository.delete(session);
+    return session;
+  }
 }
