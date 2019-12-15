@@ -5,6 +5,7 @@ import com.linkomanija.backend.domain.Movie;
 import com.linkomanija.backend.domain.MovieRating;
 import com.linkomanija.backend.dto.MovieDTO;
 import com.linkomanija.backend.dto.MovieRatingDTO;
+import com.linkomanija.backend.omdb.MovieFetch;
 import com.linkomanija.backend.repository.LanguageRepository;
 import com.linkomanija.backend.repository.MovieRatingRepository;
 import com.linkomanija.backend.repository.MovieRepository;
@@ -12,7 +13,11 @@ import com.linkomanija.backend.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class MovieService {
@@ -28,28 +33,28 @@ public class MovieService {
     this.movieRatingRepository = movieRatingRepository;
   }
 
-  public Movie addMovie(MovieDTO movieDTO) {
+  public Movie addMovie(MovieDTO movieDTO) throws IOException, ParseException {
     Language languageById = languageRepository.findById(movieDTO.getLanguage_id()).orElse(new Language());
     Movie movie = new Movie(movieDTO, languageById);
-    //TODO get and set IMDB rating
+    movie.completeWithImdb(MovieFetch.findMovieByCode(movieDTO.getImdb_code()));
     return movieRepository.save(movie);
   }
 
   public List<Movie> getAllMovies() {
-    //TODO if imdb_last_updated > 1day -> get and set IMDB rating
     return movieRepository.findAll();
   }
 
-  public Movie getMovieById(Long id) {
-    //TODO if imdb_last_updated > 1day -> get and set IMDB rating
-    return movieRepository.findById(id).orElse(new Movie());
+  public Movie getMovieById(Long id) throws IOException, ParseException {
+    Movie movie = movieRepository.findById(id).orElse(new Movie());
+    updateRating(movie);
+    return movie;
   }
 
-  public Movie editMovie(MovieDTO newMovie) {
+  public Movie editMovie(MovieDTO newMovie) throws IOException, ParseException {
     Movie movie = movieRepository.findById(newMovie.getId()).orElse(new Movie());
     Language languageById = languageRepository.findById(newMovie.getLanguage_id()).orElse(new Language());
     movie.updateValues(newMovie, languageById);
-    //TODO get and set IMDB rating
+    updateRating(movie);
     movieRepository.save(movie);
     return movie;
   }
@@ -88,5 +93,17 @@ public class MovieService {
       .mapToDouble(MovieRating::getRating)
       .average()
       .orElse(0.0);
+  }
+
+  private void updateRating(Movie movie) throws IOException, ParseException {
+    Date last_updated = movie.getImdb_last_updated();
+    long diffInMillies = new Date(System.currentTimeMillis()).getTime() - last_updated.getTime();
+    long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+
+    if (diff > 1) {
+      double currentRating = MovieFetch.findMovieByCode(movie.getImdb_code()).getImdb_rating();
+      movie.setImdbRating(currentRating);
+      movieRepository.save(movie);
+    }
   }
 }

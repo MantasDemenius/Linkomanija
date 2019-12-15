@@ -8,6 +8,8 @@ import com.linkomanija.backend.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 @CrossOrigin
@@ -19,12 +21,12 @@ public class MovieController {
   private MovieService movieService;
 
   @PostMapping(produces = "application/json")
-  public Movie addMovie(@RequestBody MovieDTO movieDTO) {
+  public Movie addMovie(@RequestBody MovieDTO movieDTO) throws IOException, ParseException {
     return movieService.addMovie(movieDTO);
   }
 
   @PostMapping(value = "edit", consumes = "application/json", produces = "application/json")
-  public Movie editMovie(@RequestBody MovieDTO movieDTO) {
+  public Movie editMovie(@RequestBody MovieDTO movieDTO) throws IOException, ParseException {
     return movieService.editMovie(movieDTO);
   }
 
@@ -44,7 +46,7 @@ public class MovieController {
   }
 
   @GetMapping(value = "{id}", produces = "application/json")
-  public Movie getMovie(@PathVariable(name = "id") Long id) {
+  public Movie getMovie(@PathVariable(name = "id") Long id) throws IOException, ParseException {
     return movieService.getMovieById(id);
   }
 

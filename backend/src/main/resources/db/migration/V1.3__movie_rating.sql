@@ -7,5 +7,7 @@ CREATE TABLE prod.movie_user_rating
 
 ALTER TABLE prod.movie
 ADD COLUMN imdb_last_updated Date,
-ADD COLUMN user_rating float,
-RENAME COLUMN rating imdb_rating;
+ADD COLUMN user_rating float;
+
+ALTER TABLE prod.movie
+RENAME COLUMN rating TO imdb_rating;
