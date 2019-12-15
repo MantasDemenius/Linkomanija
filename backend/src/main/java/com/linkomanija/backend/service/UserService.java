@@ -10,7 +10,9 @@ import com.linkomanija.backend.repository.UserAdminRepository;
 import com.linkomanija.backend.repository.UserClientRepository;
 import com.linkomanija.backend.repository.UserEmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserService {
   private UserAdminRepository userAdminRepository;
   private UserClientRepository userClientRepository;
