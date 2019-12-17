@@ -32,6 +32,10 @@ public class UserClient {
     this.phone_number = registerDTO.getPhone_number();
   }
 
+  public String getUsername() {
+    return username;
+  }
+
   public UserClient() {}
 
   public String getEmail() {

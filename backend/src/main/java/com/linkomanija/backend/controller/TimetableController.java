@@ -30,4 +30,9 @@ public class TimetableController {
   public List<Timetable> getAllTimetablesByEmployeeId(@PathVariable(name = "user_employee_id") Long user_employee_id) {
     return timetableService.getAllTimetablesByEmployeeId(user_employee_id);
   }
+
+  @GetMapping(produces = "application/json")
+  public List<Timetable> getAllTimetables() {
+    return timetableService.getAllTimetables();
+  }
 }
