@@ -57,6 +57,10 @@ public class Movie {
 
   public Movie() {}
 
+  public Language getLanguage() {
+    return language;
+  }
+
   public Date getImdb_last_updated() {
     return imdb_last_updated;
   }

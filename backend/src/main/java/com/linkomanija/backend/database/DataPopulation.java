@@ -27,12 +27,14 @@ public class DataPopulation {
   private MovieRepository movieRepository;
   private UserEmployeeRepository userEmployeeRepository;
   private TimetableRepository timetableRepository;
+  private SessionRepository sessionRepository;
 
   @Autowired
-  public DataPopulation(TimetableRepository timetableRepository, MovieRepository movieRepository, UserEmployeeRepository userEmployeeRepository) {
+  public DataPopulation(SessionRepository sessionRepository, TimetableRepository timetableRepository, MovieRepository movieRepository, UserEmployeeRepository userEmployeeRepository) {
     this.movieRepository = movieRepository;
     this.userEmployeeRepository = userEmployeeRepository;
     this.timetableRepository = timetableRepository;
+    this.sessionRepository = sessionRepository;
   }
 
   @EventListener(ApplicationReadyEvent.class)
@@ -41,6 +43,7 @@ public class DataPopulation {
     RestTemplate restTemplate = new RestTemplate();
 
     //ADD MOVIES
+    sessionRepository.deleteAll();
     movieRepository.deleteAll();
 
     URI addMovie = new URI(baseUrl + "movie");

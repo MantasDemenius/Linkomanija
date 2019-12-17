@@ -28,10 +28,10 @@ public class SessionService {
   }
 
   public Session addSession(SessionDTO sessionDTO) {
-    Language languageById = languageRepository.findById(sessionDTO.getLanguage_id()).orElse(new Language());
     Movie movieById = movieRepository.findById(sessionDTO.getMovie_id()).orElse(new Movie());
+    Language language = movieById.getLanguage();
     MovieHall movieHallById = movieHallRepository.findById(sessionDTO.getMovie_hall_id()).orElse(new MovieHall());
-    Session session = new Session(sessionDTO, languageById, movieById, movieHallById);
+    Session session = new Session(sessionDTO, language, movieById, movieHallById);
     return sessionRepository.save(session);
   }
 
