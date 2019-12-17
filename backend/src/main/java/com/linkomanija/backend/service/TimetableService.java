@@ -28,6 +28,10 @@ public class TimetableService {
     return timetableRepository.save(timetable);
   }
 
+  public List<Timetable> getAllTimetables() {
+    return timetableRepository.findAll();
+  }
+
   public List<Timetable> getAllTimetablesByEmployeeId(Long user_employee_id) {
     return timetableRepository.findByUserEmployeeId(user_employee_id);
   }
