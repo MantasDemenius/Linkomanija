@@ -11,7 +11,7 @@ import {
   DatePicker,
   Card,
   TimePicker,
-  InputNumber,
+  InputNumber,message
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { addEmployee } from '../../state/actions/Employee';
@@ -56,10 +56,12 @@ function SessionAddForm(props) {
           .post('/api/session', values)
           .then(function(response) {
             console.log(response);
+            message.success('Filmo seansas sėkmingai pridėtas')
             // history.push('/movies');
           })
           .catch(function(error) {
             console.log(error);
+            message.error('Filmo seansas buvo nepridėtas')
           });
       }
     });
