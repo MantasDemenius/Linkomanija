@@ -22,6 +22,7 @@ public class MovieFetch {
 
   public static ImdbMovie findMovieByCode(String imdb_code) throws IOException, ParseException {
     InputStream response = getResponse(imdb_code);
+    int a = response.available();
     return parseResponse(response);
   }
 

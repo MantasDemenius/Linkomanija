@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @Data
 @Entity
@@ -61,4 +62,10 @@ public class Reservation {
   public boolean isTicket_state() {
     return ticket_state;
   }
+
+//  public boolean isValid() {
+//    Date session_date = session.getSession_date();
+//    long diffInMillies = new Date(System.currentTimeMillis()).getTime() - last_updated.getTime();
+//    long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+//  }
 }

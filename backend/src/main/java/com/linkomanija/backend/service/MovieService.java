@@ -3,6 +3,7 @@ package com.linkomanija.backend.service;
 import com.linkomanija.backend.domain.*;
 import com.linkomanija.backend.dto.MovieDTO;
 import com.linkomanija.backend.dto.MovieRatingDTO;
+import com.linkomanija.backend.omdb.ImdbMovie;
 import com.linkomanija.backend.omdb.MovieFetch;
 import com.linkomanija.backend.repository.*;
 
@@ -42,8 +43,14 @@ public class MovieService {
     }
     movieDTO.setGenres(genre_list);
     Movie movie = new Movie(movieDTO, languageById);
-    movie.completeWithImdb(MovieFetch.findMovieByCode(movieDTO.getImdb_code()));
+    ImdbMovie imdbMovie = MovieFetch.findMovieByCode(movieDTO.getImdb_code());
+    movie.completeWithImdb(imdbMovie);
     return movieRepository.save(movie);
+//    if (imdbMovie.valid()) {
+//      movie.completeWithImdb(imdbMovie);
+//      return movieRepository.save(movie);
+//    }
+//    return null;
   }
 
   public List<Movie> getAllMovies() {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -38,10 +39,15 @@ public class TicketController {
     return reservation;
   }
 
-//  @PostMapping(value = "{reservation_id}/user/{user_id}")
-//  public ResponseEntity<String> sendTickets(@PathVariable(name = "reservation_id") Long reservation_id, @PathVariable(name = "user_id") Long user_id) {
-//
-//  }
+  @PostMapping(value = "{user_id}")
+  public ResponseEntity<String> sendTickets(@PathVariable(name = "user_id") Long user_id) throws IOException, DocumentException, MessagingException {
+    List<Reservation> validTickets = reservationService.findValidTicketsByUserId(user_id);
+    for (Reservation reservation : validTickets) {
+      pdfGenerator.generateDocument(reservation, "ticket");
+      mail.sendDocuments(reservation);
+    }
+    return ResponseEntity.ok(validTickets.size() + " tickets have been sent");
+  }
 
 
 }

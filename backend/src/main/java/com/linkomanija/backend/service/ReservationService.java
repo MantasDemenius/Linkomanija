@@ -8,6 +8,7 @@ import com.linkomanija.backend.repository.ReservationRepository;
 import com.linkomanija.backend.repository.SessionRepository;
 import com.linkomanija.backend.repository.UserClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -59,5 +60,14 @@ public class ReservationService {
     Reservation reservation = reservationRepository.findById(reservationDTO.getId()).orElse(new Reservation());
     reservation.changeSeat(reservationDTO.getSeat_row(), reservationDTO.getSeat_collumn());
     return reservationRepository.save(reservation);
+  }
+
+  public List<Reservation> findValidTicketsByUserId(Long user_id) {
+    List<Reservation> tickets = reservationRepository.findByUserClientId(user_id)
+      .stream()
+      .filter(Reservation::isTicket_state)
+      .collect(Collectors.toList());
+    return tickets;
+
   }
 }

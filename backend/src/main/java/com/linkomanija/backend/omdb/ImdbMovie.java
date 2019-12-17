@@ -54,4 +54,10 @@ public class ImdbMovie {
   public double getImdb_rating() {
     return imdb_rating;
   }
+
+  public boolean valid() {
+    if (poster_url.equals(""))
+      return false;
+    return true;
+  }
 }
