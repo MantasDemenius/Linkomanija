@@ -42,8 +42,8 @@ const App = () => {
             <Route path="/prisijungti" component={LoginPage} />
             <Route path="/registracija" component={SignupPage} />
             <Route path="/profile" component={ProfilePage} />
-            <Route path="/movies/:id" component={MovieDetailsPage} />
             <Route path="/movies/add" component={AddMovie} />
+            <Route path="/movies/:id" component={MovieDetailsPage} />
             <Route path="/patalpa/prideti" component={PlaceAdd} />
             <Route path="/places/edit" component={PlacesEdit} />
             <Route path="/patalpa/panaikinimas" component={PlacesDelete} />

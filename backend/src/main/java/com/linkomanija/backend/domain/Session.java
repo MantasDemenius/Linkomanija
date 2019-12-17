@@ -62,4 +62,8 @@ public class Session {
     this.movie = movie;
     this.movieHall = movieHall;
   }
+
+  public void setSession_date(Date session_date) {
+    this.session_date = session_date;
+  }
 }

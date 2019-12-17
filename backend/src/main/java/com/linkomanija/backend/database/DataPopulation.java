@@ -27,12 +27,14 @@ public class DataPopulation {
   private MovieRepository movieRepository;
   private UserEmployeeRepository userEmployeeRepository;
   private TimetableRepository timetableRepository;
+  private SessionRepository sessionRepository;
 
   @Autowired
-  public DataPopulation(TimetableRepository timetableRepository, MovieRepository movieRepository, UserEmployeeRepository userEmployeeRepository) {
+  public DataPopulation(SessionRepository sessionRepository, TimetableRepository timetableRepository, MovieRepository movieRepository, UserEmployeeRepository userEmployeeRepository) {
     this.movieRepository = movieRepository;
     this.userEmployeeRepository = userEmployeeRepository;
     this.timetableRepository = timetableRepository;
+    this.sessionRepository = sessionRepository;
   }
 
   @EventListener(ApplicationReadyEvent.class)
@@ -41,6 +43,7 @@ public class DataPopulation {
     RestTemplate restTemplate = new RestTemplate();
 
     //ADD MOVIES
+    sessionRepository.deleteAll();
     movieRepository.deleteAll();
 
     URI addMovie = new URI(baseUrl + "movie");
@@ -91,100 +94,101 @@ public class DataPopulation {
     restTemplate.postForEntity(addMovie, movie5, String.class);
 
     //ADD EMPLOYEES
-//    URI addEmployee = new URI(baseUrl + "user/employee");
-//    userEmployeeRepository.deleteAll();
-//    UserEmployeeDTO employee1 = new UserEmployeeDTO(
-//      "Darbuotojas1",
-//      "employee",
-//      "linkomanija.isp@gmail.com",
-//      "Jonas",
-//      "Jonaitis",
-//      new Date(System.currentTimeMillis()),
-//      "861235329",
-//      (long)2
-//    );
-//
-//    UserEmployeeDTO employee2 = new UserEmployeeDTO(
-//      "Darbuotojas2",
-//      "employee",
-//      "linkomanija.isp@gmail.com",
-//      "Petras",
-//      "Petraitis",
-//      new Date(System.currentTimeMillis()),
-//      "861235328",
-//      (long)1
-//    );
-//    restTemplate.postForEntity(addEmployee, employee1, String.class);
-//    restTemplate.postForEntity(addEmployee, employee2, String.class);
+    URI addEmployee = new URI(baseUrl + "user/employee");
+    timetableRepository.deleteAll();
+    userEmployeeRepository.deleteAll();
+    UserEmployeeDTO employee1 = new UserEmployeeDTO(
+      "Darbuotojas1",
+      "employee",
+      "linkomanija.isp@gmail.com",
+      "Jonas",
+      "Jonaitis",
+      new Date(System.currentTimeMillis()),
+      "861235329",
+      (long)2
+    );
 
-//    //ADD TIMETABLES
-//    URI addTimetable = new URI(baseUrl + "timetable");
-//    timetableRepository.deleteAll();
-//    Long employeeId1 = userEmployeeRepository.findByUsername("Darbuotojas1").getId();
-//    Long employeeId2 = userEmployeeRepository.findByUsername("Darbuotojas2").getId();
-//
-//    Date attendingDate = new Date(2019, Calendar.NOVEMBER,1);
-//    Timestamp start = new Timestamp(2010, 10, 1, 10,0,0,0);
-//    Timestamp end = new Timestamp(2010, 10, 1, 18,30,0,0);
-//
-//    TimetableDTO timetable1 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
-//
-//    start.setDate(2);
-//    end.setDate(2);
-//    start.setHours(11);
-//    end.setHours(17);
-//    TimetableDTO timetable2 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
-//
-//    start.setDate(3);
-//    end.setDate(3);
-//    start.setHours(9);
-//    end.setHours(20);
-//    TimetableDTO timetable3 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
-//
-//    start.setDate(4);
-//    end.setDate(4);
-//    start.setHours(7);
-//    end.setHours(20);
-//    TimetableDTO timetable4 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
-//
-//    start.setDate(5);
-//    end.setDate(5);
-//    start.setHours(8);
-//    end.setHours(21);
-//    TimetableDTO timetable5 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
-//
-//    //
-//
-//    timetable1 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
-//
-//    start.setDate(2);
-//    end.setDate(2);
-//    start.setHours(11);
-//    end.setHours(17);
-//    timetable2 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
-//
-//    start.setDate(3);
-//    end.setDate(3);
-//    start.setHours(9);
-//    end.setHours(20);
-//    timetable3 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
-//
-//    start.setDate(4);
-//    end.setDate(4);
-//    start.setHours(7);
-//    end.setHours(20);
-//    timetable4 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
-//
-//    start.setDate(5);
-//    end.setDate(5);
-//    start.setHours(8);
-//    end.setHours(21);
-//    timetable5 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
-//
-//    restTemplate.postForEntity(addTimetable, timetable1, String.class);
-//    restTemplate.postForEntity(addTimetable, timetable2, String.class);
-//    restTemplate.postForEntity(addTimetable, timetable3, String.class);
-//    restTemplate.postForEntity(addTimetable, timetable4, String.class);
-//    restTemplate.postForEntity(addTimetable, timetable5, String.class);
+    UserEmployeeDTO employee2 = new UserEmployeeDTO(
+      "Darbuotojas2",
+      "employee",
+      "linkomanija.isp@gmail.com",
+      "Petras",
+      "Petraitis",
+      new Date(System.currentTimeMillis()),
+      "861235328",
+      (long)1
+    );
+    restTemplate.postForEntity(addEmployee, employee1, String.class);
+    restTemplate.postForEntity(addEmployee, employee2, String.class);
+
+    //ADD TIMETABLES
+    URI addTimetable = new URI(baseUrl + "timetable");
+    timetableRepository.deleteAll();
+    Long employeeId1 = userEmployeeRepository.findByUsername("Darbuotojas1").getId();
+    Long employeeId2 = userEmployeeRepository.findByUsername("Darbuotojas2").getId();
+
+    Date attendingDate = new Date(2019, Calendar.NOVEMBER,1);
+    Timestamp start = new Timestamp(2010, 10, 1, 10,0,0,0);
+    Timestamp end = new Timestamp(2010, 10, 1, 18,30,0,0);
+
+    TimetableDTO timetable1 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
+
+    start.setDate(2);
+    end.setDate(2);
+    start.setHours(11);
+    end.setHours(17);
+    TimetableDTO timetable2 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
+
+    start.setDate(3);
+    end.setDate(3);
+    start.setHours(9);
+    end.setHours(20);
+    TimetableDTO timetable3 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
+
+    start.setDate(4);
+    end.setDate(4);
+    start.setHours(7);
+    end.setHours(20);
+    TimetableDTO timetable4 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
+
+    start.setDate(5);
+    end.setDate(5);
+    start.setHours(8);
+    end.setHours(21);
+    TimetableDTO timetable5 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
+
+    //
+
+    timetable1 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
+
+    start.setDate(2);
+    end.setDate(2);
+    start.setHours(11);
+    end.setHours(17);
+    timetable2 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
+
+    start.setDate(3);
+    end.setDate(3);
+    start.setHours(9);
+    end.setHours(20);
+    timetable3 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
+
+    start.setDate(4);
+    end.setDate(4);
+    start.setHours(7);
+    end.setHours(20);
+    timetable4 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
+
+    start.setDate(5);
+    end.setDate(5);
+    start.setHours(8);
+    end.setHours(21);
+    timetable5 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
+
+    restTemplate.postForEntity(addTimetable, timetable1, String.class);
+    restTemplate.postForEntity(addTimetable, timetable2, String.class);
+    restTemplate.postForEntity(addTimetable, timetable3, String.class);
+    restTemplate.postForEntity(addTimetable, timetable4, String.class);
+    restTemplate.postForEntity(addTimetable, timetable5, String.class);
   }
 }
