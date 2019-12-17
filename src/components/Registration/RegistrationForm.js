@@ -23,6 +23,8 @@ function RegistrationForm(props) {
         }
         console.log('Received values of form: ', values);
         if(userType === 'employee'){
+          values.theatre_id = parseInt(values.theatre_id, 10);
+          values.phone_number = `${values.prefix}${values.phone_number}`;
         dispatch(addEmployee(values));
         }else if(userType === 'client'){
           dispatch(addClient(values));
@@ -176,7 +178,7 @@ function RegistrationForm(props) {
 
       {userType === 'employee' && (
         <Form.Item label="Teatras">
-          {getFieldDecorator('movie_theatre_id', {
+          {getFieldDecorator('theater_id', {
             rules: [{ required: true, message: 'Pasirinkite teatrą!' }],
           })(
             <Select placeholder="Pasirinkite kino teatrą">

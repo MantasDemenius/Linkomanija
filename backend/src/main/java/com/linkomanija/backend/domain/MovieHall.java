@@ -3,6 +3,7 @@ package com.linkomanija.backend.domain;
 import javax.persistence.*;
 
 import com.linkomanija.backend.dto.MovieHallDTO;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data

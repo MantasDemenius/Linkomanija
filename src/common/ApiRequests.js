@@ -36,6 +36,10 @@ export async function postRequest(path, data) {
   return sendRequest(path, 'POST', data);
 }
 
+export async function deleteRequest(path, data) {
+  return sendRequest(path, 'DELETE');
+}
+
 export const RESPONSE_STATUS = {
   OK: 'OK',
   NO_CONNECTION: 'NO_CONNECTION',
