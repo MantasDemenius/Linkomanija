@@ -8,8 +8,8 @@ import { Row, Col } from 'antd';
 import { Tag } from 'antd';
 import { Select } from 'antd';
 import { Form } from 'antd';
-import EditMovie from './EditMovie';
 import { useHistory } from 'react-router-dom';
+import AddMovie from './AddMovie';
 import axios from 'axios';
 
 const { Option } = Select;
@@ -50,6 +50,7 @@ const MovieDetailsPage = () => {
         e.preventDefault();
         axios.delete('/api/movie/' + id)
             .then(() => {
+                console.log("redirecting");
                 history.push('/movies');
             })
             .catch((error) => {
@@ -125,8 +126,7 @@ const MovieDetailsPage = () => {
                 </Form>
             </Card>
             <Card>
-                <Text strong>Redaguoti filmą</Text>
-                <EditMovie />
+                <AddMovie isEditMode movie={movie} />
             </Card>
             <Card>
                 <Button onClick={handleDelete}>Ištrinti</Button>

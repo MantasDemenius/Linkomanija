@@ -5,9 +5,11 @@ import Filter from "./Filter"
 import Sorter from "./Sorter"
 import MovieCard from "./MovieCard"
 import { Row, Col, Card, Button } from 'antd';
-import StackGrid from "react-stack-grid";
+import StackGrid, { transitions } from "react-stack-grid";
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+
+const { fadeUp } = transitions;
 
 const Catalog = () => {
     let history = useHistory();
@@ -96,7 +98,8 @@ const Catalog = () => {
                 </Col>
                 <Col span={18}>
                     <Sorter onChange={onSortTypeChange} />
-                    <StackGrid columnWidth={'50%'}>
+                    <StackGrid columnWidth={'50%'}
+                        monitorImagesLoaded={true}>
                         {movieCards}
                         <Card>
                             <Button onClick={() => history.push('/movies/add')}>Pridėti</Button>
