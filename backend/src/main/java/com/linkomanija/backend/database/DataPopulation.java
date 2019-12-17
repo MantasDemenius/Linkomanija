@@ -12,6 +12,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.thymeleaf.util.DateUtils;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -28,13 +29,15 @@ public class DataPopulation {
   private UserEmployeeRepository userEmployeeRepository;
   private TimetableRepository timetableRepository;
   private SessionRepository sessionRepository;
+  private MovieRatingRepository movieRatingRepository;
 
   @Autowired
-  public DataPopulation(SessionRepository sessionRepository, TimetableRepository timetableRepository, MovieRepository movieRepository, UserEmployeeRepository userEmployeeRepository) {
+  public DataPopulation(MovieRatingRepository movieRatingRepository, SessionRepository sessionRepository, TimetableRepository timetableRepository, MovieRepository movieRepository, UserEmployeeRepository userEmployeeRepository) {
     this.movieRepository = movieRepository;
     this.userEmployeeRepository = userEmployeeRepository;
     this.timetableRepository = timetableRepository;
     this.sessionRepository = sessionRepository;
+    this.movieRatingRepository = movieRatingRepository;
   }
 
   @EventListener(ApplicationReadyEvent.class)
@@ -44,6 +47,7 @@ public class DataPopulation {
 
     //ADD MOVIES
     sessionRepository.deleteAll();
+    movieRatingRepository.deleteAll();
     movieRepository.deleteAll();
 
     URI addMovie = new URI(baseUrl + "movie");

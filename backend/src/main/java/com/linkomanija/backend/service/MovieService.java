@@ -46,11 +46,6 @@ public class MovieService {
     ImdbMovie imdbMovie = MovieFetch.findMovieByCode(movieDTO.getImdb_code());
     movie.completeWithImdb(imdbMovie);
     return movieRepository.save(movie);
-//    if (imdbMovie.valid()) {
-//      movie.completeWithImdb(imdbMovie);
-//      return movieRepository.save(movie);
-//    }
-//    return null;
   }
 
   public List<Movie> getAllMovies() {
@@ -80,6 +75,10 @@ public class MovieService {
 
   public Movie deleteMovie(Long id) {
     Movie movie = movieRepository.findById(id).orElse(new Movie());
+    List<MovieRating> ratings = movieRatingRepository.findByMovieId(id);
+    for (MovieRating rating : ratings) {
+      movieRatingRepository.delete(rating);
+    }
     movieRepository.delete(movie);
     return movie;
   }
