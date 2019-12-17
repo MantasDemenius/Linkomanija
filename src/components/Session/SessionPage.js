@@ -15,6 +15,8 @@ const { Title } = Typography;
 const SessionPage = () => {
   const history = useHistory();
   const [sessions, setSessions] = useState([]);
+  const [activeSessions, setActiveSession] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(0);
   const user = useSelector((store) => store.client.userType);
   useEffect(() => {
     axios
@@ -30,12 +32,14 @@ const SessionPage = () => {
 
   const loadDataSource = () => {
     console.log('aa');
-    sessions.map((session) => {
+    // sessions.map(session => 
+      
+    // );
+    activeSessions.map((session) => {
       console.log('a', session);
       dataSource.push({
         key: session.id,
         place: session.movieHall.movieTheatre.name,
-        date: session.session_date,
         token: 'a',
         time: session.session_start,
         title: session.movie.title,
@@ -50,13 +54,6 @@ const SessionPage = () => {
       dataIndex: 'place',
       key: 'place',
       width: 200,
-      render: (text) => <Title level={4}>{text}</Title>,
-    },
-    {
-      title: 'Date',
-      dataIndex: 'date',
-      key: 'date',
-      width: 150,
       render: (text) => <Title level={4}>{text}</Title>,
     },
     {

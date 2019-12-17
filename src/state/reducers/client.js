@@ -25,8 +25,7 @@ import {
         return { ...state};
       }
       case USER_LOGIN_SUCCESS: {
-        console.log(action.newClient);
-        return { ...state, userType: action.newClient.role, createStatus: true, userId: action.newClient.id };
+        return { ...state, userType: action.newClient.role, createStatus: true, userId: action.newClient.userClient.id };
       }
       case USER_LOGIN_FAILED: {
         console.log("fail");
