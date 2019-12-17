@@ -46,7 +46,11 @@ public class MovieFetch {
     SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
     Date release_date = formatter.parse(String.valueOf(jsonMap.get("Released")));
 
+    String actor_list = String.valueOf(jsonMap.get("Actors"));
+    String director_list = String.valueOf(jsonMap.get("Director"));
+    String writer_list = String.valueOf(jsonMap.get("Writer"));
+
     double imdb_rating = Double.parseDouble(String.valueOf(jsonMap.get("imdbRating")));
-    return new ImdbMovie(poster_url, movie_length, creation_country, release_date, imdb_rating);
+    return new ImdbMovie(actor_list, director_list, writer_list, poster_url, movie_length, creation_country, release_date, imdb_rating);
   }
 }

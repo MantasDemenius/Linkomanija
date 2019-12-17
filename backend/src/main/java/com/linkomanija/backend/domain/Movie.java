@@ -28,6 +28,10 @@ public class Movie {
   private double user_rating;
   private Date imdb_last_updated;
 
+  private String actor_list;
+  private String writer_list;
+  private String director_list;
+
   @JoinColumn(name = "language_id")
   @ManyToOne(fetch = FetchType.EAGER)
   private Language language;
@@ -85,5 +89,8 @@ public class Movie {
     this.movie_length = movie.getMovie_length();
     this.release_date = movie.getRelease_date();
     this.setImdbRating(movie.getImdb_rating());
+    this.writer_list = movie.getWriter_list();
+    this.actor_list = movie.getActor_list();
+    this.director_list = movie.getDirector_list();
   }
 }
