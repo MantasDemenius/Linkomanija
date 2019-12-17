@@ -6,6 +6,7 @@ import com.linkomanija.backend.dto.MovieDTO;
 import com.linkomanija.backend.dto.MovieRatingDTO;
 import com.linkomanija.backend.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -36,8 +37,9 @@ public class MovieController {
   }
 
   @DeleteMapping(value = "{id}", produces = "application/json")
-  public Movie deleteMovie(@PathVariable(name = "id") Long id) {
-    return movieService.deleteMovie(id);
+  public ResponseEntity<String> deleteMovie(@PathVariable(name = "id") Long id) {
+    movieService.deleteMovie(id);
+    return ResponseEntity.ok("Move has been deleted");
   }
 
   @DeleteMapping(value = "{id}/{movie_rating_id}", produces = "application/json")

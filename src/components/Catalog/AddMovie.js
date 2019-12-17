@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import 'antd/dist/antd.css'
 import '../../App.css'
 import { Card } from 'antd';
 import { Typography } from 'antd';
 import { Form, Input, Select, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const { Option } = Select;
@@ -27,21 +28,34 @@ const genres = [
 ];
 
 const { Text } = Typography;
-const AddMovie = ({ form }) => {
+const AddMovie = ({ form, isEditMode, movie }) => {
     const { getFieldDecorator } = form;
     const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         form.validateFieldsAndScroll((err, values) => {
+            console.log(values)
+
             if (!err) {
-                axios.post('/api/movie', values)
-                    .then(function (response) {
-                        history.push('/movies');
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                if (isEditMode) {
+                    axios.post('/api/movie/edit', { id: movie.id, ...values })
+                        .then(() => {
+                            window.location.reload();
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                } else {
+                    axios.post('/api/movie', values)
+                        .then(() => {
+                            history.push('/movies');
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
 
             } else {
                 console.log(err);
@@ -56,11 +70,12 @@ const AddMovie = ({ form }) => {
 
     return (
         <Card>
-            <h2>Filmo pridėjimas</h2>
+            <h2>{isEditMode ? "Filmo redagavimas" : "Filmo pridėjimas"}</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Item label="Filmo pavadinimas">
                     {getFieldDecorator('title', {
                         rules: [{ required: true, message: 'Filmo pavadinimas privalomas' }],
+                        initialValue: isEditMode ? movie.title : "",
                     })(
                         <Input placeholder="Filmo pavadinimas" />
                     )}
@@ -68,6 +83,7 @@ const AddMovie = ({ form }) => {
                 <Form.Item label="IMDb kodas">
                     {getFieldDecorator('imdb_code', {
                         rules: [{ required: true, message: 'IMDb kodas privalomas' }],
+                        initialValue: isEditMode ? movie.imdb_code : "",
                     })(
                         <Input placeholder="Aprašymas" />
                     )}
@@ -75,6 +91,7 @@ const AddMovie = ({ form }) => {
                 <Form.Item label="Aprašymas">
                     {getFieldDecorator('description', {
                         rules: [{ required: true, message: 'Aprašymas privalomas' }],
+                        initialValue: isEditMode ? movie.description : "",
                     })(
                         <TextArea placeholder="Aprašymas" />
                     )}
@@ -82,6 +99,7 @@ const AddMovie = ({ form }) => {
                 <Form.Item label="Amžiaus cenzas" hasFeedback>
                     {getFieldDecorator('age_censor', {
                         rules: [{ required: true, message: 'Pasirinkti amžiaus cenzą privaloma' }],
+                        initialValue: isEditMode ? movie.age_censor : "V",
                     })(
                         <Select placeholder="Amžiaus cenzas">
                             <Option value="V">V</Option>
@@ -93,6 +111,7 @@ const AddMovie = ({ form }) => {
                 <Form.Item label="Kalba" hasFeedback>
                     {getFieldDecorator('language_id', {
                         rules: [{ required: true, message: 'Pasirinkti kalbą privaloma' }],
+                        initialValue: isEditMode && movie.language ? movie.language.id : 1,
                     })(
                         <Select placeholder="Kalba">
                             <Option value={1}>Lietuvių</Option>
@@ -104,7 +123,7 @@ const AddMovie = ({ form }) => {
                 <Form.Item label="Žanrai" hasFeedback>
                     {getFieldDecorator('genre_list', {
                         rules: [{ required: true, message: 'Pasirinkti žanrą privaloma' }],
-                        initialValue: [10, 13],
+                        initialValue: isEditMode && movie.genreList ? movie.genreList.map(genre => genre.id) : [10, 13],
                     })(
                         <Select
                             mode="multiple"
