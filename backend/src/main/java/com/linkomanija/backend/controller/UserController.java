@@ -43,7 +43,7 @@ public class UserController {
     return ResponseEntity.status(HttpStatus.OK).body(userClient);
   }
 
-  @PostMapping(value = "client/edit", consumes = "application/json", produces = "application/json")
+  @PutMapping(value = "client", consumes = "application/json", produces = "application/json")
   public UserClient editProfile(@RequestBody UserClient userClient) {
     return userClientService.editProfile(userClient);
   }

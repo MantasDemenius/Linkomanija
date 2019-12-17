@@ -1,5 +1,6 @@
 package com.linkomanija.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.linkomanija.backend.dto.RegisterDTO;
 import lombok.Data;
 
@@ -19,7 +20,10 @@ public class UserClient {
   private String email;
   private String name;
   private String surname;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   private Date born_date;
+
   private String phone_number;
 
   public UserClient(RegisterDTO registerDTO) {

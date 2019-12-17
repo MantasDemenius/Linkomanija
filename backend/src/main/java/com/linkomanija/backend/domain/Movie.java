@@ -1,5 +1,6 @@
 package com.linkomanija.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.linkomanija.backend.dto.MovieDTO;
 import com.linkomanija.backend.omdb.ImdbMovie;
 import lombok.Data;
@@ -18,7 +19,10 @@ public class Movie {
 
   private String title;
   private String poster_url;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   private Date release_date;
+
   private String description;
   private int movie_length;
   private String creation_country;
@@ -26,6 +30,8 @@ public class Movie {
   private String imdb_code;
   private double imdb_rating;
   private double user_rating;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   private Date imdb_last_updated;
 
   private String actor_list;
