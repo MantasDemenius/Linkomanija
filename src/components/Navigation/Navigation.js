@@ -37,7 +37,7 @@ const Navigation = ({ location }) => {
                 </Menu.Item>
                 <Menu.Item key="/patalpa">
                     <Link to="/patalpa" />
-                    <span>Patalpos</span>
+                    <span>Kino teatrai</span>
                 </Menu.Item>
                 <Menu.Item key="/naudotojai">
                     <Link to="/naudotojai" />
