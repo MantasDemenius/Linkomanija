@@ -31,7 +31,7 @@ function* addMovieHall(action) {
 
 function* getMovieHall() {
   const { status, data } =  yield getRequest(`/movieHall`);
-
+  console.log(data);
   switch (status) {
     case RESPONSE_STATUS.OK:
       yield put({ type: GET_MOVIEHALL_SUCCESS, movieHalls: data });
@@ -46,7 +46,6 @@ function* getMovieHall() {
 
 function* deleteMovieHall(action) {
   const { status, data } =  yield deleteRequest(`/movieHall/${action.id}`);
-
   switch (status) {
     case RESPONSE_STATUS.OK:
       yield put({ type: DELETE_MOVIEHALL_SUCCESS, hallId: action.id });

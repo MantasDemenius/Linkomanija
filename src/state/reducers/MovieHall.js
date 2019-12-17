@@ -23,23 +23,11 @@ export default function movieHallReducer(state = initialState, action) {
     }
     case GET_MOVIEHALL_SUCCESS:{
       console.log("success");
+      console.log(action.movieHalls);
       return {...state, movieHall: action.movieHalls }
     }
     case DELETE_MOVIEHALL_SUCCESS:{
       console.log("success");
-      const data = { ...state.movieHall};
-      let id;
-      let incId = 0;
-      data.push(null);
-      console.log(data);
-      data.forEach((item) => {
-        if (item.id === action.hallId) {
-          id = incId;
-        } else {
-          incId = incId + 1;
-        }
-      });
-      data.splice(id, 1);
       return {...state, createStatus: true}
     }
     default: {
