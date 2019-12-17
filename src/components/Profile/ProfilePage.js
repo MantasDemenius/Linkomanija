@@ -3,18 +3,22 @@ import 'antd/dist/antd.css'
 import '../../App.css'
 import { Card, Button } from 'antd';
 import { Typography } from 'antd';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const { Text } = Typography;
 const ProfilePage = () => {
     let history = useHistory();
+    const content = useSelector(state => state);
+    console.log(content.client);
+
     return (
         <>
             <Card>
                 <Text strong>Čia bus profilio redagavimo forma</Text>
                 {/* <Button onClick={() => history.push('/')}>Pridėti</Button> */}
             </Card>
-            
+
             <Card>
                 <Text strong>Čia bus užsakymų istorija</Text>
             </Card>
