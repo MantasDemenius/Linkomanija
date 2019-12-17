@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -31,12 +32,23 @@ public class Movie {
   @ManyToOne(fetch = FetchType.EAGER)
   private Language language;
 
+  @ManyToMany(cascade = {
+    CascadeType.PERSIST,
+    CascadeType.MERGE
+  })
+  @JoinTable(name = "movie_genre_link",
+    joinColumns = @JoinColumn(name = "movie_id"),
+    inverseJoinColumns = @JoinColumn(name = "genre_id")
+  )
+  private List<Genre> genreList;
+
   public Movie(MovieDTO movieDTO, Language language) {
     this.title = movieDTO.getTitle();
     this.description = movieDTO.getDescription();
     this.imdb_code = movieDTO.getImdb_code();
     this.age_censor = movieDTO.getAge_censor();
     this.language = language;
+    this.genreList = movieDTO.getGenres();
   }
 
   public Movie() {}
@@ -55,6 +67,7 @@ public class Movie {
     this.imdb_code = movieDTO.getImdb_code();
     this.age_censor = movieDTO.getAge_censor();
     this.language = language;
+    this.genreList = movieDTO.getGenres();
   }
 
   public void updateUserRating(double user_rating) {

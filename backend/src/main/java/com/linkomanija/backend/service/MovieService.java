@@ -1,11 +1,13 @@
 package com.linkomanija.backend.service;
 
+import com.linkomanija.backend.domain.Genre;
 import com.linkomanija.backend.domain.Language;
 import com.linkomanija.backend.domain.Movie;
 import com.linkomanija.backend.domain.MovieRating;
 import com.linkomanija.backend.dto.MovieDTO;
 import com.linkomanija.backend.dto.MovieRatingDTO;
 import com.linkomanija.backend.omdb.MovieFetch;
+import com.linkomanija.backend.repository.GenreRepository;
 import com.linkomanija.backend.repository.LanguageRepository;
 import com.linkomanija.backend.repository.MovieRatingRepository;
 import com.linkomanija.backend.repository.MovieRepository;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -25,16 +28,25 @@ public class MovieService {
   private MovieRepository movieRepository;
   private LanguageRepository languageRepository;
   private MovieRatingRepository movieRatingRepository;
+  private GenreRepository genreRepository;
 
   @Autowired
-  public MovieService(MovieRepository movieRepository, LanguageRepository languageRepository, MovieRatingRepository movieRatingRepository) {
+  public MovieService(GenreRepository genreRepository, MovieRepository movieRepository, LanguageRepository languageRepository, MovieRatingRepository movieRatingRepository) {
     this.movieRepository = movieRepository;
     this.languageRepository = languageRepository;
     this.movieRatingRepository = movieRatingRepository;
+    this.genreRepository = genreRepository;
   }
 
   public Movie addMovie(MovieDTO movieDTO) throws IOException, ParseException {
     Language languageById = languageRepository.findById(movieDTO.getLanguage_id()).orElse(new Language());
+    List<Long> genres = movieDTO.getGenre_list();
+    List<Genre> genre_list = new ArrayList<>();
+    for (Long genre : genres) {
+      Genre temp = genreRepository.findById(genre).orElse(new Genre());
+      genre_list.add(temp);
+    }
+    movieDTO.setGenres(genre_list);
     Movie movie = new Movie(movieDTO, languageById);
     movie.completeWithImdb(MovieFetch.findMovieByCode(movieDTO.getImdb_code()));
     return movieRepository.save(movie);

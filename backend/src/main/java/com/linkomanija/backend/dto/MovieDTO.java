@@ -1,5 +1,10 @@
 package com.linkomanija.backend.dto;
 
+import com.linkomanija.backend.domain.Genre;
+import lombok.Data;
+
+import java.util.List;
+
 public class MovieDTO {
   private Long id;
   private String title;
@@ -7,6 +12,8 @@ public class MovieDTO {
   private String imdb_code;
   private Long language_id;
   private String age_censor;
+  private List<Long> genre_list;
+  private List<Genre> genres;
 
   public Long getId() {
     return id;
@@ -30,5 +37,17 @@ public class MovieDTO {
 
   public String getAge_censor() {
     return age_censor;
+  }
+
+  public List<Long> getGenre_list() {
+    return genre_list;
+  }
+
+  public void setGenres(List<Genre> genres) {
+    this.genres = genres;
+  }
+
+  public List<Genre> getGenres() {
+    return genres;
   }
 }
