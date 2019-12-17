@@ -1,16 +1,10 @@
 package com.linkomanija.backend.service;
 
-import com.linkomanija.backend.domain.Genre;
-import com.linkomanija.backend.domain.Language;
-import com.linkomanija.backend.domain.Movie;
-import com.linkomanija.backend.domain.MovieRating;
+import com.linkomanija.backend.domain.*;
 import com.linkomanija.backend.dto.MovieDTO;
 import com.linkomanija.backend.dto.MovieRatingDTO;
 import com.linkomanija.backend.omdb.MovieFetch;
-import com.linkomanija.backend.repository.GenreRepository;
-import com.linkomanija.backend.repository.LanguageRepository;
-import com.linkomanija.backend.repository.MovieRatingRepository;
-import com.linkomanija.backend.repository.MovieRepository;
+import com.linkomanija.backend.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,6 +67,7 @@ public class MovieService {
 
   public Movie deleteMovie(Long id) {
     Movie movie = movieRepository.findById(id).orElse(new Movie());
+//    GenreLink genreLink
     movieRepository.delete(movie);
     return movie;
   }
