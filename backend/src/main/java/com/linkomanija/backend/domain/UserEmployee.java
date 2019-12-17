@@ -40,6 +40,10 @@ public class UserEmployee {
 
   public UserEmployee() {}
 
+  public Long getId() {
+    return id;
+  }
+
   public boolean isPasswordCorrect(String password) {
     return this.password.equals(password);
   }

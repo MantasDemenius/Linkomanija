@@ -1,8 +1,11 @@
 package com.linkomanija.backend.database;
 
+import com.linkomanija.backend.domain.MovieTheatre;
+import com.linkomanija.backend.domain.UserEmployee;
 import com.linkomanija.backend.dto.MovieDTO;
-import com.linkomanija.backend.repository.GenreRepository;
-import com.linkomanija.backend.repository.MovieRepository;
+import com.linkomanija.backend.dto.TimetableDTO;
+import com.linkomanija.backend.dto.UserEmployeeDTO;
+import com.linkomanija.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -12,6 +15,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 
 import static java.util.Arrays.asList;
 
@@ -19,12 +25,14 @@ import static java.util.Arrays.asList;
 public class DataPopulation {
 
   private MovieRepository movieRepository;
-  private GenreRepository genreRepository;
+  private UserEmployeeRepository userEmployeeRepository;
+  private TimetableRepository timetableRepository;
 
   @Autowired
-  public DataPopulation(MovieRepository movieRepository, GenreRepository genreRepository) {
+  public DataPopulation(TimetableRepository timetableRepository, MovieRepository movieRepository, UserEmployeeRepository userEmployeeRepository) {
     this.movieRepository = movieRepository;
-    this.genreRepository = genreRepository;
+    this.userEmployeeRepository = userEmployeeRepository;
+    this.timetableRepository = timetableRepository;
   }
 
   @EventListener(ApplicationReadyEvent.class)
@@ -76,10 +84,107 @@ public class DataPopulation {
       "N-16",
       asList((long)9 ,(long)10, (long)11));
 
-    ResponseEntity<String> result = restTemplate.postForEntity(addMovie, movie1, String.class);
-    ResponseEntity<String> result1 = restTemplate.postForEntity(addMovie, movie2, String.class);
-    ResponseEntity<String> result2 = restTemplate.postForEntity(addMovie, movie3, String.class);
-    ResponseEntity<String> result3 = restTemplate.postForEntity(addMovie, movie4, String.class);
-    ResponseEntity<String> result4 = restTemplate.postForEntity(addMovie, movie5, String.class);
+    restTemplate.postForEntity(addMovie, movie1, String.class);
+    restTemplate.postForEntity(addMovie, movie2, String.class);
+    restTemplate.postForEntity(addMovie, movie3, String.class);
+    restTemplate.postForEntity(addMovie, movie4, String.class);
+    restTemplate.postForEntity(addMovie, movie5, String.class);
+
+    //ADD EMPLOYEES
+//    URI addEmployee = new URI(baseUrl + "user/employee");
+//    userEmployeeRepository.deleteAll();
+//    UserEmployeeDTO employee1 = new UserEmployeeDTO(
+//      "Darbuotojas1",
+//      "employee",
+//      "linkomanija.isp@gmail.com",
+//      "Jonas",
+//      "Jonaitis",
+//      new Date(System.currentTimeMillis()),
+//      "861235329",
+//      (long)2
+//    );
+//
+//    UserEmployeeDTO employee2 = new UserEmployeeDTO(
+//      "Darbuotojas2",
+//      "employee",
+//      "linkomanija.isp@gmail.com",
+//      "Petras",
+//      "Petraitis",
+//      new Date(System.currentTimeMillis()),
+//      "861235328",
+//      (long)1
+//    );
+//    restTemplate.postForEntity(addEmployee, employee1, String.class);
+//    restTemplate.postForEntity(addEmployee, employee2, String.class);
+
+//    //ADD TIMETABLES
+//    URI addTimetable = new URI(baseUrl + "timetable");
+//    timetableRepository.deleteAll();
+//    Long employeeId1 = userEmployeeRepository.findByUsername("Darbuotojas1").getId();
+//    Long employeeId2 = userEmployeeRepository.findByUsername("Darbuotojas2").getId();
+//
+//    Date attendingDate = new Date(2019, Calendar.NOVEMBER,1);
+//    Timestamp start = new Timestamp(2010, 10, 1, 10,0,0,0);
+//    Timestamp end = new Timestamp(2010, 10, 1, 18,30,0,0);
+//
+//    TimetableDTO timetable1 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
+//
+//    start.setDate(2);
+//    end.setDate(2);
+//    start.setHours(11);
+//    end.setHours(17);
+//    TimetableDTO timetable2 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
+//
+//    start.setDate(3);
+//    end.setDate(3);
+//    start.setHours(9);
+//    end.setHours(20);
+//    TimetableDTO timetable3 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
+//
+//    start.setDate(4);
+//    end.setDate(4);
+//    start.setHours(7);
+//    end.setHours(20);
+//    TimetableDTO timetable4 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
+//
+//    start.setDate(5);
+//    end.setDate(5);
+//    start.setHours(8);
+//    end.setHours(21);
+//    TimetableDTO timetable5 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
+//
+//    //
+//
+//    timetable1 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
+//
+//    start.setDate(2);
+//    end.setDate(2);
+//    start.setHours(11);
+//    end.setHours(17);
+//    timetable2 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
+//
+//    start.setDate(3);
+//    end.setDate(3);
+//    start.setHours(9);
+//    end.setHours(20);
+//    timetable3 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
+//
+//    start.setDate(4);
+//    end.setDate(4);
+//    start.setHours(7);
+//    end.setHours(20);
+//    timetable4 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
+//
+//    start.setDate(5);
+//    end.setDate(5);
+//    start.setHours(8);
+//    end.setHours(21);
+//    timetable5 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
+//
+//    restTemplate.postForEntity(addTimetable, timetable1, String.class);
+//    restTemplate.postForEntity(addTimetable, timetable2, String.class);
+//    restTemplate.postForEntity(addTimetable, timetable3, String.class);
+//    restTemplate.postForEntity(addTimetable, timetable4, String.class);
+//    restTemplate.postForEntity(addTimetable, timetable5, String.class);
   }
 }

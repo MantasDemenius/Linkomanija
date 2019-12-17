@@ -13,6 +13,17 @@ public class UserEmployeeDTO {
   private String phone_number;
   private Long theater_id;
 
+  public UserEmployeeDTO(String username, String password, String email, String name, String surname, Date born_date, String phone_number, Long theater_id) {
+    this.username = username;
+    this.password = password;
+    this.email = email;
+    this.name = name;
+    this.surname = surname;
+    this.born_date = born_date;
+    this.phone_number = phone_number;
+    this.theater_id = theater_id;
+  }
+
   public Long getTheater_id() {
     return theater_id;
   }

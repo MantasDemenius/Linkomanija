@@ -11,6 +11,14 @@ public class TimetableDTO {
   private String comment;
   private Long user_employee_id;
 
+  public TimetableDTO(Date attending_date, Timestamp timetable_start, Timestamp timetable_end, String comment, Long user_employee_id) {
+    this.attending_date = attending_date;
+    this.timetable_start = timetable_start;
+    this.timetable_end = timetable_end;
+    this.comment = comment;
+    this.user_employee_id = user_employee_id;
+  }
+
   public Long getId() {
     return id;
   }

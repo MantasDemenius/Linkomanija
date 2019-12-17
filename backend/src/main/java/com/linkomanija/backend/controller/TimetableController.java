@@ -31,7 +31,7 @@ public class TimetableController {
     return timetableService.getAllTimetablesByEmployeeId(user_employee_id);
   }
 
-  @GetMapping(produces = "application/json")
+  @GetMapping(value = "all", produces = "application/json")
   public List<Timetable> getAllTimetables() {
     return timetableService.getAllTimetables();
   }
