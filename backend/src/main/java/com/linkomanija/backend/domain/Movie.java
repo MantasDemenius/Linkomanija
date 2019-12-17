@@ -29,7 +29,7 @@ public class Movie {
   private Date imdb_last_updated;
 
   @JoinColumn(name = "language_id")
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   private Language language;
 
   @ManyToMany(cascade = {

@@ -15,6 +15,15 @@ public class MovieDTO {
   private List<Long> genre_list;
   private List<Genre> genres;
 
+  public MovieDTO(String title, String description, String imdb_code, Long language_id, String age_censor, List<Long> genre_list) {
+    this.title = title;
+    this.description = description;
+    this.imdb_code = imdb_code;
+    this.language_id = language_id;
+    this.age_censor = age_censor;
+    this.genre_list = genre_list;
+  }
+
   public Long getId() {
     return id;
   }
