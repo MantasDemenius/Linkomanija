@@ -10,12 +10,13 @@ import Catalog from './components/Catalog/Catalog';
 import LoginPage from './components/Signup/LoginPage';
 import SignupPage from './components/Signup/SignupPage';
 import MovieDetailsPage from './components/Catalog/MovieDetailsPage';
-import TimeTablePage from './components/TimeTable/TimeTablePage';
+import SessionPage from './components/Session/SessionPage';
 import ProfilePage from './components/Profile/ProfilePage';
 import PlacePage from './components/Place/PlacePage';
-import ReservationForm from './components/TimeTable/ReservationForm';
-import TicketBuyForm from './components/TimeTable/TicketBuyForm';
-import EditForm from './components/TimeTable/EditForm';
+import ReservationForm from './components/Session/ReservationForm';
+import TicketBuyForm from './components/Session/TicketBuyForm';
+import EditForm from './components/Session/EditForm';
+import SessionAdd from './components/Session/SessionAdd';
 import AddMovie from './components/Catalog/AddMovie';
 import PlaceAdd from './components/Place/PlaceAdd';
 import PlacesEdit from './components/Place/PlacesEdit';
@@ -24,7 +25,7 @@ import UserPage from './components/User/UserPage';
 import employees from './components/User/darbuotojai';
 import EmployeesAdd from './components/User/EmployeesAdd';
 import EmployeesEdit from './components/User/EmployeesEdit';
-import TicketReserveForm from './components/TimeTable/TicketReserveForm';
+import TicketReserveForm from './components/Session/TicketReserveForm';
 
 const { Content, Footer } = Layout;
 const { Text } = Typography;
@@ -36,7 +37,7 @@ const App = () => {
         <Navigation />
         <Content>
           <Switch>
-            <Route exact path="/" component={TimeTablePage} />
+            <Route exact path="/" component={SessionPage} />
             <Route exact path="/movies" component={Catalog} />
             <Route path="/prisijungti" component={LoginPage} />
             <Route path="/registracija" component={SignupPage} />
@@ -51,6 +52,7 @@ const App = () => {
             <Route path="/employees/edit" component={EmployeesEdit} />
             <Route path="/employees" component={employees} />
             <Route path="/naudotojai" component={UserPage} />
+            <Route path="/seansas/prideti" component={SessionAdd} />
             <Route path="/timetable/:movie/:token/buy" component={TicketBuyForm} />
             <Route path="/timetable/:movie/:token/reserve" component={TicketReserveForm} />
             <Route path="/timetable/:movie/:token/edit" component={EditForm} />

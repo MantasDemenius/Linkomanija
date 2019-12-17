@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom';
 const { Option } = Select;
 const { Title } = Typography;
 
-const TimeTablePage = () => {
+const SessionPage = () => {
   const history = useHistory();
   const dataSource = [
     {
@@ -83,8 +83,9 @@ const TimeTablePage = () => {
       </Select>
       <Divider style={{ marginBottom: 0 }} />
       <Table dataSource={dataSource} columns={columns} showHeader={false} />
+      <Button onClick={() =>history.push('/seansas/prideti')}>Pridėti</Button>
     </Card>
   );
 };
 
-export default TimeTablePage;
+export default SessionPage;
