@@ -4,6 +4,7 @@ import com.linkomanija.backend.domain.Session;
 import com.linkomanija.backend.dto.SessionDTO;
 import com.linkomanija.backend.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class SessionController {
   SessionService sessionService;
 
   @PostMapping(consumes = "application/json", produces = "application/json")
-  public Session addSession(@RequestBody SessionDTO sessionDTO) {
+  public ResponseEntity<Boolean> addSession(@RequestBody SessionDTO sessionDTO) {
     return sessionService.addSession(sessionDTO);
   }
 

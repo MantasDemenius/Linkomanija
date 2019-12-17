@@ -61,6 +61,10 @@ public class Movie {
     return language;
   }
 
+  public int getMovie_length() {
+    return movie_length;
+  }
+
   public Date getImdb_last_updated() {
     return imdb_last_updated;
   }

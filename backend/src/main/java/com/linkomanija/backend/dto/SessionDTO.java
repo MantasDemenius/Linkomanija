@@ -12,6 +12,7 @@ public class SessionDTO {
   private int empty_spaces;
   private double price;
   private float length;
+  private int session_count;
   private long language_id;
   private long movie_id;
   private long movie_hall_id;
@@ -22,6 +23,10 @@ public class SessionDTO {
 
   public Date getSession_date() {
     return session_date;
+  }
+
+  public int getSession_count() {
+    return session_count;
   }
 
   @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
@@ -56,5 +61,17 @@ public class SessionDTO {
 
   public long getMovie_hall_id() {
     return movie_hall_id;
+  }
+
+  public void setEmpty_spaces(int empty_spaces) {
+    this.empty_spaces = empty_spaces;
+  }
+
+  public void setSession_end(String session_end) {
+    this.session_end = session_end;
+  }
+
+  public void setLength(float length) {
+    this.length = length;
   }
 }
