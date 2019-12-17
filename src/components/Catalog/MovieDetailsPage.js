@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import 'antd/dist/antd.css'
 import '../../App.css'
 import { Card, Button } from 'antd';
@@ -8,6 +8,7 @@ import { Row, Col } from 'antd';
 import { Tag } from 'antd';
 import { Select } from 'antd';
 import { Form } from 'antd';
+import { message } from 'antd';
 import { useHistory } from 'react-router-dom';
 import AddMovie from './AddMovie';
 import axios from 'axios';
@@ -20,6 +21,8 @@ const MovieDetailsPage = () => {
     const [rating, setRating] = useState(10);
     const history = useHistory();
     let { id } = useParams();
+    const [state, updateState] = React.useState();
+    const forceUpdate = useCallback(() => updateState({}), []);
 
     useEffect(() => {
         axios.get('/api/movie/' + id)
@@ -29,7 +32,7 @@ const MovieDetailsPage = () => {
             .catch((e) => {
                 console.log(e);
             });
-    }, []);
+    }, [state]);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -37,20 +40,20 @@ const MovieDetailsPage = () => {
             rating: rating,
             movie_id: id
         })
-            .then(function (response) {
-                console.log(response);
+            .then(() => {
+                message.success('Įvertinimas pateiktas');
+                forceUpdate();
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.log(error);
             });
-        window.location.reload();
     }
 
     const handleDelete = e => {
         e.preventDefault();
         axios.delete('/api/movie/' + id)
             .then(() => {
-                console.log("redirecting");
+                message.success('Filmas sėkmingai ištrintas');
                 history.push('/movies');
             })
             .catch((error) => {
