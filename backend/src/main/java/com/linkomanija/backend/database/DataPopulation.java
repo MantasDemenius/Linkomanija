@@ -91,31 +91,31 @@ public class DataPopulation {
     restTemplate.postForEntity(addMovie, movie5, String.class);
 
     //ADD EMPLOYEES
-    URI addEmployee = new URI(baseUrl + "user/employee");
-    userEmployeeRepository.deleteAll();
-    UserEmployeeDTO employee1 = new UserEmployeeDTO(
-      "Darbuotojas1",
-      "employee",
-      "linkomanija.isp@gmail.com",
-      "Jonas",
-      "Jonaitis",
-      new Date(System.currentTimeMillis()),
-      "861235329",
-      (long)2
-    );
-
-    UserEmployeeDTO employee2 = new UserEmployeeDTO(
-      "Darbuotojas2",
-      "employee",
-      "linkomanija.isp@gmail.com",
-      "Petras",
-      "Petraitis",
-      new Date(System.currentTimeMillis()),
-      "861235328",
-      (long)1
-    );
-    restTemplate.postForEntity(addEmployee, employee1, String.class);
-    restTemplate.postForEntity(addEmployee, employee2, String.class);
+//    URI addEmployee = new URI(baseUrl + "user/employee");
+//    userEmployeeRepository.deleteAll();
+//    UserEmployeeDTO employee1 = new UserEmployeeDTO(
+//      "Darbuotojas1",
+//      "employee",
+//      "linkomanija.isp@gmail.com",
+//      "Jonas",
+//      "Jonaitis",
+//      new Date(System.currentTimeMillis()),
+//      "861235329",
+//      (long)2
+//    );
+//
+//    UserEmployeeDTO employee2 = new UserEmployeeDTO(
+//      "Darbuotojas2",
+//      "employee",
+//      "linkomanija.isp@gmail.com",
+//      "Petras",
+//      "Petraitis",
+//      new Date(System.currentTimeMillis()),
+//      "861235328",
+//      (long)1
+//    );
+//    restTemplate.postForEntity(addEmployee, employee1, String.class);
+//    restTemplate.postForEntity(addEmployee, employee2, String.class);
 
 //    //ADD TIMETABLES
 //    URI addTimetable = new URI(baseUrl + "timetable");
