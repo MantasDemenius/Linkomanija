@@ -52,7 +52,12 @@ function SessionAddForm(props) {
         console.log('Received values of form: ', values);
         console.log('blblbl');
         axios
-          .post('/api/session', { values })
+          .post('/api/session', {
+              body: JSON.stringify(values),
+              headers: 
+                {'Content-Type': 'application/json'}
+              
+          })
           .then((res) => {
             console.log('aa');
             console.log(res);
