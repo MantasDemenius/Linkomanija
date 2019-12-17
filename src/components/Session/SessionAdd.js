@@ -51,19 +51,15 @@ function SessionAddForm(props) {
         values.session_date = values.session_date.format('YYYY-MM-DD');
         console.log('Received values of form: ', values);
         console.log('blblbl');
+
         axios
-          .post('/api/session', {
-              body: JSON.stringify(values),
-              headers: 
-                {'Content-Type': 'application/json'}
-              
+          .post('/api/session', values)
+          .then(function(response) {
+            console.log(response);
+            // history.push('/movies');
           })
-          .then((res) => {
-            console.log('aa');
-            console.log(res);
-          })
-          .catch((e) => {
-            console.log(e);
+          .catch(function(error) {
+            console.log(error);
           });
       }
     });
