@@ -40,8 +40,8 @@ function SessionAddForm(props) {
         console.log(e);
       });
   }, []);
-  if(movieHalls === undefined){
-      return null;
+  if (movieHalls === undefined) {
+    return null;
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,14 +50,16 @@ function SessionAddForm(props) {
         values.session_start = values.session_start.format('HH:mm');
         values.session_date = values.session_date.format('YYYY-MM-DD');
         console.log('Received values of form: ', values);
-
-        if (userType === 'employee') {
-          values.theatre_id = parseInt(values.theatre_id, 10);
-          values.phone_number = `${values.prefix}${values.phone_number}`;
-          dispatch(addEmployee(values));
-        } else if (userType === 'client') {
-          dispatch(addClient(values));
-        }
+        console.log('blblbl');
+        axios
+          .post('/api/session', { values })
+          .then((res) => {
+            console.log('aa');
+            console.log(res);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
       }
     });
   };
@@ -95,21 +97,23 @@ function SessionAddForm(props) {
         </Form.Item>
         <Form.Item label="Seanso pradžios laikas">
           {getFieldDecorator('session_start', {
-            rules: [{ required: true, type: 'object', message: 'Pasirinkite seanso pradžios laiką' }],
+            rules: [
+              { required: true, type: 'object', message: 'Pasirinkite seanso pradžios laiką' },
+            ],
           })(<TimePicker placeholder="Seasnso pradžia laiką" />)}
         </Form.Item>
         <Form.Item label="Kaina">
           {getFieldDecorator('price', {
-          initialValue: 3,
-          rules: [{ required: true, message: 'Prašome įvesti kainą!' }],})(<InputNumber min={1} max={100} />)}
+            initialValue: 3,
+            rules: [{ required: true, message: 'Prašome įvesti kainą!' }],
+          })(<InputNumber min={1} max={100} />)}
           <span className="ant-form-text">€</span>
         </Form.Item>
         <Form.Item label="Seanso testinumas">
           {getFieldDecorator('session_count', {
-          initialValue: 1,
-          rules: [{ required: true, message: 'Prašome seanso testinumą!' }],})(
-            <InputNumber min={1} max={100} />,
-          )}
+            initialValue: 1,
+            rules: [{ required: true, message: 'Prašome seanso testinumą!' }],
+          })(<InputNumber min={1} max={100} />)}
         </Form.Item>
 
         <Form.Item label="Filmas">
@@ -118,7 +122,9 @@ function SessionAddForm(props) {
           })(
             <Select placeholder="Pasirinkite filmą">
               {movies.map((movie) => (
-                <Option key={movie.id} value={movie.id}>{movie.title}</Option>
+                <Option key={movie.id} value={movie.id}>
+                  {movie.title}
+                </Option>
               ))}
             </Select>,
           )}
@@ -129,9 +135,12 @@ function SessionAddForm(props) {
           })(
             <Select placeholder="Pasirinkite kino salę">
               {movieHalls.map((movieHall) => (
-                <Option key={movieHall.id} value={movieHall.id}>{`${movieHall.movieTheatre.name} ${movieHall.name}`}</Option>
+                <Option
+                  key={movieHall.id}
+                  value={movieHall.id}
+                >{`${movieHall.movieTheatre.name} ${movieHall.name}`}</Option>
               ))}
-            </Select>
+            </Select>,
           )}
         </Form.Item>
 
