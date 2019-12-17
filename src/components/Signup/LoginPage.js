@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'antd/dist/antd.css';
 import '../../App.css';
 import { Card } from 'antd';
 import { Typography } from 'antd';
 import { Form, Input, Tooltip, Icon, Select, Button, DatePicker } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import {userLogin} from '../../state/actions/client'
+import {userLogin, removeCreateStatus} from '../../state/actions/client'
+import { useHistory } from 'react-router-dom';
 
 const { Text } = Typography;
 
@@ -13,6 +14,7 @@ const LoginPage = (props) => {
   const { form } = props;
   const { getFieldDecorator } = form;
   const dispatch = useDispatch();
+  let history = useHistory();
 
   const createStatus = useSelector((store) => store.client.createStatus);
 
@@ -22,7 +24,8 @@ const LoginPage = (props) => {
       // return <FormError Tag="h2" message={'Cannot create session'} />;
     }
     if (createStatus === true) {
-      return <h1>success</h1>
+        
+        history.push('/');
       // return <FormError Tag="h2" message={'Session created'} color="green" />;
     }
   }
