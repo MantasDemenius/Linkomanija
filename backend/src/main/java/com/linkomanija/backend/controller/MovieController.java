@@ -39,7 +39,7 @@ public class MovieController {
   @DeleteMapping(value = "{id}", produces = "application/json")
   public ResponseEntity<String> deleteMovie(@PathVariable(name = "id") Long id) {
     movieService.deleteMovie(id);
-    return ResponseEntity.ok("Move has been deleted");
+    return ResponseEntity.ok("Movie has been deleted");
   }
 
   @DeleteMapping(value = "{id}/{movie_rating_id}", produces = "application/json")
