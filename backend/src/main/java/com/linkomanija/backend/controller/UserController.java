@@ -2,10 +2,13 @@ package com.linkomanija.backend.controller;
 
 import com.linkomanija.backend.domain.UserClient;
 import com.linkomanija.backend.domain.UserEmployee;
+import com.linkomanija.backend.dto.UserDTO;
 import com.linkomanija.backend.dto.UserEmployeeDTO;
 import com.linkomanija.backend.service.UserClientService;
 import com.linkomanija.backend.service.UserEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,13 +28,19 @@ public class UserController {
   }
 
   @PostMapping(value = "employee", consumes = "application/json", produces = "application/json")
-  public UserEmployee addEmployee(@RequestBody UserEmployeeDTO userEmployeeDTO) {
-    return userEmployeeService.addEmployee(userEmployeeDTO);
+  public ResponseEntity<UserEmployee> addEmployee(@RequestBody UserEmployeeDTO userEmployeeDTO) {
+    UserEmployee userEmployee = userEmployeeService.addEmployee(userEmployeeDTO);
+    if (userEmployee == null)
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    return ResponseEntity.status(HttpStatus.OK).body(userEmployee);
   }
 
   @PostMapping(value = "client", consumes = "application/json", produces = "application/json")
-  public UserClient addClient(@RequestBody UserClient userClient) {
-    return userClientService.addClient(userClient);
+  public ResponseEntity<UserClient> addClient(@RequestBody UserClient userClient) {
+    userClient = userClientService.addClient(userClient);
+    if (userClient == null)
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    return ResponseEntity.status(HttpStatus.OK).body(userClient);
   }
 
   @PostMapping(value = "client/edit", consumes = "application/json", produces = "application/json")
