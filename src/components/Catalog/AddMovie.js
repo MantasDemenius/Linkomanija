@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback } from "react";
 import 'antd/dist/antd.css'
 import '../../App.css'
 import { Card } from 'antd';
 import { Typography } from 'antd';
 import { Form, Input, Select, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { message } from 'antd';
 import axios from 'axios';
 
 const { Option } = Select;
@@ -31,6 +31,8 @@ const { Text } = Typography;
 const AddMovie = ({ form, isEditMode, movie }) => {
     const { getFieldDecorator } = form;
     const history = useHistory();
+    const [, updateState] = React.useState();
+    const forceUpdate = useCallback(() => updateState({}), []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -42,18 +44,20 @@ const AddMovie = ({ form, isEditMode, movie }) => {
                 if (isEditMode) {
                     axios.post('/api/movie/edit', { id: movie.id, ...values })
                         .then(() => {
-                            window.location.reload();
+                            message.success('Filmas pakeistas sėkmingai');
+                            forceUpdate();
                         })
-                        .catch((error) => {
-                            console.log(error);
+                        .catch(() => {
+                            message.error('Blogas IMDb kodas');
                         });
                 } else {
                     axios.post('/api/movie', values)
                         .then(() => {
+                            message.success('Filmas sukurtas sėkmingai');
                             history.push('/movies');
                         })
-                        .catch((error) => {
-                            console.log(error);
+                        .catch(() => {
+                            message.error('Blogas IMDb kodas');
                         });
                 }
 

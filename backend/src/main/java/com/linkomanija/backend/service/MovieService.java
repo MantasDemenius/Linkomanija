@@ -59,15 +59,20 @@ public class MovieService {
   public Movie editMovie(MovieDTO newMovie) throws IOException, ParseException {
     Movie movie = movieRepository.findById(newMovie.getId()).orElse(new Movie());
     Language languageById = languageRepository.findById(newMovie.getLanguage_id()).orElse(new Language());
+    List<Long> genres = newMovie.getGenre_list();
+    List<Genre> genre_list = new ArrayList<>();
+    for (Long genre : genres) {
+      Genre temp = genreRepository.findById(genre).orElse(new Genre());
+      genre_list.add(temp);
+    }
+    newMovie.setGenres(genre_list);
     movie.updateValues(newMovie, languageById);
-    updateRating(movie);
-    movieRepository.save(movie);
-    return movie;
+    movie.completeWithImdb(MovieFetch.findMovieByCode(newMovie.getImdb_code()));
+    return movieRepository.save(movie);
   }
 
   public Movie deleteMovie(Long id) {
     Movie movie = movieRepository.findById(id).orElse(new Movie());
-//    GenreLink genreLink
     movieRepository.delete(movie);
     return movie;
   }

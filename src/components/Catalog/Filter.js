@@ -29,7 +29,7 @@ const genres = [
     { label: 'Kriminalinis', value: 6 },
     { label: 'Nuotykių', value: 7 },
     { label: 'Opera', value: 8 },
-    { label: 'Romantinė komedija', value: 9 },
+    { label: 'Romantinis', value: 9 },
     { label: 'Šeimos filmas', value: 10 },
     { label: 'Siaubo', value: 11 },
     { label: 'Trileris', value: 12 },
