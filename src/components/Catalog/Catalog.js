@@ -15,6 +15,7 @@ const Catalog = () => {
     const [selectedLanguages, setSelectedLanguages] = useState([]);
     const [selectedCensorship, setSelectedCensorship] = useState([]);
     const [selectedGenres, setSelectedGenres] = useState([]);
+    const [sortType, setSortType] = useState(0);
 
     useEffect(() => {
         axios.get('/api/movie')
@@ -25,7 +26,6 @@ const Catalog = () => {
                 console.log(e);
             });
     }, []);
-    console.log(movies);
 
     const onChangeLanguage = (checkedValues) => {
         setSelectedLanguages(checkedValues)
@@ -52,7 +52,34 @@ const Catalog = () => {
         return languagePass && censorshipPass && genresPass;
     };
 
-    const movieCards = movies.filter(movieFilter).map(movie => {
+    const onSortTypeChange = (e) => {
+        setSortType(e.target.value);
+    }
+
+    const sortFunction = (sortType) => {
+        switch (sortType) {
+            case 1:
+                return (a, b) => {
+                    return a.title.localeCompare(b.title);
+                };
+            case 2:
+                return (a, b) => {
+                    return b.title.localeCompare(a.title);
+                };
+            case 3:
+                return (a, b) => {
+                    return b.imdb_rating - a.imdb_rating;
+                }
+            case 4:
+                return (a, b) => {
+                    return a.imdb_rating - b.imdb_rating;
+                }
+            default:
+                return undefined;
+        }
+    }
+
+    const movieCards = movies.filter(movieFilter).sort(sortFunction(sortType)).map(movie => {
         return (
             <MovieCard
                 key={movie.id}
@@ -68,7 +95,7 @@ const Catalog = () => {
                     <Filter onChangeLanguage={onChangeLanguage} onChangeCensorhip={onChangeCensorhip} onChangeGenre={onChangeGenre} />
                 </Col>
                 <Col span={18}>
-                    <Sorter />
+                    <Sorter onChange={onSortTypeChange} />
                     <StackGrid columnWidth={'50%'}>
                         {movieCards}
                         <Card>
