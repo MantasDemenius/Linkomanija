@@ -23,7 +23,7 @@ const MovieCard = ({ movie }) => {
     let genreTags = [];
     if (movie)
         genreTags = movie.genreList.map((genre) => {
-            return (<Tag color="blue">{genre.pavadinimas}</Tag>)
+            return (<Tag color="blue" key={genre.id}>{genre.pavadinimas}</Tag>)
         })
 
     const description = (

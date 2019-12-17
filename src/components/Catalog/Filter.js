@@ -36,10 +36,6 @@ const genres = [
     { label: 'Veiksmo', value: 13 },
 ];
 
-function onChange(checkedValues) {
-    console.log('checked = ', checkedValues);
-}
-
 const Filter = ({ onChangeLanguage, onChangeCensorhip, onChangeGenre }) => {
     return (
         <>

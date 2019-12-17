@@ -1,17 +1,23 @@
 import React from "react";
 import 'antd/dist/antd.css'
 import '../../App.css'
-import { Card, Button } from 'antd';
+import { Card, Radio } from 'antd';
 import { Typography } from 'antd';
-import {useHistory} from 'react-router-dom';
 
 const { Text } = Typography;
-const Sorter = () => {
-    let history = useHistory();
+
+const Sorter = ({ onChange }) => {
     return (
         <Card>
-            <Text strong>Čia bus rikiavimo raktai</Text>
-            {/* <Button onClick={() =>history.push('/movies/add')}>Pridėti</Button> */}
+            <Text strong>Rikiavimas</Text>
+            <div>
+                <Radio.Group defaultValue="a" buttonStyle="solid" onChange={onChange}>
+                    <Radio.Button value={1}>A - Z</Radio.Button>
+                    <Radio.Button value={2}>Z - A</Radio.Button>
+                    <Radio.Button value={3}>Geriausi</Radio.Button>
+                    <Radio.Button value={4}>Blogiausi</Radio.Button>
+                </Radio.Group>
+            </div>
         </Card>
     )
 }
