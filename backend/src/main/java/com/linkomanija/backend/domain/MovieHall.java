@@ -43,4 +43,8 @@ public class MovieHall {
     this.row_count = movieHallDTO.getRow_count();
     this.movieTheatre = movieTheatreById;
   }
+
+  public int getSeatCount() {
+    return column_count * row_count;
+  }
 }
