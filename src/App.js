@@ -45,7 +45,7 @@ const App = () => {
             <Route path="/movies/add" component={AddMovie} />
             <Route path="/patalpa/prideti" component={PlaceAdd} />
             <Route path="/places/edit" component={PlacesEdit} />
-            <Route path="/places/delete" component={PlacesDelete} />
+            <Route path="/patalpa/panaikinimas" component={PlacesDelete} />
             <Route path="/patalpa" component={PlacePage} />
             <Route path="/naudotojai/darbuotojas/pridėti" component={EmployeesAdd} />
             <Route path="/employees/edit" component={EmployeesEdit} />
