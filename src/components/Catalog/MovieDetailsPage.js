@@ -9,6 +9,7 @@ import { Tag } from 'antd';
 import { Select } from 'antd';
 import { Form } from 'antd';
 import EditMovie from './EditMovie';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const { Option } = Select;
@@ -17,9 +18,8 @@ const { Text } = Typography;
 const MovieDetailsPage = () => {
     const [movie, setMovie] = useState({});
     const [rating, setRating] = useState(10);
-    console.log(rating);
+    const history = useHistory();
     let { id } = useParams();
-    console.log(movie);
 
     useEffect(() => {
         axios.get('/api/movie/' + id)
@@ -44,6 +44,17 @@ const MovieDetailsPage = () => {
                 console.log(error);
             });
         window.location.reload();
+    }
+
+    const handleDelete = e => {
+        e.preventDefault();
+        axios.delete('/api/movie/' + id)
+            .then(() => {
+                history.push('/movies');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     let languageTag = null;
@@ -118,7 +129,7 @@ const MovieDetailsPage = () => {
                 <EditMovie />
             </Card>
             <Card>
-                <Button>Ištrinti</Button>
+                <Button onClick={handleDelete}>Ištrinti</Button>
             </Card>
         </>
     )

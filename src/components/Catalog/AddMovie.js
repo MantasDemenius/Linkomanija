@@ -74,7 +74,7 @@ const AddMovie = ({ form }) => {
                 </Form.Item>
                 <Form.Item label="Aprašymas">
                     {getFieldDecorator('description', {
-                        rules: [{ required: false, message: 'Aprašymas privalomas' }],
+                        rules: [{ required: true, message: 'Aprašymas privalomas' }],
                     })(
                         <TextArea placeholder="Aprašymas" />
                     )}
