@@ -4,10 +4,16 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
 import 'antd/dist/antd.css'
 import '../../App.css'
-
+import { useDispatch, useSelector } from 'react-redux';
+import {removeCreateStatus} from '../../state/actions/client'
 const { Header } = Layout;
 
 const Navigation = ({ location }) => {
+    const user = useSelector((store) => store.client.userType);
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+        dispatch(removeCreateStatus());
+    }
     return (
         <Header style={{ background: "#fff" }}>
             <Link to="/" >
@@ -37,18 +43,24 @@ const Navigation = ({ location }) => {
                     <Link to="/naudotojai" />
                     <span>Naudotojai</span>
                 </Menu.Item>
+                {user === '' &&
                 <Menu.Item key="/prisijungti">
                     <Link to="/prisijungti" />
                     <span>Prisijungti</span>
-                </Menu.Item>
+                </Menu.Item>}
+                {user === '' &&
                 <Menu.Item key="/registracija">
                     <Link to="/registracija" />
                     <span>Registruotis</span>
-                </Menu.Item>
+                </Menu.Item>}
                 <Menu.Item key="/profile">
                     <Link to="/profile" />
                     <span>Mano Profilis</span>
                 </Menu.Item>
+                {user !== '' &&
+                <Menu.Item key="logout" onClick={handleLogout}>
+                    <span>Atsijungti</span>
+                </Menu.Item>}
                 
             </Menu>
         </Header>

@@ -4,6 +4,9 @@ import {
     ADD_CLIENT,
     ADD_CLIENT_SUCCESS,
     ADD_CLIENT_FAILED,
+    USER_LOGIN,
+    USER_LOGIN_SUCCESS,
+    USER_LOGIN_FAILED
 } from '../actionTypes/client';
 
 import {ADD_CLIENT_ROUTE} from '../../common/Routes';
@@ -22,8 +25,21 @@ function* addClient(action) {
   }
 }
 
+function* userLogin(action) {
+  console.log("saga", action.formData);
+  const { status, data } = yield postRequest('login', action.formData);
+  switch (status) {
+    case RESPONSE_STATUS.OK:
+      yield put({ type: USER_LOGIN_SUCCESS, newClient: data });
+      break;
+    default:
+      yield put({ type: USER_LOGIN_FAILED });
+  }
+}
+
 function* actionWatcher() {
   yield takeLatest(ADD_CLIENT, addClient);
+  yield takeLatest(USER_LOGIN, userLogin);
 }
 
 export function* clientSaga() {
