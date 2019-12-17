@@ -7,7 +7,8 @@ import {
   } from '../actionTypes/client';
   const initialState = {
     client: undefined,
-    userType: '',
+    userType: 'admin',
+    userId: 0,
     createStatus: undefined,
   };
   
@@ -25,7 +26,7 @@ import {
       }
       case USER_LOGIN_SUCCESS: {
         console.log(action.newClient);
-        return { ...state, userType: action.newClient.role, createStatus: true };
+        return { ...state, userType: action.newClient.role, createStatus: true, userId: action.newClient.id };
       }
       case USER_LOGIN_FAILED: {
         console.log("fail");

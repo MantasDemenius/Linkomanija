@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'antd/dist/antd.css';
 import '../../App.css';
 import { Card } from 'antd';
@@ -7,34 +7,64 @@ import { Select } from 'antd';
 import { format, addDays, startOfToday } from 'date-fns';
 import { lt } from 'date-fns/locale';
 import { useHistory } from 'react-router-dom';
-
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 const { Option } = Select;
 const { Title } = Typography;
 
 const SessionPage = () => {
   const history = useHistory();
-  const dataSource = [
-    {
-      key: '1',
-      token: 'FAK53',
-      time: '20:00',
-      title: 'Džokeris',
-    },
-    {
-      key: '2',
-      token: 'FAK54',
-      time: '22:40',
-      title: 'Džokeris',
-    },
-  ];
+  const [sessions, setSessions] = useState([]);
+  const user = useSelector((store) => store.client.userType);
+  useEffect(() => {
+    axios
+      .get('/api/session')
+      .then((res) => {
+        console.log(res.data[0].movie);
+        setSessions(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+
+  const loadDataSource = () => {
+    console.log('aa');
+    sessions.map((session) => {
+      console.log('a', session);
+      dataSource.push({
+        key: session.id,
+        place: session.movieHall.movieTheatre.name,
+        date: session.session_date,
+        token: 'a',
+        time: session.session_start,
+        title: session.movie.title,
+      });
+    });
+  };
+  const dataSource = [];
 
   const columns = [
+    {
+      title: 'Place',
+      dataIndex: 'place',
+      key: 'place',
+      width: 200,
+      render: (text) => <Title level={4}>{text}</Title>,
+    },
+    {
+      title: 'Date',
+      dataIndex: 'date',
+      key: 'date',
+      width: 150,
+      render: (text) => <Title level={4}>{text}</Title>,
+    },
     {
       title: 'Time',
       dataIndex: 'time',
       key: 'time',
       width: 150,
-      render: (text) => <Title level={2}>{text}</Title>,
+      render: (text) => <Title level={4}>{text}</Title>,
     },
     {
       title: 'Title',
@@ -46,16 +76,19 @@ const SessionPage = () => {
       title: 'Action',
       key: 'action',
       align: 'right',
-      render: (item) => (<>
-        <Button
-          type="primary"
-          onClick={() => history.push(`/timetable/${item.title}/${item.token}`)}
-          size="small"
-          
-        >
-          Bilietai
-        </Button>
-        <Button type="secondary" onClick={() => history.push(`/timetable/${item.title}/${item.token}/edit`)} size="small">Redaguoti</Button></>
+      render: (item) => (
+        <>
+          <Button type="primary" onClick={() => history.push(`/seansas/${item.key}`)} size="large">
+            Bilietai
+          </Button>
+          {/* <Button
+            type="secondary"
+            onClick={() => history.push(`/timetable/${item.title}/${item.token}/edit`)}
+            size="small"
+          >
+            Redaguoti
+          </Button> */}
+        </>
       ),
     },
   ];
@@ -81,9 +114,11 @@ const SessionPage = () => {
       <Select defaultValue="0" style={{ width: 150 }} onChange={handleChange}>
         {options}
       </Select>
+      {user === 'admin' && <Button onClick={() => history.push('/seansas/prideti')}>Pridėti seansą</Button>}
+      {loadDataSource()}
       <Divider style={{ marginBottom: 0 }} />
-      <Table dataSource={dataSource} columns={columns} showHeader={false} />
-      <Button onClick={() =>history.push('/seansas/prideti')}>Pridėti</Button>
+      <Table dataSource={dataSource} columns={columns} showHeader={false} pagination={false} />
+
     </Card>
   );
 };
