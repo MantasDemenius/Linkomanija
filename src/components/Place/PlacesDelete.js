@@ -23,7 +23,7 @@ const PlacesDelete = () => {
 
   function handleChange(value) {
       dispatch(deleteMovieHall(value));
-    
+      history.push('/patalpa');
   }
 
   if(movieHall === undefined){

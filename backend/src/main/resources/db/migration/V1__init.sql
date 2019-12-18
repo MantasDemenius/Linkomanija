@@ -178,34 +178,34 @@ CREATE TABLE prod.movie_hall
 
 INSERT INTO prod.movie_hall
 ("name", column_count, row_count, movie_theatre_id)
-VALUES('Scape 1 salė', 8, 20, 1);
+VALUES('Scape 1 salė', 10, 15, 1);
 INSERT INTO prod.movie_hall
 ("name", column_count, row_count, movie_theatre_id)
-VALUES('Scape 2 salė', 8, 20, 1);
+VALUES('Scape 2 salė', 10, 15, 1);
 INSERT INTO prod.movie_hall
 ("name", column_count, row_count, movie_theatre_id)
-VALUES('3 salė', 6, 15, 1);
+VALUES('3 salė', 10, 15, 1);
 INSERT INTO prod.movie_hall
 ("name", column_count, row_count, movie_theatre_id)
-VALUES('1 salė', 8, 20, 2);
+VALUES('1 salė', 15, 30, 2);
 INSERT INTO prod.movie_hall
 ("name", column_count, row_count, movie_theatre_id)
-VALUES('2 salė', 8, 20, 2);
+VALUES('2 salė', 15, 30, 2);
 INSERT INTO prod.movie_hall
 ("name", column_count, row_count, movie_theatre_id)
-VALUES('3 salė', 6, 15, 2);
+VALUES('3 salė', 15, 30, 2);
 INSERT INTO prod.movie_hall
 ("name", column_count, row_count, movie_theatre_id)
-VALUES('1 salė', 8, 20, 3);
+VALUES('1 salė', 10, 15, 3);
 INSERT INTO prod.movie_hall
 ("name", column_count, row_count, movie_theatre_id)
-VALUES('Scape 1 salė', 8, 20, 3);
+VALUES('Scape 1 salė', 10, 15, 3);
 INSERT INTO prod.movie_hall
 ("name", column_count, row_count, movie_theatre_id)
-VALUES('Scape 1 salė', 8, 20, 4);
+VALUES('Scape 1 salė', 15, 30, 4);
 INSERT INTO prod.movie_hall
 ("name", column_count, row_count, movie_theatre_id)
-VALUES('1 salė', 6, 15, 4);
+VALUES('1 salė', 6, 15, 30);
 
 CREATE TABLE prod.timetable
 (

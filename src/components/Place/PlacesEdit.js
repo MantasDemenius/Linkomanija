@@ -3,6 +3,7 @@ import '../../App.css';
 import { Form, Input, Select, Button, InputNumber, Card, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMovieHall, getMovieHall } from '../../state/actions/MovieHall';
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 const { Option } = Select;
 const { Title } = Typography;
@@ -11,6 +12,7 @@ function PlacesEdit(props) {
   const dispatch = useDispatch();
   const movieHall = useSelector((store) => store.MovieHall.movieHall);
   const [selectedMovieHall, setSelectedMovieHall] = useState(undefined);
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -21,11 +23,13 @@ function PlacesEdit(props) {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
+          values.id = selectedMovieHall.id;
         console.log('form', values);
         axios
       .post(`/api/movieHall/edit`, values)
       .then((res) => {
         console.log(res);
+        history.push('/patalpa');
         // setSession(res.data);
       })
       .catch((e) => {

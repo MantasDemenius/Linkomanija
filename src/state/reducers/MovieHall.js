@@ -19,7 +19,7 @@ export default function movieHallReducer(state = initialState, action) {
     }
     case ADD_MOVIEHALL_FAILED: {
       console.log('fail');
-      return { ...state, createStatus: false };
+      return { ...state };
     }
     case GET_MOVIEHALL_SUCCESS:{
       console.log("success");
