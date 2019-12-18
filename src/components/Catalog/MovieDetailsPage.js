@@ -12,11 +12,15 @@ import { message } from 'antd';
 import { useHistory } from 'react-router-dom';
 import AddMovie from './AddMovie';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 const { Option } = Select;
 
 const { Text } = Typography;
 const MovieDetailsPage = () => {
+    const content = useSelector(state => state);
+    const userType = content.client.userType;
+
     const [movie, setMovie] = useState({});
     const [rating, setRating] = useState(10);
     const history = useHistory();
@@ -128,12 +132,13 @@ const MovieDetailsPage = () => {
                     </Form.Item>
                 </Form>
             </Card>
-            <Card>
-                <AddMovie isEditMode movie={movie} />
-            </Card>
-            <Card>
-                <Button onClick={handleDelete}>Ištrinti</Button>
-            </Card>
+            {userType == "admin" ? <>
+                <Card>
+                    <AddMovie isEditMode movie={movie} />
+                </Card>
+                <Card>
+                    <Button onClick={handleDelete}>Ištrinti</Button>
+                </Card></> : null}
         </>
     )
 }
