@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import '../../App.css';
 import { Card } from 'antd';
 import { Typography } from 'antd';
-import { Form, Input, Tooltip, Icon, Select, Button, DatePicker } from 'antd';
+import { Form, Input, Tooltip, Icon, Select, Button, DatePicker, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import {userLogin, removeCreateStatus} from '../../state/actions/client'
 import { useHistory } from 'react-router-dom';
@@ -20,7 +20,7 @@ const LoginPage = (props) => {
 
   function getSubmitMessage() {
     if (createStatus === false) {
-      return <h1>failed</h1>
+      message.error("Nepavyko prisijungti")
       // return <FormError Tag="h2" message={'Cannot create session'} />;
     }
     if (createStatus === true) {

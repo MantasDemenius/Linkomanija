@@ -7,8 +7,8 @@ import {
 } from '../actionTypes/client';
 const initialState = {
   client: undefined,
-  userType: 'admin',
-  userId: 15,
+  userType: '',
+  userId: undefined,
   createStatus: undefined,
 };
 
