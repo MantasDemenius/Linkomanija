@@ -1,8 +1,10 @@
 package com.linkomanija.backend.database;
 
 import com.linkomanija.backend.domain.MovieTheatre;
+import com.linkomanija.backend.domain.UserClient;
 import com.linkomanija.backend.domain.UserEmployee;
 import com.linkomanija.backend.dto.MovieDTO;
+import com.linkomanija.backend.dto.RegisterDTO;
 import com.linkomanija.backend.dto.TimetableDTO;
 import com.linkomanija.backend.dto.UserEmployeeDTO;
 import com.linkomanija.backend.repository.*;
@@ -30,14 +32,16 @@ public class DataPopulation {
   private TimetableRepository timetableRepository;
   private SessionRepository sessionRepository;
   private MovieRatingRepository movieRatingRepository;
+  private UserClientRepository userClientRepository;
 
   @Autowired
-  public DataPopulation(MovieRatingRepository movieRatingRepository, SessionRepository sessionRepository, TimetableRepository timetableRepository, MovieRepository movieRepository, UserEmployeeRepository userEmployeeRepository) {
+  public DataPopulation(UserClientRepository userClientRepository, MovieRatingRepository movieRatingRepository, SessionRepository sessionRepository, TimetableRepository timetableRepository, MovieRepository movieRepository, UserEmployeeRepository userEmployeeRepository) {
     this.movieRepository = movieRepository;
     this.userEmployeeRepository = userEmployeeRepository;
     this.timetableRepository = timetableRepository;
     this.sessionRepository = sessionRepository;
     this.movieRatingRepository = movieRatingRepository;
+    this.userClientRepository = userClientRepository;
   }
 
   @EventListener(ApplicationReadyEvent.class)
@@ -99,7 +103,30 @@ public class DataPopulation {
 
     //ADD CLIENTS
     URI addClient = new URI(baseUrl + "user/client");
-    
+    userClientRepository.deleteAll();
+    UserClient userClient = new UserClient(
+      (long)1,
+      "client1",
+      "client",
+      "linkomanija.isp@gmail.com",
+      "Klientas1",
+      "Jonaitis",
+      DateUtils.create(1998,06,03).getTime(),
+      "123456789"
+    );
+    userClientRepository.save(userClient);
+
+    userClient = new UserClient(
+      (long)2,
+      "client2",
+      "client",
+      "linkomanija.isp@gmail.com",
+      "Klientas2",
+      "Petraitis",
+      DateUtils.create(1998,06,03).getTime(),
+      "123456789"
+    );
+    userClientRepository.save(userClient);
 
     //ADD EMPLOYEES
     URI addEmployee = new URI(baseUrl + "user/employee");
@@ -115,6 +142,7 @@ public class DataPopulation {
       "861235329",
       (long)2
     );
+    employee1.setId((long)1);
 
     UserEmployeeDTO employee2 = new UserEmployeeDTO(
       "Darbuotojas2",
@@ -126,8 +154,11 @@ public class DataPopulation {
       "861235328",
       (long)1
     );
+    employee2.setId((long)2);
     restTemplate.postForEntity(addEmployee, employee1, String.class);
     restTemplate.postForEntity(addEmployee, employee2, String.class);
+
+    //CREATE TICKETS
 
     //ADD TIMETABLES
     URI addTimetable = new URI(baseUrl + "timetable");

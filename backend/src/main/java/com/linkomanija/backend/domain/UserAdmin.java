@@ -25,6 +25,10 @@ public class UserAdmin {
 
   private String phone_number;
 
+  public Long getId() {
+    return id;
+  }
+
   public boolean isPasswordCorrect(String password) {
     return this.password.equals(password);
   }

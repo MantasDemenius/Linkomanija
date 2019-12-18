@@ -36,6 +36,17 @@ public class UserClient {
     this.phone_number = registerDTO.getPhone_number();
   }
 
+  public UserClient(Long id, String username, String password, String email, String name, String surname, Date born_date, String phone_number) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.email = email;
+    this.name = name;
+    this.surname = surname;
+    this.born_date = born_date;
+    this.phone_number = phone_number;
+  }
+
   public String getUsername() {
     return username;
   }
@@ -44,6 +55,10 @@ public class UserClient {
 
   public String getEmail() {
     return email;
+  }
+
+  public Long getId() {
+    return id;
   }
 
   public boolean isPasswordCorrect(String password) {
