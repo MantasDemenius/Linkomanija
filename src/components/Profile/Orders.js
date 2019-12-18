@@ -8,16 +8,10 @@ import axios from 'axios';
 const Orders = ({ userId }) => {
     const [orders, setOrders] = useState([]);
 
-    const data = [
-        'Racing car sprays burning fuel into crowd.',
-        'Japanese princess to wed commoner.',
-        'Australian walks 100km after outback crash.',
-        'Man charged over missing wedding girl.',
-        'Los Angeles battles huge wildfires.',
-    ];
+    const data = [];
 
     useEffect(() => {
-        axios.get('/api/user/client/' + userId)
+        axios.get('/api/reservation/client/' + userId)
             .then((res) => {
                 setOrders(res.data);
             })
@@ -25,6 +19,7 @@ const Orders = ({ userId }) => {
                 console.log(e);
             });
     }, [])
+    console.log(orders)
 
     return (
         <>
@@ -33,8 +28,9 @@ const Orders = ({ userId }) => {
                 <List
                     size="large"
                     bordered
-                    dataSource={data}
-                    renderItem={item => <List.Item>{item}</List.Item>}
+                    dataSource={orders}
+                    renderItem={item => <List.Item><b>{`${item.ticket_state ? 'Bilietas' : 'Rezervacija'}`}</b> {`${item.session.movie.title} - ${item.session.movieHall.movieTheatre.name},
+                        ${item.session.movieHall.name}, Eilė ${item.seat_row}, Vieta ${item.seat_collumn}`}</List.Item>}
                 />
             </Card>
         </>
