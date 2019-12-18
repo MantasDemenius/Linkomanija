@@ -44,7 +44,14 @@ const UserList = () => {
     }
 
     const handleClientDelete = id => () => {
-        console.log(id)
+        axios.delete('/api/user/client/' + id)
+            .then(() => {
+                message.success('Klientas ištrintas');
+                forceUpdate();
+            })
+            .catch(() => {
+                message.success('Kliento ištrinti nepavyko');
+            });
     }
 
     return (
