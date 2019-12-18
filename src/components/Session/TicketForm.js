@@ -12,6 +12,8 @@ const { Option } = Select;
 function TicketForm(props) {
   const [session, setSession] = useState([]);
   const [seats, setSeats] = useState([]);
+  const [activeRows, setActiveRows] = useState([]);
+  const [activeSeats, setActiveSeats] = useState([]);
   let { key } = useParams();
   const { form, formType } = props;
   const { getFieldDecorator } = form;
@@ -20,8 +22,21 @@ function TicketForm(props) {
     axios
       .get(`/api/session/${key}`)
       .then((res) => {
-        console.log(res);
+        console.log("ses",res.data);
         setSession(res.data);
+        
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    axios
+      .get(`/api/session/seats/${key}`)
+      .then((res) => {
+        console.log(res);
+        setSeats(res.data);
+        let array = Array.from(Array(res.data[0].length), (x, index) => index +1);
+        setActiveRows(array);
+        console.log(array);
       })
       .catch((e) => {
         console.log(e);
@@ -31,31 +46,40 @@ function TicketForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
-        values.user_client_id = user;
-        values.session_id = parseInt(key, 10);
-        if (formType === 'reserve') {
-          values.ticket_state = false;
-        } else if (formType === 'buy') {
-          values.ticket_state = true;
-        }
+      values.user_client_id = user;
+      values.session_id = parseInt(key, 10);
+      if (formType === 'reserve') {
+        values.ticket_state = false;
+      } else if (formType === 'buy') {
+        values.ticket_state = true;
+      }
+      values.creation_date = '1';
+      values.movie_start = session.session_start;
+      values.movie_end = session.session_end;
+      values.price = session.price;
+
       if (!err) {
         axios
           .post('/api/reservation', values)
           .then(function(response) {
             console.log(response);
-            
-            message.success('Sėkmingai įsigijote vietas')
+
+            message.success('Sėkmingai įsigijote vietas');
             // history.push('/movies');
           })
           .catch(function(error) {
             console.log(error);
-            message.error('Sėkmingai įsigijote vietas')
+            message.error('Nepavyko įsigyti vietų');
           });
-        
+
         console.log('Received values of form: ', values);
       }
     });
   };
+
+  const handleChange = (value) => {
+    setActiveSeats(seats[value]);
+  }
 
   const formItemLayout = {
     labelCol: {
@@ -96,10 +120,10 @@ function TicketForm(props) {
           {getFieldDecorator('seat_row', {
             rules: [{ required: true, message: 'Pasirinkitę eilę' }],
           })(
-            <Select>
-              {seats.map((seat) => (
-                <Option key={seat.id} value={seat.seat_row}>
-                  {seat.seat_row}
+            <Select onChange={handleChange}>
+              {activeRows.map((seat) => (
+                <Option key={seat} value={seat}>
+                  {seat}
                 </Option>
               ))}
             </Select>,
@@ -110,9 +134,9 @@ function TicketForm(props) {
             rules: [{ required: true, message: 'Pasirinkitę vietą' }],
           })(
             <Select>
-              {seats.map((seat) => (
-                <Option key={seat.id} value={seat.seat_row}>
-                  {seat.seat_column}
+              {activeSeats.map((seat) => (
+                <Option key={seat.id} value={seat.seat}>
+                  {seat.seat}
                 </Option>
               ))}
             </Select>,

@@ -69,7 +69,7 @@ function PlaceAddForm(props) {
       </Form.Item>
 
       <Form.Item label="Kino teatras">
-        {getFieldDecorator('theatre', {
+        {getFieldDecorator('movie_theatre_id', {
           rules: [{ required: true, message: 'Pasirinkite kino teatrą!' }],
         })(
           <Select placeholder="Pasirinkite kino teatrą">
