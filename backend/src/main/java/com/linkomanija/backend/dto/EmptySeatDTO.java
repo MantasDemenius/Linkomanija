@@ -2,6 +2,7 @@ package com.linkomanija.backend.dto;
 
 import lombok.Data;
 
+@Data
 public class EmptySeatDTO {
     private int id;
     private int row;
