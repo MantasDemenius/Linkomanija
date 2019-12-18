@@ -120,16 +120,15 @@ public class SessionService {
       SEATS.get(row-1).set(seat-1, new EmptySeatDTO(-1,-1,-1));
     }
 
-    List<EmptySeatDTO> emptySeats = new ArrayList<>();
     List<List<EmptySeatDTO>> SEATS_FINAL = new ArrayList<>();
     for (int i = 0; i < rows; i++) {
       SEATS_FINAL.add(new ArrayList<>());
       for (int j = 0; j < seats; j++) {
         if (SEATS.get(i).get(j).getRow() == -1)
           continue;
-        SEATS_FINAL.get(i).add(j, SEATS.get(i).get(j));
+        SEATS_FINAL.get(i).add(SEATS.get(i).get(j));
       }
     }
-    return SEATS;
+    return SEATS_FINAL;
   }
 }
