@@ -69,4 +69,8 @@ public class Session {
   public void setSession_date(Date session_date) {
     this.session_date = session_date;
   }
+
+  public MovieHall getMovieHall() {
+    return movieHall;
+  }
 }

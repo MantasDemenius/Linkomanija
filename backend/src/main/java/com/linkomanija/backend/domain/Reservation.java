@@ -65,9 +65,11 @@ public class Reservation {
     return ticket_state;
   }
 
-//  public boolean isValid() {
-//    Date session_date = session.getSession_date();
-//    long diffInMillies = new Date(System.currentTimeMillis()).getTime() - last_updated.getTime();
-//    long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-//  }
+  public int getSeat_collumn() {
+    return seat_collumn;
+  }
+
+  public int getSeat_row() {
+    return seat_row;
+  }
 }
