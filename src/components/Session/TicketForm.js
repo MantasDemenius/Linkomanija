@@ -26,32 +26,41 @@ function TicketForm(props) {
       .catch((e) => {
         console.log(e);
       });
+    axios
+      .get(`/api/session/seats/${key}`)
+      .then((res) => {
+        console.log(res);
+        setSeats(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
-        values.user_client_id = user;
-        values.session_id = parseInt(key, 10);
-        if (formType === 'reserve') {
-          values.ticket_state = false;
-        } else if (formType === 'buy') {
-          values.ticket_state = true;
-        }
+      values.user_client_id = user;
+      values.session_id = parseInt(key, 10);
+      if (formType === 'reserve') {
+        values.ticket_state = false;
+      } else if (formType === 'buy') {
+        values.ticket_state = true;
+      }
       if (!err) {
         axios
           .post('/api/reservation', values)
           .then(function(response) {
             console.log(response);
-            
-            message.success('Sėkmingai įsigijote vietas')
+
+            message.success('Sėkmingai įsigijote vietas');
             // history.push('/movies');
           })
           .catch(function(error) {
             console.log(error);
-            message.error('Sėkmingai įsigijote vietas')
+            message.error('Sėkmingai įsigijote vietas');
           });
-        
+
         console.log('Received values of form: ', values);
       }
     });
