@@ -5,20 +5,18 @@ import { Card, Button } from 'antd';
 import { Typography } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import ProfileEditForm from './ProfileEditForm';
 
 const { Text } = Typography;
 const ProfilePage = () => {
     let history = useHistory();
     const content = useSelector(state => state);
-    console.log(content.client);
+    const userId = content.client.userId;
+    const userType = content.client.userType;
 
     return (
         <>
-            <Card>
-                <Text strong>Čia bus profilio redagavimo forma</Text>
-                {/* <Button onClick={() => history.push('/')}>Pridėti</Button> */}
-            </Card>
-
+            {userType == "client" ? <ProfileEditForm userId={userId} /> : null}
             <Card>
                 <Text strong>Čia bus užsakymų istorija</Text>
             </Card>
