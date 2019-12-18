@@ -55,7 +55,7 @@ const ProfileEditForm = ({ form, userId }) => {
   return (
     <>
       <Card>
-        <Text strong>Profilio redagavimas</Text>
+        <h3>Profilio redagavimas</h3>
         <Form onSubmit={handleSubmit}>
           <Form.Item label="Vardas">
             {getFieldDecorator('name', {
