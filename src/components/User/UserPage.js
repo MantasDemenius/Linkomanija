@@ -1,23 +1,23 @@
 import React from "react";
 import '../../App.css'
 
-import {useHistory, Link, Route} from 'react-router-dom';
+import { useHistory, Link, Route } from 'react-router-dom';
 import { Card, Button, Typography } from 'antd';
+import UserList from './UserList';
 
 const { Text } = Typography;
-
-
 
 const UserPage = () => {
     let history = useHistory();
     return (
         <>
-        <Card>
-        <Button onClick={() =>history.push('/naudotojai/darbuotojas/pridėti')}>Prideti darbuotoją</Button>
-            <Text strong>Čia bus naudotojų sarašas</Text>
-            <br/>
-            <Button onClick={() => alert("ištrinta")}>Ištrinti</Button>
-        </Card>
+            <Card>
+                <Button onClick={() => history.push('/naudotojai/darbuotojas/pridėti')}>Prideti darbuotoją</Button>
+            </Card>
+            <Card>
+                <h3>Naudotojai</h3>
+                <UserList />
+            </Card>
         </>
     )
 }

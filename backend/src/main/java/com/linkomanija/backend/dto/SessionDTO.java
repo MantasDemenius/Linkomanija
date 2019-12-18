@@ -17,6 +17,20 @@ public class SessionDTO {
   private long movie_id;
   private long movie_hall_id;
 
+  public SessionDTO(Long id, Date session_date, String session_start, String session_end, int empty_spaces, double price, float length, int session_count, long language_id, long movie_id, long movie_hall_id) {
+    this.id = id;
+    this.session_date = session_date;
+    this.session_start = session_start;
+    this.session_end = session_end;
+    this.empty_spaces = empty_spaces;
+    this.price = price;
+    this.length = length;
+    this.session_count = session_count;
+    this.language_id = language_id;
+    this.movie_id = movie_id;
+    this.movie_hall_id = movie_hall_id;
+  }
+
   public Long getId() {
     return id;
   }

@@ -22,6 +22,19 @@ public class ReservationDTO {
   private Long user_client_id;
   private Long session_id;
 
+  public ReservationDTO(Long id, Date creation_date, int seat_row, int seat_collumn, double price, Timestamp movie_start, Timestamp movie_end, boolean ticket_state, Long user_client_id, Long session_id) {
+    this.id = id;
+    this.creation_date = creation_date;
+    this.seat_row = seat_row;
+    this.seat_collumn = seat_collumn;
+    this.price = price;
+    this.movie_start = movie_start;
+    this.movie_end = movie_end;
+    this.ticket_state = ticket_state;
+    this.user_client_id = user_client_id;
+    this.session_id = session_id;
+  }
+
   public Long getId() {
     return id;
   }

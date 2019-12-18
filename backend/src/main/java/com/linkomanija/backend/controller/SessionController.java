@@ -1,6 +1,7 @@
 package com.linkomanija.backend.controller;
 
 import com.linkomanija.backend.domain.Session;
+import com.linkomanija.backend.dto.EmptySeatDTO;
 import com.linkomanija.backend.dto.SessionDTO;
 import com.linkomanija.backend.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,10 @@ public class SessionController {
   @GetMapping(produces = "application/json")
   public List<Session> getAllSessions() {
     return sessionService.getAllSessions();
+  }
+
+  @GetMapping(value = "seats/{id}")
+  public List<EmptySeatDTO> getEmptySeats(@PathVariable(name = "id") Long session_id) {
+    return sessionService.getEmptySeats(session_id);
   }
 }

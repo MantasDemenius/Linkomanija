@@ -24,6 +24,10 @@ public class MovieDTO {
     this.genre_list = genre_list;
   }
 
+  public void setId(Long id) {
+    this.id = id;
+  }
+
   public Long getId() {
     return id;
   }

@@ -1,17 +1,16 @@
 package com.linkomanija.backend.service;
 
 import com.linkomanija.backend.domain.*;
+import com.linkomanija.backend.dto.EmptySeatDTO;
 import com.linkomanija.backend.dto.SessionDTO;
-import com.linkomanija.backend.repository.LanguageRepository;
-import com.linkomanija.backend.repository.MovieHallRepository;
-import com.linkomanija.backend.repository.MovieRepository;
-import com.linkomanija.backend.repository.SessionRepository;
+import com.linkomanija.backend.repository.*;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +21,9 @@ public class SessionService {
   private LanguageRepository languageRepository;
   private MovieHallRepository movieHallRepository;
   private MovieRepository movieRepository;
+
+  @Autowired
+  private ReservationRepository reservationRepository;
 
   @Autowired
   public SessionService(SessionRepository sessionRepository, LanguageRepository languageRepository, MovieHallRepository movieHallRepository, MovieRepository movieRepository) {
@@ -91,5 +93,36 @@ public class SessionService {
     Session session = sessionRepository.findById(id).orElse(new Session());
     sessionRepository.delete(session);
     return session;
+  }
+
+  public List<EmptySeatDTO> getEmptySeats(Long session_id) {
+    List<Reservation> reservations = reservationRepository.findBySessionId(session_id);
+    Session session = sessionRepository.findById(session_id).orElse(new Session());
+    MovieHall movieHall = session.getMovieHall();
+    int rows = 10, seats = 15;
+    if (movieHall.getSeatCount() == 450) {
+      rows = 15;
+      seats = 30;
+    }
+    ArrayList<EmptySeatDTO> seatsArray = new ArrayList<>();
+    for (int i = 0; i <= rows; i++) {
+      for (int j = 0; j <= seats; j++) {
+        seatsArray.add(new EmptySeatDTO(i+1, j+1));
+      }
+    }
+
+    for (Reservation reservation : reservations) {
+      int seat = reservation.getSeat_collumn();
+      int row = reservation.getSeat_row();
+      int index = seat * row - 1;
+      seatsArray.set(index, new EmptySeatDTO(-1,-1));
+    }
+
+    List<EmptySeatDTO> emptySeats = new ArrayList<>();
+    for (EmptySeatDTO emptySeatDTO : seatsArray) {
+      if (emptySeatDTO.getRow() != -1)
+        emptySeats.add(emptySeatDTO);
+    }
+    return emptySeats;
   }
 }
