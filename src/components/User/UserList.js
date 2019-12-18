@@ -40,7 +40,7 @@ const UserList = () => {
                 forceUpdate();
             })
             .catch(() => {
-                message.success('Darbuotojo ištrinti nepavyko');
+                message.error('Darbuotojo ištrinti nepavyko');
             });
     }
 
@@ -51,7 +51,7 @@ const UserList = () => {
                 forceUpdate();
             })
             .catch(() => {
-                message.success('Kliento ištrinti nepavyko');
+                message.error('Kliento ištrinti nepavyko');
             });
     }
 
