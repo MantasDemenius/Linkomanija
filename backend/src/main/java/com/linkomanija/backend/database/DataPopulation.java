@@ -105,6 +105,7 @@ public class DataPopulation {
     URI addClient = new URI(baseUrl + "user/client");
     userClientRepository.deleteAll();
     UserClient userClient = new UserClient(
+      (long)1,
       "client1",
       "client",
       "linkomanija.isp@gmail.com",
@@ -116,6 +117,7 @@ public class DataPopulation {
     userClientRepository.save(userClient);
 
     userClient = new UserClient(
+      (long)2,
       "client2",
       "client",
       "linkomanija.isp@gmail.com",
@@ -140,6 +142,7 @@ public class DataPopulation {
       "861235329",
       (long)2
     );
+    employee1.setId((long)1);
 
     UserEmployeeDTO employee2 = new UserEmployeeDTO(
       "Darbuotojas2",
@@ -151,8 +154,11 @@ public class DataPopulation {
       "861235328",
       (long)1
     );
+    employee2.setId((long)2);
     restTemplate.postForEntity(addEmployee, employee1, String.class);
     restTemplate.postForEntity(addEmployee, employee2, String.class);
+
+    //CREATE TICKETS
 
     //ADD TIMETABLES
     URI addTimetable = new URI(baseUrl + "timetable");

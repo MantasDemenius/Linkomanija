@@ -36,7 +36,8 @@ public class UserClient {
     this.phone_number = registerDTO.getPhone_number();
   }
 
-  public UserClient(String username, String password, String email, String name, String surname, Date born_date, String phone_number) {
+  public UserClient(Long id, String username, String password, String email, String name, String surname, Date born_date, String phone_number) {
+    this.id = id;
     this.username = username;
     this.password = password;
     this.email = email;

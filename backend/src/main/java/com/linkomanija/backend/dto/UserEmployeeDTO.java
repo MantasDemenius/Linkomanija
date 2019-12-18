@@ -59,4 +59,8 @@ public class UserEmployeeDTO {
   public String getPhone_number() {
     return phone_number;
   }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 }
