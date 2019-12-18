@@ -6,13 +6,17 @@ import { List } from 'antd';
 import axios from 'axios';
 import { format } from 'date-fns';
 import TimetableForm from './TimetableForm';
+import { useParams } from 'react-router-dom';
 
 const Timetable = ({ userId, isAdminMode }) => {
     const [timetable, setTimetable] = useState([]);
     const [state, updateState] = React.useState();
     const forceUpdate = useCallback(() => updateState({}), []);
-
+    let { id } = useParams();
     const data = [];
+
+    if (!userId)
+        userId = id;
 
     useEffect(() => {
         axios.get('/api/timetable/' + userId)

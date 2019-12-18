@@ -2,6 +2,7 @@ import React, { useEffect, useCallback, useState } from "react";
 import 'antd/dist/antd.css'
 import '../../App.css'
 import { List, message } from 'antd';
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
 
 const UserList = () => {
@@ -9,6 +10,7 @@ const UserList = () => {
     const [employees, setEmployees] = useState([]);
     const [state, updateState] = React.useState();
     const forceUpdate = useCallback(() => updateState({}), []);
+    let history = useHistory();
 
     useEffect(() => {
         axios.get('/api/user/employee')
@@ -53,6 +55,10 @@ const UserList = () => {
             });
     }
 
+    const handleTimetableClick = id => () => {
+        history.push('/grafikas/' + id);
+    }
+
     return (
         <List
             className="demo-loadmore-list"
@@ -61,10 +67,10 @@ const UserList = () => {
             renderItem={item => (
                 <List.Item
                     actions={item.movieTheatre ?
-                        [<a key="1">grafikas</a>, <a key="2" onClick={handleEmployeeDelete(item.id)} >ištrinti</a>] :
+                        [<a key="1" onClick={handleTimetableClick(item.id)}>grafikas</a>, <a key="2" onClick={handleEmployeeDelete(item.id)} >ištrinti</a>] :
                         [<a key="2" onClick={handleClientDelete(item.id)}>ištrinti</a>]}
                 >
-                    {item.username ? item.username : item}
+                    {item.username + " " + item.name + " " + item.surname + " " + item.email}
                 </List.Item>
             )}
         />
