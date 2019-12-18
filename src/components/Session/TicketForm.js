@@ -29,11 +29,11 @@ function TicketForm(props) {
       .catch((e) => {
         console.log(e);
       });
-      console.log("seat");
+    console.log("seat");
     axios
       .get(`/api/session/seats/${key}`)
       .then((res) => {
-        console.log("seat",res.data);
+        console.log("seat", res.data);
         setSeats(res.data);
         let array = Array.from(Array(res.data[0].length), (x, index) => index + 1);
         setActiveRows(array);
@@ -62,13 +62,13 @@ function TicketForm(props) {
       if (!err) {
         axios
           .post('/api/reservation', values)
-          .then(function(response) {
+          .then(function (response) {
             console.log(response);
 
             message.success('Sėkmingai įsigijote vietas');
             // history.push('/movies');
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.log(error);
             message.error('Nepavyko įsigyti vietų');
           });
@@ -79,8 +79,10 @@ function TicketForm(props) {
   };
 
   const handleChange = (value) => {
-    setActiveSeats(seats[value]);
-    
+    console.log("row", value);
+    console.log("seat", seats[value - 1]);
+    setActiveSeats(seats[value - 1]);
+
   };
 
   const formItemLayout = {
@@ -115,8 +117,8 @@ function TicketForm(props) {
         {session.movieHall.column_count < 11 ? (
           <img src={smallerPicture} width="80%" height="80%" alt="sale su 10 eiliu ir 15 vietu" />
         ) : (
-          <img src={biggerPicture} width="80%" height="80%" alt="sale su 15 eiliu ir 30 vietu" />
-        )}
+            <img src={biggerPicture} width="80%" height="80%" alt="sale su 15 eiliu ir 30 vietu" />
+          )}
 
         <Form.Item label="Eilė">
           {getFieldDecorator('seat_row', {
