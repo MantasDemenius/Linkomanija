@@ -51,17 +51,17 @@ public class UserService {
 
     //inheritance kur tu...
     if (userAdmin != null) {
-      userDTO = new UserDTO(userAdmin, null, null, "admin");
+      userDTO = new UserDTO(userAdmin, null, null, "admin", userAdmin.getId());
       passwordIsCorrect = userAdmin.isPasswordCorrect(password);
     }
 
     if (userClient != null) {
-      userDTO = new UserDTO(null, userClient, null, "client");
+      userDTO = new UserDTO(null, userClient, null, "client", userClient.getId());
       passwordIsCorrect = userClient.isPasswordCorrect(password);
     }
 
     if (userEmployee != null) {
-      userDTO = new UserDTO(null, null, userEmployee, "employee");
+      userDTO = new UserDTO(null, null, userEmployee, "employee", userEmployee.getId());
       passwordIsCorrect = userEmployee.isPasswordCorrect(password);
     }
 

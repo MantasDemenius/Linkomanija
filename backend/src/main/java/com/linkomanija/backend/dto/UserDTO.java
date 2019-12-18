@@ -11,11 +11,13 @@ public class UserDTO {
   private UserClient userClient;
   private UserEmployee userEmployee;
   private String role;
+  private Long id;
 
-  public UserDTO(UserAdmin userAdmin, UserClient userClient, UserEmployee userEmployee, String role) {
+  public UserDTO(UserAdmin userAdmin, UserClient userClient, UserEmployee userEmployee, String role, Long id) {
     this.userAdmin = userAdmin;
     this.userClient = userClient;
     this.userEmployee = userEmployee;
     this.role = role;
+    this.id = id;
   }
 }
