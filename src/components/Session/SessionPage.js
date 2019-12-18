@@ -15,8 +15,6 @@ const { Title } = Typography;
 const SessionPage = () => {
   const history = useHistory();
   const [sessions, setSessions] = useState([]);
-  const [activeSessions, setActiveSession] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(0);
   const user = useSelector((store) => store.client.userType);
   useEffect(() => {
     axios
@@ -32,10 +30,8 @@ const SessionPage = () => {
 
   const loadDataSource = () => {
     console.log('aa');
-    // sessions.map(session => 
-      
-    // );
-    activeSessions.map((session) => {
+
+    sessions.map((session) => {
       console.log('a', session);
       dataSource.push({
         key: session.id,
@@ -78,18 +74,17 @@ const SessionPage = () => {
           <Button type="primary" onClick={() => history.push(`/seansas/${item.key}`)} size="large">
             Bilietai
           </Button>
-          {/* <Button
+          {user === 'admin' && <Button
             type="secondary"
-            onClick={() => history.push(`/timetable/${item.title}/${item.token}/edit`)}
+            onClick={() => history.push(`/seansas/redaguoti/${item.key}`)}
             size="small"
           >
             Redaguoti
-          </Button> */}
+          </Button>}
         </>
       ),
     },
   ];
-
   const options = [];
   const today = startOfToday();
   for (let i = 0; i < 7; i++) {

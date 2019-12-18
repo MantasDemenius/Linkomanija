@@ -55,7 +55,7 @@ const App = () => {
             <Route path="/seansas/prideti" component={SessionAdd} />
             <Route path="/timetable/:movie/:token/buy" component={TicketBuyForm} />
             <Route path="/seansas/:key/rezervuoti" component={TicketReserveForm} />
-            <Route path="/timetable/:movie/:token/edit" component={EditForm} />
+            <Route path="/seansas/redaguoti/:id" component={EditForm} />
             <Route path="/seansas/:key" component={ReservationForm} />
             {/* <Route path="/timetable" component={TimeTablePage} /> */}
           </Switch>
