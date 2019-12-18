@@ -54,6 +54,10 @@ function TicketForm(props) {
         values.ticket_state = true;
       }
       values.creation_date = '1';
+      values.movie_start = session.session_start;
+      values.movie_end = session.session_end;
+      values.price = session.price;
+
       if (!err) {
         axios
           .post('/api/reservation', values)
