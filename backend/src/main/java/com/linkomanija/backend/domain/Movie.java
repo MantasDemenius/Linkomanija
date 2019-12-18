@@ -53,8 +53,6 @@ public class Movie {
   private List<Genre> genreList;
 
   public Movie(MovieDTO movieDTO, Language language) {
-    if (movieDTO.getId() != 0)
-      this.id = movieDTO.getId();
     this.title = movieDTO.getTitle();
     this.description = movieDTO.getDescription();
     this.imdb_code = movieDTO.getImdb_code();
