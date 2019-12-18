@@ -4,6 +4,7 @@ import com.linkomanija.backend.domain.Timetable;
 import com.linkomanija.backend.dto.TimetableDTO;
 import com.linkomanija.backend.service.TimetableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,5 +35,10 @@ public class TimetableController {
   @GetMapping(value = "all", produces = "application/json")
   public List<Timetable> getAllTimetables() {
     return timetableService.getAllTimetables();
+  }
+
+  @DeleteMapping(value = "{id}")
+  public ResponseEntity<String> deleteTimetable(@PathVariable(name = "id") Long id) {
+    return timetableService.deleteTimetableById(id);
   }
 }
