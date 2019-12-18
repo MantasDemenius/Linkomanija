@@ -54,24 +54,19 @@ public class Session {
 
   public Session() {}
 
-  public void updateValues(SessionDTO sessionDTO, Language language, Movie movie, MovieHall movieHall) {
-    this.id = sessionDTO.getId();
+  public void updateValues(SessionDTO sessionDTO, Movie movie, MovieHall movieHall) {
     this.session_date = sessionDTO.getSession_date();
     this.session_start = sessionDTO.getSession_start();
     this.session_end = sessionDTO.getSession_end();
-    this.empty_spaces = sessionDTO.getEmpty_spaces();
+    this.empty_spaces = movieHall.getSeatCount();
     this.price = sessionDTO.getPrice();
-    this.length = sessionDTO.getLength();
-    this.language = language;
+    this.length = movie.getMovie_length();
+    this.language = movie.getLanguage();
     this.movie = movie;
     this.movieHall = movieHall;
   }
 
   public void setSession_date(Date session_date) {
     this.session_date = session_date;
-  }
-
-  public Date getSession_date() {
-    return session_date;
   }
 }

@@ -1,30 +1,21 @@
 import React from "react";
 import 'antd/dist/antd.css'
 import '../../App.css'
-import { Card, Button } from 'antd';
-import { Typography } from 'antd';
-import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import ProfileEditForm from './ProfileEditForm';
+import Orders from './Orders';
+import Timetable from './Timetable';
 
-const { Text } = Typography;
 const ProfilePage = () => {
-    let history = useHistory();
     const content = useSelector(state => state);
-    console.log(content.client);
+    const userId = content.client.userId;
+    const userType = content.client.userType;
 
     return (
         <>
-            <Card>
-                <Text strong>Čia bus profilio redagavimo forma</Text>
-                {/* <Button onClick={() => history.push('/')}>Pridėti</Button> */}
-            </Card>
-
-            <Card>
-                <Text strong>Čia bus užsakymų istorija</Text>
-            </Card>
-            <Card>
-                <Text strong>Čia bus darbo grafiko langas </Text>
-            </Card>
+            {userType == "client" ? <ProfileEditForm userId={userId} /> : null}
+            {userType == "client" ? <Orders userId={userId} /> : null}
+            {userType == "employee" ? <Timetable userId={userId} /> : null}
         </>
     )
 }

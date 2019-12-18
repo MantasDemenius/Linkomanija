@@ -38,16 +38,8 @@ public class SessionService {
 
     String start = sessionDTO.getSession_start();
     int length = movieById.getMovie_length();
-    int length_hours = length / 60;
-    int length_minutes = length % 60;
-    int start_hours = Integer.parseInt(start.split(":")[0]);
-    int start_minutes = Integer.parseInt(start.split(":")[1]);
 
-    int final_start_hours = start_hours+length_hours;
-    int final_start_minutes = start_minutes+length_minutes;
-    final_start_hours += final_start_minutes / 60;
-    final_start_minutes %= 60;
-    String end = String.format("%d:%d", final_start_hours, final_start_minutes);
+    String end = findSessionEnd(start, length);
 
     sessionDTO.setSession_end(end);
     sessionDTO.setEmpty_spaces(empty_seats);
@@ -64,6 +56,19 @@ public class SessionService {
     return ResponseEntity.status(HttpStatus.OK).body(true);
   }
 
+  private String findSessionEnd(String start, int length) {
+    int length_hours = length / 60;
+    int length_minutes = length % 60;
+    int start_hours = Integer.parseInt(start.split(":")[0]);
+    int start_minutes = Integer.parseInt(start.split(":")[1]);
+
+    int final_start_hours = start_hours+length_hours;
+    int final_start_minutes = start_minutes+length_minutes;
+    final_start_hours += final_start_minutes / 60;
+    final_start_minutes %= 60;
+    return String.format("%d:%d", final_start_hours, final_start_minutes);
+  }
+
   public List<Session> getAllSessions() {
     return sessionRepository.findAll();
   }
@@ -74,10 +79,11 @@ public class SessionService {
 
   public Session editSession(SessionDTO sessionDTO) {
     Session session = sessionRepository.findById(sessionDTO.getId()).orElse(new Session());
-    Language languageById = languageRepository.findById(sessionDTO.getLanguage_id()).orElse(new Language());
     Movie movieById = movieRepository.findById(sessionDTO.getMovie_id()).orElse(new Movie());
+    String sessionEnd = findSessionEnd(sessionDTO.getSession_start(), movieById.getMovie_length());
+    sessionDTO.setSession_end(sessionEnd);
     MovieHall movieHallById = movieHallRepository.findById(sessionDTO.getMovie_hall_id()).orElse(new MovieHall());
-    session.updateValues(sessionDTO, languageById, movieById, movieHallById);
+    session.updateValues(sessionDTO, movieById, movieHallById);
     return sessionRepository.save(session);
   }
 
