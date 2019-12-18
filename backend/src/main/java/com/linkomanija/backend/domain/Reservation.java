@@ -22,8 +22,8 @@ public class Reservation {
   private int seat_row;
   private int seat_collumn;
   private double price;
-  private Timestamp movie_start;
-  private Timestamp movie_end;
+  private String movie_start;
+  private String movie_end;
   private boolean ticket_state;
 
   @ManyToOne(fetch = FetchType.EAGER)
