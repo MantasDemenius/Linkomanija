@@ -72,7 +72,7 @@ const SessionPage = () => {
       render: (item) => (
         <>
         {user !== '' &&<>
-        <Button type="primary"  onClick={() =>  history.push(`/seansas/${item.key}/rezervuoti`)}>Rezervuoti</Button>
+        <Button type="primary"  onClick={() =>  history.push(`/seansas/${item.key}/rezervuoti`)} style={{margin: "5px"}}>Rezervuoti</Button>
           <Button type="primary"  onClick={() =>  history.push(`/seansas/${item.key}/pirkti`)} >Pirkti</Button>
           </>}
           {user === 'admin' && <Button
