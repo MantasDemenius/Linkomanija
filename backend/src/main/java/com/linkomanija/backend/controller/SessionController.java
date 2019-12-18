@@ -44,7 +44,7 @@ public class SessionController {
   }
 
   @GetMapping(value = "seats/{id}")
-  public List<EmptySeatDTO> getEmptySeats(@PathVariable(name = "id") Long session_id) {
+  public List<List<EmptySeatDTO>> getEmptySeats(@PathVariable(name = "id") Long session_id) {
     return sessionService.getEmptySeats(session_id);
   }
 }

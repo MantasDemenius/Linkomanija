@@ -1,8 +1,7 @@
 import React, { useEffect, useCallback, useState } from "react";
 import 'antd/dist/antd.css'
 import '../../App.css'
-import { useSelector } from 'react-redux';
-import { List, Avatar, Button, Skeleton, message } from 'antd';
+import { List, message } from 'antd';
 import axios from 'axios';
 
 const UserList = () => {
@@ -62,7 +61,7 @@ const UserList = () => {
             renderItem={item => (
                 <List.Item
                     actions={item.movieTheatre ?
-                        [<a key="1">keisti grafiką</a>, <a key="2" onClick={handleEmployeeDelete(item.id)} >ištrinti</a>] :
+                        [<a key="1">grafikas</a>, <a key="2" onClick={handleEmployeeDelete(item.id)} >ištrinti</a>] :
                         [<a key="2" onClick={handleClientDelete(item.id)}>ištrinti</a>]}
                 >
                     {item.username ? item.username : item}
