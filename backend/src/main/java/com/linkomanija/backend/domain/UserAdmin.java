@@ -29,6 +29,19 @@ public class UserAdmin {
     return id;
   }
 
+  public UserAdmin(Long id, String username, String password, String email, String name, String surname, Date born_date, String phone_number) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.email = email;
+    this.name = name;
+    this.surname = surname;
+    this.born_date = born_date;
+    this.phone_number = phone_number;
+  }
+
+  public UserAdmin() {}
+
   public boolean isPasswordCorrect(String password) {
     return this.password.equals(password);
   }

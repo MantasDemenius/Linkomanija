@@ -40,6 +40,9 @@ public class DataPopulation {
   private MovieHallRepository movieHallRepository;
 
   @Autowired
+  private UserAdminRepository userAdminRepository;
+
+  @Autowired
   public DataPopulation(UserClientRepository userClientRepository, MovieRatingRepository movieRatingRepository, SessionRepository sessionRepository, TimetableRepository timetableRepository, MovieRepository movieRepository, UserEmployeeRepository userEmployeeRepository) {
     this.movieRepository = movieRepository;
     this.userEmployeeRepository = userEmployeeRepository;
@@ -147,6 +150,11 @@ public class DataPopulation {
 //    Movie movie = movieRepository.findById(sessionDTO.getMovie_id()).orElse(new Movie());
 //    Session session = new Session(sessionDTO, language, movie, movieHall);
 //    sessionRepository.save(session);
+
+    //ADD ADMIN
+    userAdminRepository.deleteAll();
+    UserAdmin userAdmin = new UserAdmin((long)1, "admin", "admin", "admin@admin.com", "admin", "admin", new Date(100), "123");
+    userAdminRepository.save(userAdmin);
 
     //ADD EMPLOYEES
     URI addEmployee = new URI(baseUrl + "user/employee");
