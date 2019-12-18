@@ -1,4 +1,3 @@
-
 CREATE TABLE prod.user_admin
 (
 	id BIGSERIAL NOT NULL PRIMARY KEY,
