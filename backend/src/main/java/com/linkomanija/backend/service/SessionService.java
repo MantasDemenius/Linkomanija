@@ -95,7 +95,7 @@ public class SessionService {
     return session;
   }
 
-  public List<EmptySeatDTO> getEmptySeats(Long session_id) {
+  public List<List<EmptySeatDTO>> getEmptySeats(Long session_id) {
     List<Reservation> reservations = reservationRepository.findBySessionId(session_id);
     Session session = sessionRepository.findById(session_id).orElse(new Session());
     MovieHall movieHall = session.getMovieHall();
@@ -104,26 +104,32 @@ public class SessionService {
       rows = 15;
       seats = 30;
     }
+    List<List<EmptySeatDTO>> SEATS = new ArrayList<>();
     ArrayList<EmptySeatDTO> seatsArray = new ArrayList<>();
     int uniqueid = 0;
-    for (int i = 0; i <= rows; i++) {
-      for (int j = 0; j <= seats; j++) {
-        seatsArray.add(new EmptySeatDTO(i+1, j+1, uniqueid+1));
+    for (int i = 0; i < rows; i++) {
+      SEATS.add(new ArrayList<>());
+      for (int j = 0; j < seats; j++) {
+        SEATS.get(i).add(new EmptySeatDTO(i+1,j+1,uniqueid));
+        uniqueid++;
       }
     }
 
-    for (Reservation reservation : reservations) {
-      int seat = reservation.getSeat_collumn();
-      int row = reservation.getSeat_row();
-      int index = seat * row - 1;
-      seatsArray.set(index, new EmptySeatDTO(-1,-1, -1));
-    }
-
-    List<EmptySeatDTO> emptySeats = new ArrayList<>();
-    for (EmptySeatDTO emptySeatDTO : seatsArray) {
-      if (emptySeatDTO.getRow() != -1)
-        emptySeats.add(emptySeatDTO);
-    }
-    return emptySeats;
+//    for (Reservation reservation : reservations) {
+//      int seat = reservation.getSeat_collumn();
+//      int row = reservation.getSeat_row();
+//      SEATS.get(row-1).set(seat-1, new EmptySeatDTO(-1,-1,-1));
+//    }
+//
+//    List<EmptySeatDTO> emptySeats = new ArrayList<>();
+//    List<List<EmptySeatDTO>> SEATS_FINAL = new ArrayList<>();
+//    for (int i = 0; i < rows; i++) {
+//      for (int j = 0; j < seats; j++) {
+//        if (SEATS.get(i).get(j).getRow() == -1)
+//          continue;
+//        SEATS_FINAL.get(i).set(j, SEATS.get(i).get(j));
+//      }
+//    }
+    return SEATS;
   }
 }
