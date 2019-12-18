@@ -6,6 +6,7 @@ import com.linkomanija.backend.dto.TimetableDTO;
 import com.linkomanija.backend.repository.TimetableRepository;
 import com.linkomanija.backend.repository.UserEmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,5 +41,10 @@ public class TimetableService {
     Timetable timetable = timetableRepository.findById(timetableDTO.getId()).orElse(new Timetable());
     timetable.updateTimetable(timetableDTO);
     return timetableRepository.save(timetable);
+  }
+
+  public ResponseEntity<String> deleteTimetableById(Long id) {
+    timetableRepository.delete(timetableRepository.findById(id).orElse(new Timetable()));
+    return ResponseEntity.ok("Deletion is good");
   }
 }
