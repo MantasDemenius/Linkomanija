@@ -205,7 +205,7 @@ INSERT INTO prod.movie_hall
 VALUES('Scape 1 salė', 15, 30, 4);
 INSERT INTO prod.movie_hall
 ("name", column_count, row_count, movie_theatre_id)
-VALUES('1 salė', 6, 15, 30);
+VALUES('1 salė', 10, 15, 4);
 
 CREATE TABLE prod.timetable
 (
