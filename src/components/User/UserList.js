@@ -64,6 +64,8 @@ const UserList = () => {
             className="demo-loadmore-list"
             itemLayout="horizontal"
             dataSource={data}
+            bordered
+            size="large"
             renderItem={item => (
                 <List.Item
                     actions={item.movieTheatre ?
