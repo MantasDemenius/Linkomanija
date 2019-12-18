@@ -26,9 +26,9 @@ public class TimetableController {
     return timetableService.editTimetable(timetableDTO);
   }
 
-  @GetMapping(name = "{user_employee_id}", produces = "application/json")
-  public List<Timetable> getAllTimetablesByEmployeeId(@PathVariable(name = "user_employee_id") Long user_employee_id) {
-    return timetableService.getAllTimetablesByEmployeeId(user_employee_id);
+  @GetMapping(name = "{id}", produces = "application/json")
+  public List<Timetable> getAllTimetablesByEmployeeId(@PathVariable(name = "id") Long id) {
+    return timetableService.getAllTimetablesByEmployeeId(id);
   }
 
   @GetMapping(value = "all", produces = "application/json")

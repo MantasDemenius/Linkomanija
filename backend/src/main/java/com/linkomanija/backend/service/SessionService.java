@@ -105,9 +105,10 @@ public class SessionService {
       seats = 30;
     }
     ArrayList<EmptySeatDTO> seatsArray = new ArrayList<>();
+    int uniqueid = 0;
     for (int i = 0; i <= rows; i++) {
       for (int j = 0; j <= seats; j++) {
-        seatsArray.add(new EmptySeatDTO(i+1, j+1));
+        seatsArray.add(new EmptySeatDTO(i+1, j+1, uniqueid+1));
       }
     }
 
@@ -115,7 +116,7 @@ public class SessionService {
       int seat = reservation.getSeat_collumn();
       int row = reservation.getSeat_row();
       int index = seat * row - 1;
-      seatsArray.set(index, new EmptySeatDTO(-1,-1));
+      seatsArray.set(index, new EmptySeatDTO(-1,-1, -1));
     }
 
     List<EmptySeatDTO> emptySeats = new ArrayList<>();
