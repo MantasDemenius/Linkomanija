@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,6 +32,8 @@ public class ReservationService {
   public Reservation addReservation(ReservationDTO reservationDTO) {
     UserClient userClientById = userClientRepository.findById(reservationDTO.getUser_client_id()).orElse(new UserClient());
     Session sessionById = sessionRepository.findById(reservationDTO.getSession_id()).orElse(new Session());
+    Date creation_date = new Date(System.currentTimeMillis());
+    reservationDTO.setCreation_date(creation_date);
     Reservation reservation = new Reservation(reservationDTO, userClientById, sessionById);
     return reservationRepository.save(reservation);
   }
