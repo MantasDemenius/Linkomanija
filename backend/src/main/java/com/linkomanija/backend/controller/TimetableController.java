@@ -26,7 +26,7 @@ public class TimetableController {
     return timetableService.editTimetable(timetableDTO);
   }
 
-  @GetMapping(name = "{id}", produces = "application/json")
+  @GetMapping(value = "{id}", produces = "application/json")
   public List<Timetable> getAllTimetablesByEmployeeId(@PathVariable(name = "id") Long id) {
     return timetableService.getAllTimetablesByEmployeeId(id);
   }
