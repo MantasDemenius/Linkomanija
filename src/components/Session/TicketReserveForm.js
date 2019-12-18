@@ -1,15 +1,20 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import '../../App.css';
-import { Card } from 'antd';
+import { Card, Form } from 'antd';
 import { Typography } from 'antd';
+import TicketForm from './TicketForm';
+
+const WrappedTicketForm = Form.create({ name: 'ticketForm' })(TicketForm);
 
 const { Text } = Typography;
 const TicketReserveForm = () => {
   return (
     <>
       <Card>
-        <Text strong>Čia bus bilieto rezervavimo forma</Text>
+      <Text strong>Čia bus bilieto rezervavimo forma</Text>
+        <WrappedTicketForm formType='reserve'/>
+       
       </Card>
     </>
   );

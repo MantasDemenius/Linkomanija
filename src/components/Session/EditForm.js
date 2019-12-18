@@ -4,9 +4,6 @@ import '../../App.css';
 import moment from 'moment';
 import {
   Form,
-  Input,
-  Tooltip,
-  Icon,
   Select,
   Button,
   DatePicker,
@@ -50,7 +47,7 @@ const EditForm = (props) => {
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [id, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
