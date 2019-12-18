@@ -130,7 +130,7 @@ function TicketForm(props) {
           )}
         </Form.Item>
         <Form.Item label="Vieta">
-          {getFieldDecorator('seat_column', {
+          {getFieldDecorator('seat_collumn', {
             rules: [{ required: true, message: 'Pasirinkitę vietą' }],
           })(
             <Select>

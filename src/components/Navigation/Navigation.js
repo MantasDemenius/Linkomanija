@@ -39,10 +39,11 @@ const Navigation = ({ location }) => {
                     <Link to="/patalpa" />
                     <span>Kino teatrai</span>
                 </Menu.Item>
+                {user === 'admin' &&
                 <Menu.Item key="/naudotojai">
                     <Link to="/naudotojai" />
                     <span>Naudotojai</span>
-                </Menu.Item>
+                </Menu.Item>}
                 {user === '' &&
                 <Menu.Item key="/prisijungti">
                     <Link to="/prisijungti" />
@@ -53,10 +54,11 @@ const Navigation = ({ location }) => {
                     <Link to="/registracija" />
                     <span>Registruotis</span>
                 </Menu.Item>}
+                {user !== 'admin' && user !== '' &&
                 <Menu.Item key="/profile">
                     <Link to="/profile" />
                     <span>Mano Profilis</span>
-                </Menu.Item>
+                </Menu.Item>}
                 {user !== '' &&
                 <Menu.Item key="logout" onClick={handleLogout}>
                     <span>Atsijungti</span>

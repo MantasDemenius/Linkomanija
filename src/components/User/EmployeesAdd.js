@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css';
-import { Form, Card } from 'antd';
+import { Form, Card, message } from 'antd';
 import RegistrationForm from '../Registration/RegistrationForm';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,11 +11,11 @@ const EmployeesAdd = () => {
 
   function getSubmitMessage() {
     if (createStatus === false) {
-      return <h1>failed</h1>
+      message.error("Nepavyko sukurti darbuotojo");
       // return <FormError Tag="h2" message={'Cannot create session'} />;
     }
     if (createStatus === true) {
-      return <h1>success</h1>
+      message.success("Darbuotojas sukurtas");
       // return <FormError Tag="h2" message={'Session created'} color="green" />;
     }
   }

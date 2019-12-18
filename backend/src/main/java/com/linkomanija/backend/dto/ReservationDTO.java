@@ -1,8 +1,5 @@
 package com.linkomanija.backend.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class ReservationDTO {
@@ -12,17 +9,14 @@ public class ReservationDTO {
   private int seat_collumn;
   private double price;
 
-  @JsonFormat(pattern="HH:mm")
-  private Timestamp movie_start;
-
-  @JsonFormat(pattern="HH:mm")
-  private Timestamp movie_end;
+  private String movie_start;
+  private String movie_end;
 
   private boolean ticket_state;
   private Long user_client_id;
   private Long session_id;
 
-  public ReservationDTO(Long id, Date creation_date, int seat_row, int seat_collumn, double price, Timestamp movie_start, Timestamp movie_end, boolean ticket_state, Long user_client_id, Long session_id) {
+  public ReservationDTO(Long id, Date creation_date, int seat_row, int seat_collumn, double price, String movie_start, String movie_end, boolean ticket_state, Long user_client_id, Long session_id) {
     this.id = id;
     this.creation_date = creation_date;
     this.seat_row = seat_row;
@@ -55,11 +49,11 @@ public class ReservationDTO {
     return price;
   }
 
-  public Timestamp getMovie_start() {
+  public String getMovie_start() {
     return movie_start;
   }
 
-  public Timestamp getMovie_end() {
+  public String getMovie_end() {
     return movie_end;
   }
 

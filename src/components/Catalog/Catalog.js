@@ -8,11 +8,13 @@ import { Row, Col, Card, Button } from 'antd';
 import StackGrid, { transitions } from "react-stack-grid";
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 const { fadeUp } = transitions;
 
 const Catalog = () => {
     let history = useHistory();
+    const user = useSelector((store) => store.client.userType);
     const [movies, setMovies] = useState([]);
     const [selectedLanguages, setSelectedLanguages] = useState([]);
     const [selectedCensorship, setSelectedCensorship] = useState([]);
@@ -101,9 +103,9 @@ const Catalog = () => {
                     <StackGrid columnWidth={'50%'}
                         monitorImagesLoaded={true}>
                         {movieCards}
-                        <Card>
+                       {user === 'admin' && <Card>
                             <Button onClick={() => history.push('/movies/add')}>Pridėti</Button>
-                        </Card>
+                        </Card>}
                     </StackGrid>
                 </Col>
             </Row>

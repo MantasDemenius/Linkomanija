@@ -123,10 +123,11 @@ public class SessionService {
     List<EmptySeatDTO> emptySeats = new ArrayList<>();
     List<List<EmptySeatDTO>> SEATS_FINAL = new ArrayList<>();
     for (int i = 0; i < rows; i++) {
+      SEATS_FINAL.add(new ArrayList<>());
       for (int j = 0; j < seats; j++) {
         if (SEATS.get(i).get(j).getRow() == -1)
           continue;
-        SEATS_FINAL.get(i).set(j, SEATS.get(i).get(j));
+        SEATS_FINAL.get(i).add(j, SEATS.get(i).get(j));
       }
     }
     return SEATS;
