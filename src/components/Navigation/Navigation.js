@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu, Layout } from 'antd';
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, useHistory } from "react-router-dom";
 import PropTypes from 'prop-types';
 import 'antd/dist/antd.css'
 import '../../App.css'
@@ -11,8 +11,10 @@ const { Header } = Layout;
 const Navigation = ({ location }) => {
     const user = useSelector((store) => store.client.userType);
     const dispatch = useDispatch();
+    const history = useHistory();
     const handleLogout = () => {
         dispatch(removeCreateStatus());
+        history.push('/');
     }
     return (
         <Header style={{ background: "#fff" }}>

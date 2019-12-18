@@ -85,23 +85,21 @@ function PlacesEdit(props) {
       </Form.Item>
 
       <Form.Item label="Eilių kiekis">
-        {getFieldDecorator('columnCount', {
+        {getFieldDecorator('column_count', {
           initialValue: selectedMovieHall.column_count,
           rules: [{ required: true, message: 'Prašome įvesti eilių kiekį!' }],
         })(<InputNumber min={10} max={15} step="5" />)}
-        <span className="ant-form-text"> Eilių kiekis</span>
       </Form.Item>
 
       <Form.Item label="Vietų kiekis">
-        {getFieldDecorator('rowCount', {
+        {getFieldDecorator('row_count', {
           initialValue: selectedMovieHall.row_count,
           rules: [{ required: true, message: 'Prašome įvesti vietų kiekį!' }],
         })(<InputNumber min={15} max={30} step="15" />)}
-        <span className="ant-form-text"> Vietų kiekis</span>
       </Form.Item>
 
       <Form.Item label="Kino teatras">
-        {getFieldDecorator('theatre', {
+        {getFieldDecorator('movie_theatre_id', {
             initialValue: selectedMovieHall.movieTheatre.id,
           rules: [{ required: true, message: 'Pasirinkite kino teatrą!' }],
         })(

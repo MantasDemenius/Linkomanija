@@ -19,22 +19,23 @@ function TicketForm(props) {
   const { getFieldDecorator } = form;
   const user = useSelector((store) => store.client.userId);
   useEffect(() => {
+    console.log("session");
     axios
       .get(`/api/session/${key}`)
       .then((res) => {
-        console.log("ses",res.data);
+        // console.log('ses', res.data);
         setSession(res.data);
-        
       })
       .catch((e) => {
         console.log(e);
       });
+      console.log("seat");
     axios
       .get(`/api/session/seats/${key}`)
       .then((res) => {
-        console.log(res);
+        console.log("seat",res.data);
         setSeats(res.data);
-        let array = Array.from(Array(res.data[0].length), (x, index) => index +1);
+        let array = Array.from(Array(res.data[0].length), (x, index) => index + 1);
         setActiveRows(array);
         console.log(array);
       })
@@ -79,7 +80,8 @@ function TicketForm(props) {
 
   const handleChange = (value) => {
     setActiveSeats(seats[value]);
-  }
+    
+  };
 
   const formItemLayout = {
     labelCol: {

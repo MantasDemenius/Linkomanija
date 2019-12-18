@@ -22,7 +22,7 @@ export default function clientReducer(state = initialState, action) {
       return { ...state };
     }
     case USER_LOGIN_SUCCESS: {
-      return { ...state, userType: action.newClient.role, createStatus: true, userId: action.newClient.userClient.id };
+      return { ...state, userType: action.newClient.role, createStatus: true, userId: action.newClient.id };
     }
     case USER_LOGIN_FAILED: {
       return { ...state};
