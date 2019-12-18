@@ -5,14 +5,14 @@ import { Card } from 'antd';
 import { Typography } from 'antd';
 
 const { Text } = Typography;
-const Darbografikas = () => {
-  return (
-    <>
-      <Card>
-        <Text strong>Čia bus Darbo grafikas</Text>
-      </Card>
-    </>
-  );
+const Orders = () => {
+    return (
+        <>
+            <Card>
+                <Text strong>Užsakymai</Text>
+            </Card>
+        </>
+    );
 };
 
-export default Darbografikas;
+export default Orders;
