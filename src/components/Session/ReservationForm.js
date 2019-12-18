@@ -17,7 +17,7 @@ const ReservationForm = () => {
         <Button type="primary"  onClick={() =>  history.push(`/seansas/${key}/rezervuoti`)}>Rezervuoti</Button>
         </Card>
         <Card style={{textAlign: 'center'}}>
-      {/* <Button type="primary"  onClick={() =>  history.push(`/timetable/${movie}/${token}/buy`)} >Pirkti</Button> */}
+      <Button type="primary"  onClick={() =>  history.push(`/seansas/${key}/pirkti`)} >Pirkti</Button>
       </Card>
     </>
   );

@@ -53,7 +53,7 @@ const App = () => {
             <Route path="/employees" component={employees} />
             <Route path="/naudotojai" component={UserPage} />
             <Route path="/seansas/prideti" component={SessionAdd} />
-            <Route path="/timetable/:movie/:token/buy" component={TicketBuyForm} />
+            <Route path="/seansas/:key/pirkti" component={TicketBuyForm} />
             <Route path="/seansas/:key/rezervuoti" component={TicketReserveForm} />
             <Route path="/seansas/redaguoti/:id" component={EditForm} />
             <Route path="/seansas/:key" component={ReservationForm} />

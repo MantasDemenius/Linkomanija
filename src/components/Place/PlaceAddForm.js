@@ -54,17 +54,17 @@ function PlaceAddForm(props) {
 
       <Form.Item label="Eilių kiekis">
         {getFieldDecorator('columnCount', {
-          initialValue: 8,
+          initialValue: 10,
           rules: [{ required: true, message: 'Prašome įvesti eilių kiekį!' }],
-        })(<InputNumber min={4} max={12} />)}
+        })(<InputNumber min={10} max={15} step="5" />)}
         <span className="ant-form-text"> Eilių kiekis</span>
       </Form.Item>
 
       <Form.Item label="Vietų kiekis">
         {getFieldDecorator('rowCount', {
-          initialValue: 20,
+          initialValue: 15,
           rules: [{ required: true, message: 'Prašome įvesti vietų kiekį!' }],
-        })(<InputNumber min={16} max={32} />)}
+        })(<InputNumber min={15} max={30} step="15" />)}
         <span className="ant-form-text"> Vietų kiekis</span>
       </Form.Item>
 

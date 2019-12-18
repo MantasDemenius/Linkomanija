@@ -12,7 +12,7 @@ const TicketReserveForm = () => {
   return (
     <>
       <Card>
-      <Text strong>Čia bus bilieto rezervavimo forma</Text>
+      <Text strong>Rezervuoti vietą</Text>
         <WrappedTicketForm formType='reserve'/>
        
       </Card>

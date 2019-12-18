@@ -41,7 +41,7 @@ const PlacesPage = () => {
       <Card>
         <Text strong>Žemėlaptio langas</Text>
       </Card>
-      {user === '' && (
+      {user === 'admin' && (
         <Card>
           Patalpų panelė
           <Button onClick={() => history.push('/patalpa/prideti')}>Pridėti</Button>

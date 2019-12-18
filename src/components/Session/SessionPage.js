@@ -71,13 +71,12 @@ const SessionPage = () => {
       align: 'right',
       render: (item) => (
         <>
-          <Button type="primary" onClick={() => history.push(`/seansas/${item.key}`)} size="medium">
-            Bilietai
-          </Button>
+        <Button type="primary"  onClick={() =>  history.push(`/seansas/${item.key}/rezervuoti`)}>Rezervuoti</Button>
+          <Button type="primary"  onClick={() =>  history.push(`/seansas/${item.key}/pirkti`)} >Pirkti</Button>
           {user === 'admin' && <Button
             type="secondary"
             onClick={() => history.push(`/seansas/redaguoti/${item.key}`)}
-            size="medium"
+            size="default"
           >
             Redaguoti
           </Button>}
