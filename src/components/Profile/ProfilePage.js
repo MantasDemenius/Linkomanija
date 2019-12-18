@@ -15,7 +15,7 @@ const ProfilePage = () => {
         <>
             {userType == "client" ? <ProfileEditForm userId={userId} /> : null}
             {userType == "client" ? <Orders userId={userId} /> : null}
-            {userType == "employee" ? <Timetable userId={userId} /> : null}
+            {userType == "employee" ? <Timetable userId={userId} isAdminMode /> : null}
         </>
     )
 }

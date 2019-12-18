@@ -38,14 +38,14 @@ const TimetableForm = ({ form, userId }) => {
     return (
         <>
             <Form onSubmit={handleSubmit} layout="inline">
-                <Form.Item label="Laikas">
+                <Form.Item label="">
                     {getFieldDecorator('range', {
                         rules: [{ required: false, message: '' }]
                     })(
                         <RangePicker
                             showTime={{ format: 'HH:mm' }}
                             format="YYYY-MM-DD HH:mm"
-                            placeholder={['Start Time', 'End Time']}
+                            placeholder={['Darbo pradžia', 'Darbo pabaiga']}
                         />
                     )}
                 </Form.Item>
@@ -58,7 +58,7 @@ const TimetableForm = ({ form, userId }) => {
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
-                        Pateikti
+                        Pridėti
             </Button>
                 </Form.Item>
             </Form>

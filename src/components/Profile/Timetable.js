@@ -47,12 +47,12 @@ const Timetable = ({ userId, isAdminMode }) => {
                     bordered
                     dataSource={data}
                     renderItem={item => <List.Item
-                        actions={!isAdminMode ?
+                        actions={isAdminMode ?
                             [<a key="1" onClick={handleDelete(item.id)} >ištrinti</a>] : null}
                     >{"Nuo " + item.timetable_start + " iki " + item.timetable_end + " | " + item.comment}</List.Item>}
                 />
             </Card>
-            {!isAdminMode ?
+            {isAdminMode ?
                 <Card>
                     <h3>Pridėti naują</h3>
                     <TimetableForm userId={userId} />
