@@ -43,10 +43,7 @@ public class ReservationService {
   }
 
   public List<Reservation> getAllReservationsByClientId(Long user_client_id) {
-    List<Reservation> reservations = reservationRepository.findByUserClientId(user_client_id);
-    return reservations.stream()
-      .filter(Reservation::isTicket_state)
-      .collect(Collectors.toList());
+    return reservationRepository.findByUserClientId(user_client_id);
   }
 
   public Reservation getReservationById(Long id) {
