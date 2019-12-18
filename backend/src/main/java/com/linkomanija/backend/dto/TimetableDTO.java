@@ -1,12 +1,17 @@
 package com.linkomanija.backend.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Timestamp;
 import java.util.Date;
 
 public class TimetableDTO {
   private Long id;
   private Date attending_date;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
   private Timestamp timetable_start;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
   private Timestamp timetable_end;
   private String comment;
   private Long user_employee_id;
