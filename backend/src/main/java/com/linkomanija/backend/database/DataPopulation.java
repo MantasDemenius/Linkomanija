@@ -9,16 +9,16 @@ import com.linkomanija.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.thymeleaf.util.DateUtils;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import static java.util.Arrays.asList;
 
@@ -97,6 +97,10 @@ public class DataPopulation {
     restTemplate.postForEntity(addMovie, movie4, String.class);
     restTemplate.postForEntity(addMovie, movie5, String.class);
 
+    //ADD CLIENTS
+    URI addClient = new URI(baseUrl + "user/client");
+    
+
     //ADD EMPLOYEES
     URI addEmployee = new URI(baseUrl + "user/employee");
     timetableRepository.deleteAll();
@@ -131,68 +135,22 @@ public class DataPopulation {
     Long employeeId1 = userEmployeeRepository.findByUsername("Darbuotojas1").getId();
     Long employeeId2 = userEmployeeRepository.findByUsername("Darbuotojas2").getId();
 
-    Date attendingDate = new Date(2019, Calendar.NOVEMBER,1);
-    Timestamp start = new Timestamp(2010, 10, 1, 10,0,0,0);
-    Timestamp end = new Timestamp(2010, 10, 1, 18,30,0,0);
+    Date attendingDate = DateUtils.create(2019, 10, 1).getTime();
+    Calendar start = DateUtils.create(2010,10,1,10,0);
+    Calendar end = DateUtils.create(2010,10,1,18,30);
 
-    TimetableDTO timetable1 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
+    List<TimetableDTO> timetables1 = new ArrayList<>();
+    List<TimetableDTO> timetables2 = new ArrayList<>();
+    for (int i = 0; i < 5; i++) {
+      timetables1.add(new TimetableDTO(attendingDate, start.getTime(), end.getTime(), "No comments", employeeId1));
+      timetables2.add(new TimetableDTO(attendingDate, start.getTime(), end.getTime(), "No comments", employeeId1));
+      start.add(Calendar.DATE, 1);
+      end.add(Calendar.DATE, 1);
+    }
 
-    start.setDate(2);
-    end.setDate(2);
-    start.setHours(11);
-    end.setHours(17);
-    TimetableDTO timetable2 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
-
-    start.setDate(3);
-    end.setDate(3);
-    start.setHours(9);
-    end.setHours(20);
-    TimetableDTO timetable3 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
-
-    start.setDate(4);
-    end.setDate(4);
-    start.setHours(7);
-    end.setHours(20);
-    TimetableDTO timetable4 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
-
-    start.setDate(5);
-    end.setDate(5);
-    start.setHours(8);
-    end.setHours(21);
-    TimetableDTO timetable5 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId1);
-
-    //
-
-    timetable1 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
-
-    start.setDate(2);
-    end.setDate(2);
-    start.setHours(11);
-    end.setHours(17);
-    timetable2 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
-
-    start.setDate(3);
-    end.setDate(3);
-    start.setHours(9);
-    end.setHours(20);
-    timetable3 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
-
-    start.setDate(4);
-    end.setDate(4);
-    start.setHours(7);
-    end.setHours(20);
-    timetable4 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
-
-    start.setDate(5);
-    end.setDate(5);
-    start.setHours(8);
-    end.setHours(21);
-    timetable5 = new TimetableDTO(attendingDate, start, end, "No comments", employeeId2);
-
-    restTemplate.postForEntity(addTimetable, timetable1, String.class);
-    restTemplate.postForEntity(addTimetable, timetable2, String.class);
-    restTemplate.postForEntity(addTimetable, timetable3, String.class);
-    restTemplate.postForEntity(addTimetable, timetable4, String.class);
-    restTemplate.postForEntity(addTimetable, timetable5, String.class);
+    for (int i = 0; i < 5; i++) {
+      restTemplate.postForEntity(addTimetable, timetables1.get(i), String.class);
+      restTemplate.postForEntity(addTimetable, timetables2.get(i), String.class);
+    }
   }
 }

@@ -1,5 +1,6 @@
 package com.linkomanija.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,6 +18,8 @@ public class MovieTheatre {
   private String name;
   private String address;
   private String phone_number;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   private Date creation_date;
 
   public Long getId() {

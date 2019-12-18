@@ -1,12 +1,12 @@
 package com.linkomanija.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.linkomanija.backend.dto.ReservationDTO;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 @Data
 @Entity
@@ -16,7 +16,9 @@ public class Reservation {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   private Date creation_date;
+
   private int seat_row;
   private int seat_collumn;
   private double price;

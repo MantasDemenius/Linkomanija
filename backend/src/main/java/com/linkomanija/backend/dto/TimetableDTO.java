@@ -11,10 +11,10 @@ public class TimetableDTO {
   private String comment;
   private Long user_employee_id;
 
-  public TimetableDTO(Date attending_date, Timestamp timetable_start, Timestamp timetable_end, String comment, Long user_employee_id) {
+  public TimetableDTO(Date attending_date, Date timetable_start, Date timetable_end, String comment, Long user_employee_id) {
     this.attending_date = attending_date;
-    this.timetable_start = timetable_start;
-    this.timetable_end = timetable_end;
+    this.timetable_start = new Timestamp(timetable_start.getTime());
+    this.timetable_end = new Timestamp(timetable_end.getTime());
     this.comment = comment;
     this.user_employee_id = user_employee_id;
   }
