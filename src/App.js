@@ -26,6 +26,7 @@ import employees from './components/User/darbuotojai';
 import EmployeesAdd from './components/User/EmployeesAdd';
 import EmployeesEdit from './components/User/EmployeesEdit';
 import TicketReserveForm from './components/Session/TicketReserveForm';
+import TimeTable from './components/Profile/Timetable';
 
 const { Content, Footer } = Layout;
 const { Text } = Typography;
@@ -52,6 +53,9 @@ const App = () => {
             <Route path="/employees/edit" component={EmployeesEdit} />
             <Route path="/employees" component={employees} />
             <Route path="/naudotojai" component={UserPage} />
+            <Route path="/grafikas/:id">
+              <TimeTable isAdminMode />
+            </Route>
             <Route path="/seansas/prideti" component={SessionAdd} />
             <Route path="/seansas/:key/pirkti" component={TicketBuyForm} />
             <Route path="/seansas/:key/rezervuoti" component={TicketReserveForm} />
@@ -64,7 +68,7 @@ const App = () => {
           <Text strong>Linkomanija ©2019, Kaunas</Text>
         </Footer>
       </Layout>
-    </Router>
+    </Router >
   );
 };
 
