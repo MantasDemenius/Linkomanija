@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import 'antd/dist/antd.css';
 import '../../App.css';
-import { Card } from 'antd';
+import { Card, message } from 'antd';
 import { List } from 'antd';
 import axios from 'axios';
 import { format } from 'date-fns';
+import TimetableForm from './TimetableForm';
 
-const Timetable = ({ userId }) => {
+const Timetable = ({ userId, isAdminMode }) => {
     const [timetable, setTimetable] = useState([]);
+    const [state, updateState] = React.useState();
+    const forceUpdate = useCallback(() => updateState({}), []);
 
     const data = [];
 
@@ -15,17 +18,25 @@ const Timetable = ({ userId }) => {
         axios.get('/api/timetable/' + userId)
             .then((res) => {
                 setTimetable(res.data);
+                forceUpdate();
             })
-            .catch((e) => {
-                console.log(e);
-            });
-    }, [])
+    }, [state])
 
     timetable.forEach(item => {
         item.timetable_start = format(Date.parse(item.timetable_start), 'yyyy-MM-dd hh:mm');
         item.timetable_end = format(Date.parse(item.timetable_end), 'yyyy-MM-dd hh:mm');
         data.push(item);
     });
+
+    const handleDelete = id => () => {
+        axios.delete('/api/timetable/' + id)
+            .then(() => {
+                message.success('Grafikas ištrintas');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
     return (
         <>
@@ -35,9 +46,18 @@ const Timetable = ({ userId }) => {
                     size="large"
                     bordered
                     dataSource={data}
-                    renderItem={item => <List.Item>{"Nuo " + item.timetable_start + " iki " + item.timetable_end + " | " + item.comment}</List.Item>}
+                    renderItem={item => <List.Item
+                        actions={isAdminMode ?
+                            [<a key="1" onClick={handleDelete(item.id)} >ištrinti</a>] : null}
+                    >{"Nuo " + item.timetable_start + " iki " + item.timetable_end + " | " + item.comment}</List.Item>}
                 />
             </Card>
+            {isAdminMode ?
+                <Card>
+                    <h3>Pridėti naują</h3>
+                    <TimetableForm userId={userId} />
+                </Card>
+                : null}
         </>
     );
 };
